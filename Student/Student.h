@@ -23,8 +23,6 @@ struct Student {
     List<CourseScore> pScore;
 
     void enrolledCourse();
-
     void viewEnrolledCourses();
-
     void removeCourse();
 }
