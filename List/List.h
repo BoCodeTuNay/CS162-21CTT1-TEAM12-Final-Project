@@ -1,3 +1,15 @@
+/*
+How to use?
+1. Khai báo: List<kiểu dữ liệu> <tên>;
+VD: List<Student> A;
+2. Duyệt:
+for(Node<kiểu dữ liệu>* p = A.head(); p; p = p->pNext) {
+
+}
+3. Thêm: A.insert(<biến thuộc kiểu dữ liệu>);
+4. Xóa: A.remove(<biến thuộc kiểu dữ liệu mà cần xóa>, <hàm so sánh>);
+*/
+
 #pragma once
 #include <iostream>
 
