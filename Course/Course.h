@@ -1,9 +1,17 @@
 #pragma once
+
+#include "List.h"
+#include "Student.h"
+#include "Date.h"
+
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 struct Course {
  
-	Student arr[]; // -> scoreboard ???
+	List <Student> student; // -> scoreboard ???
  
     Date start_date;
     Date end_date;
@@ -17,7 +25,7 @@ struct Course {
 	// S1 (07:30), S2 (09:30), S3(13:30) and S4 (15:30)
     int session; // 1 -> 4
  
-	Void viewCourses();
+	void viewCourses();
     void updateCourse();
     void viewStudents();
     void exportStudents(); // to a CSV file

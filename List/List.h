@@ -1,6 +1,6 @@
 /*
 How to use?
-1. Khai báo: List<kiểu dữ liệu> <tên>;
+1. Khai báo: List<kiểu dữ liệu> tên;
 VD: List<Student> A;
 2. Duyệt:
 for(Node<kiểu dữ liệu>* p = A.head(); p; p = p->pNext) {
@@ -15,7 +15,7 @@ for(Node<kiểu dữ liệu>* p = A.head(); p; p = p->pNext) {
 
 template <typename T>
 struct Node {
-    T key;
+    T data;
     Node<T>* pNext{nullptr};
 };
 

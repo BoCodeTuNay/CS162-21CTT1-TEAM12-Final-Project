@@ -9,5 +9,4 @@ struct Lecturer {
     void viewCourses();
  
     // import scoreboard
-    // ... some more
 };

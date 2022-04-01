@@ -16,7 +16,7 @@ bool List::insert(const T& new_elem) {
     if (pHead == nullptr) {
         pHead = new Node<T>;
         if (pHead) {
-            pHead->key = new_elem;
+            pHead->data = new_elem;
             pTail = pHead;
             ++sz;
             return true;
@@ -27,7 +27,7 @@ bool List::insert(const T& new_elem) {
         pTail->pNext = new Node<T>;
         if (pTail->pNext) {
             pTail = pTail->pNext;
-            pTail->key = new_elem;
+            pTail->data = new_elem;
             ++sz;
             return true;
         }
@@ -36,7 +36,7 @@ bool List::insert(const T& new_elem) {
 }
 
 bool List::remove(const T& mem, bool (*cmp)(const T&, const T&)) {
-    if (cmp(pHead->key, mem)) {
+    if (cmp(pHead->data, mem)) {
         if (pHead == pTail) {
             delete pHead;
             pHead = nullptr;
@@ -52,7 +52,7 @@ bool List::remove(const T& mem, bool (*cmp)(const T&, const T&)) {
     }
     else {
         for(Node<T>* cur = pHead; cur->pNext; cur = cur->pNext) {
-            if (cmp(cur->pNext->key, mem)) {
+            if (cmp(cur->pNext->data, mem)) {
                 if(cur->pNext == pTail) {
                     pTail = cur;
                 }
