@@ -1,18 +1,37 @@
 #include "List.h"
 
-Node<T>* const List::head() {
+template <typename T>
+List<T>::List()
+{
+    pHead = nullptr;
+    pTail = nullptr;
+}
+
+template <typename T>
+List<T>::~List()
+{
+    Node<T>* cur = pHead;
+    while (cur) {
+        Node<T>* tmp = cur;
+        cur = cur->pNext;
+        delete tmp;
+    }
+    pHead = nullptr;
+    pTail = nullptr;
+}
+
+template <typename T>
+Node<T>* const List<T>::begin() {
     return pHead;
 }
 
-Node<T>* const List::tail() {
-    return pTail;
-}
-
-unsigned int List::size() {
+template <typename T>
+unsigned int List<T>::size() {
     return sz;
 }
 
-bool List::insert(const T& new_elem) {
+template <typename T>
+bool List<T>::insert(const T& new_elem) {
     if (pHead == nullptr) {
         pHead = new Node<T>;
         if (pHead) {
@@ -35,7 +54,8 @@ bool List::insert(const T& new_elem) {
     }
 }
 
-bool List::remove(const T& mem, bool (*cmp)(const T&, const T&)) {
+template <typename T>
+bool List<T>::remove(const T& mem, bool (*cmp)(const T&, const T&)) {
     if (cmp(pHead->data, mem)) {
         if (pHead == pTail) {
             delete pHead;
@@ -51,12 +71,12 @@ bool List::remove(const T& mem, bool (*cmp)(const T&, const T&)) {
         return true;
     }
     else {
-        for(Node<T>* cur = pHead; cur->pNext; cur = cur->pNext) {
+        for (Node<T>* cur = pHead; cur->pNext; cur = cur->pNext) {
             if (cmp(cur->pNext->data, mem)) {
-                if(cur->pNext == pTail) {
+                if (cur->pNext == pTail) {
                     pTail = cur;
                 }
-                Node<T> *tmp = cur->pNext;
+                Node<T>* tmp = cur->pNext;
                 cur->pNext = cur->pNext->pNext;
                 delete tmp;
                 --sz;
