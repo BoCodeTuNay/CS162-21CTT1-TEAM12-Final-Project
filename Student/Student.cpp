@@ -1,6 +1,6 @@
 #include "Student.h"
 
-bool cmpCourse(CourseScore &a, CourseScore &b) {
+bool cmp_Course(const CourseScore &a, const CourseScore &b) {
     return (a.pCourse == b.pCourse);
 }
 
@@ -32,5 +32,5 @@ void Student::removeCourse() {
         /// Hiển thị danh sách sinh viên đã enroll
     }
 
-    pScore.remove(pick, cmpCourse);
+    pScore.remove(pick, cmp_Course);
 }
