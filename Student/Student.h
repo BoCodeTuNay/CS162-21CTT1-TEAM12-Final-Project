@@ -26,3 +26,5 @@ struct Student {
     void viewEnrolledCourses();
     void removeCourse();
 };
+
+#include "Student.cpp"
