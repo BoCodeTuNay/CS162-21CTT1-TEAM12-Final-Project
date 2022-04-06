@@ -20,6 +20,9 @@ struct Student {
     int id;
     char email[100];
 
+    char class_name[10];
+    long long class_id;
+
     List<CourseScore> pScore;
 
     void enrolledCourse(List<Course> pOpenCourse);
