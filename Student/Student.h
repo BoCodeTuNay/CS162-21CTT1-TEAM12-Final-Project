@@ -1,6 +1,7 @@
 #pragma once
 #include "..\\List\\List.h"
 #include "..\\Course\\Course.h"
+#include "..\\constants.h"
 
 struct Score {
     double mid_term_p;
@@ -14,14 +15,14 @@ struct CourseScore {
 };
 
 struct Student {
-    char username[20];
-    char password[20];
+    char username[MAXSTR+1];
+    char password[MAXSTR+1];
 
-    char name[50];
-    int id;
-    char email[100];
+    char name[MAXSTR+1];
+    char id[MAXID+1];
+    char email[MAXSTR+1];
 
-    char class_name[10];
+    char class_name[MAXSTR+1];
     long long class_id;
 
     List<CourseScore> pScore;

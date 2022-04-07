@@ -2,20 +2,24 @@
 
 //#include "Course.h"
 //#include "Schoolyear.h"
+#include "constants.h"
 
 #include <iostream>
 #include <string.h>
 
 using namespace std;
 
+const int MAXSTR = 50; // for other features' convenience
+const int MAXID = 8; // 21125XXX
+
 struct Staff {
  
-    string username;
-    string password;
- 
-    string name;
-    string id;
-    string email;
+    char username[MAXSTR+1];
+    char password[MAXSTR+1];
+
+    char name[MAXSTR+1];
+    char id[MAXID+1];
+    char email[MAXSTR+1];
  
     // các phương thức của 1 sinh viên
 
