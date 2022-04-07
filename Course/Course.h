@@ -1,8 +1,8 @@
 #pragma once
 
-#include "List.h"
-#include "Student.h"
-#include "Date.h"
+#include "..\\List\\List.h"
+#include "..\\Student\\Student.h"
+#include "..\\Date\\Date.h"
 
 #include <iostream>
 #include <string>

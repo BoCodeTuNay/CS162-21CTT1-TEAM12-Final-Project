@@ -1,5 +1,6 @@
-#include "List.h"
-#include "Course.h"
+#pragma once
+#include "..\\List\\List.h"
+#include "..\\Course\\Course.h"
 
 struct Score {
     double mid_term_p;
@@ -26,3 +27,5 @@ struct Student {
     void viewEnrolledCourses();
     void removeCourse();
 };
+
+#include "Student.cpp"

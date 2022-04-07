@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Course.h"
-#include "Schoolyear.h"
+//#include "Course.h"
+//#include "Schoolyear.h"
 
 #include <iostream>
 #include <string.h>
