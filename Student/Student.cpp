@@ -1,3 +1,4 @@
+#pragma once
 #include "Student.h"
 
 bool cmp_Course(const CourseScore &a, const CourseScore &b) {
