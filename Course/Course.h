@@ -13,7 +13,7 @@ struct Course {
  
 	List <Student> student; // -> scoreboard ???
  
-    Date start_date;
+    Date start_date; // from Minh: có nên bỏ start_date và end_date không nhỉ vì bây giờ struct Course được bỏ vào Semester đã chứa Start_date và end_date rối ấy?
     Date end_date;
  
     string id; // mã học phần

@@ -8,4 +8,4 @@ The purpose is to avoid re-definitions of these constants.
 #pragma once
 
 const int MAXSTR = 50; // for other features' convenience
-const int MAXID = 8; // 21125XXX
+const int MAXID = 8; // 21125XXX for Student's id, 20202021 for Schoolyear's id

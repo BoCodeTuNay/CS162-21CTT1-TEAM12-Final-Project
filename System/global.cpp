@@ -1,5 +1,5 @@
 #include "System.h"
-#include "List\List.h"
+#include "..\List\List.h"
 
 // temporary Student and Staff
 List<Student> listStudents;
