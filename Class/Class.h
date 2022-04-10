@@ -1,11 +1,12 @@
 #include "Student.h"
 #include <string.h>
+#include "Constants.h"
 
 struct Class {
-    char name[10];
+    char name[MAXNAME];
     long long class_id;
 
-    Class(char name[10], long long class_id = 0);
+    Class(char name[MAXNAME], long long class_id = 0);
 
     List<Student> stu_list;
 };

@@ -1,7 +1,7 @@
 #pragma once
-#include "..\\List\\List.h"
-#include "..\\Course\\Course.h"
-#include "..\\constants.h"
+#include "List.h"
+#include "Course.h"
+#include "Constants.h"
 
 struct Score {
     double mid_term_p;
