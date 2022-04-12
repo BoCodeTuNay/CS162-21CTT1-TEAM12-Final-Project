@@ -50,10 +50,7 @@ bool checkEmail(const char* str)
                     else if (str[j+1] == 0) return false; // the period character cannot be in the end
                     else if (str[j-1] == '.') return false; // consecutive period characters are not allowed
                 }
-                else if (islower(str[j])) {
-                    // do nothing
-                }
-                else return false;
+                else if (!islower(str[j])) return false; 
             }
             return true;
         }
