@@ -1,9 +1,8 @@
 #pragma once
 #include "List.h"
 #include <string.h>
-#include "Profile.h"
+#include "Profile/Profile.h"
 #include "Constants.h"
-#include "Profile.h"
 
 struct Class {
     char name[MAXNAME];
