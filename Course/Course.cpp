@@ -2,5 +2,12 @@
 
 void Course::viewCourses()
 {
-    for (Node <Course>* i = student.head(); i)
+    cout << "id: " << id << "\n";
+    cout << "name: " << name << "\n";
+    cout << "lecturer: " << lecturer << "\n";
+    cout << "numCredits: " << numCredits << "\n";
+    cout << "maxStudents: " << maxStudents << "\n";
+    cout << "day: " << day << "\n";
+    cout << "session: " << session << "\n";
+
 }
