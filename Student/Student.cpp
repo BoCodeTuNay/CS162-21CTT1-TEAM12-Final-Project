@@ -26,7 +26,7 @@ void Student::viewEnrolledCourses() {
     }
 }
 
-void Student::removeCourse() {
+void Student::removeCourse(string id) {
     CourseScore pick;
 
     for (Node<CourseScore>* p = pScore.begin(); p; p = p -> pNext) {

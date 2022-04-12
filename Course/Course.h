@@ -46,6 +46,7 @@ struct Course {
     void exportStudents(); // to a CSV file
 	void viewScoreboard(); //
     void addStudent();
+    void isRegistrable();
 };
 
 #include "Course.cpp"
