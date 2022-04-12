@@ -4,15 +4,21 @@
 #include "..\\Student\\Student.h"
 #include "..\\Date\\Date.h"
 #include "Profile.h"
+#include "Score.h"
 
 #include <iostream>
 #include <string>
 
 using namespace std;
 
+struct StudentScore{
+    Profile profile;
+    Score score;
+};
+
 struct Course {
  
-	List <Profile> Student; // -> scoreboard ???
+	List <StudentScore> Student; // -> scoreboard ???
  
     Date start_date; // from Minh: có nên bỏ start_date và end_date không nhỉ vì bây giờ struct Course được bỏ vào Semester đã chứa Start_date và end_date rối ấy?
                      // from Duy: tui nghĩ không, start_date và end_date của mỗi course có thể khác nhau
@@ -39,7 +45,7 @@ struct Course {
     void viewStudents();
     void exportStudents(); // to a CSV file
 	void viewScoreboard(); //
- 
+    void addStudent();
 };
 
 #include "Course.cpp"
