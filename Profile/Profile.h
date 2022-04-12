@@ -17,6 +17,6 @@ struct Profile {
     Date DOB; // day of birth
     string socialID[MAXID]; //xxxxxxxx
 
-    void importFromCSV();
+    void importFromCSV(fstream &fin);
 
 };

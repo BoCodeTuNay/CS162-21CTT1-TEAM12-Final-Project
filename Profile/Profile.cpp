@@ -1,8 +1,6 @@
 #include "Profile.h"
 
-void importFromCSV()
+void importFromCSV(fstream &fin)
 {
-    ifstream fin;
-    string path[MAXSTR];
-    cout << "Enter file path";
+    
 }
