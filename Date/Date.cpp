@@ -1,3 +1,16 @@
+#include "Date.h"
+Date::Date()
+{
+	day = 1;
+	month = 1;
+	year = 2020;
+}
+
+Date::Date(string date) {
+		year = stoi(date.substr(0, 4));
+		month = stoi(date.substr(5, 2));
+		day = stoi(date.substr(8, 2));
+}
 void output_date(Date date)
 {
 	cout << date.day << "/" << date.month << "/" << date.year;
@@ -51,4 +64,19 @@ void enter_date(Date& date)
 		cin >> date.year;
 		cin.ignore();
 	} while (check_date(date) != true);
+}
+//*Check xem ngay da cho co nam giua 2 ngay khac khong
+bool ifDate(Date date, Date start, Date end) {
+	if ((date.year>start.year)&&(date.year<=end.year)||(date.year>=start.year)&&(date.year<end.year)) {
+		return true;
+	} else if ((date.year==start.year)&&(date.year==end.year)) {
+		if ((date.month>start.month)&&(date.month<=end.month)||(date.month>=start.month)&&(date.month<end.month)) {
+		return true;
+		} else if ((date.month==start.month)&&(date.month==end.month)){
+			if ((date.day>=start.day)&&(date.day<=end.day)){
+				return true;
+			}
+		}
+	}
+	return false;
 }

@@ -1,8 +1,16 @@
 #pragma once
 #include <iostream>
 #include <cctype>
+#include "..\Student\Student.h"
+#include "..\Staff\Staff.h"
 #include "..\Constants\Constants.h"
+#include "..\List\List.h"
+#include "..\Schoolyear\Schoolyear.h"
 
+List<Student> listStudents;
+List<Staff> listStaffs;
+List<Schoolyear> listSchoolyears;
+int current_year_index = -1;
 struct Student {
     char username[MAXSTR+1];
     char password[MAXSTR+1];

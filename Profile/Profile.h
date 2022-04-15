@@ -20,3 +20,5 @@ struct Profile {
     void importFromCSV(fstream &fin);
 
 };
+
+#include "Profile.cpp"

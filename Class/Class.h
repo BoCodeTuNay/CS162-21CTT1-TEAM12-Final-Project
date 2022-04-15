@@ -1,5 +1,7 @@
-#include "Student.h"
+#pragma once
+#include "List.h"
 #include <string.h>
+#include "Profile/Profile.h"
 #include "Constants.h"
 
 struct Class {
@@ -8,7 +10,7 @@ struct Class {
 
     Class(char name[MAXNAME], long long class_id = 0);
 
-    List<Student> stu_list;
+    List<Profile> stu_list;
 };
 
 #include "Class.cpp"
