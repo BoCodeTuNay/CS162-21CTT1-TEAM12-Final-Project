@@ -1,7 +1,11 @@
+#include <iostream>
+using namespace std;
 struct Date {
 	int year;
 	int month;
 	int day;
+	Date();
+	Date(string date);
 };
 void output_date(Date date);
 bool check_leap_year(int year);

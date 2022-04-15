@@ -1,3 +1,16 @@
+#include "Date.h"
+Date::Date()
+{
+	day = 1;
+	month = 1;
+	year = 2020;
+}
+
+Date::Date(string date) {
+		year = stoi(date.substr(0, 4));
+		month = stoi(date.substr(5, 2));
+		day = stoi(date.substr(8, 2));
+}
 void output_date(Date date)
 {
 	cout << date.day << "/" << date.month << "/" << date.year;
