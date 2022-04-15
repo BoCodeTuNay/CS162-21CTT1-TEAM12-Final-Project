@@ -61,6 +61,24 @@ bool checkEmail(const char* str)
     return false;
 }
 
+void clrscr()
+{
+    std::cout << "\033[2J\033[1;1H";
+}
+
+int choose(int a, int b)
+{
+    
+    char str[3];
+    cin.get(str, 2, '\n');
+    while (cin.fail() || cin.get() != '\n' || !) {
+        cin.clear();
+        fflush(stdin);
+        cout << "Invalid choice. Please try again.\n";
+        cout << "Your choice: "
+    }
+}
+
 void signup()
 {
     using namespace std;
