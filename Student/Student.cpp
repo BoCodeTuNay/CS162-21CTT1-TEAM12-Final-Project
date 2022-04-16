@@ -1,13 +1,14 @@
 #pragma once
-#include "Student.h"
+#include "Student/Student.h"
 
 bool cmp_Course(const CourseScore &a, const CourseScore &b) {
     return (a.pCourse.id == b.pCourse.id);
 }
 
-void Student::enrolledCourse(List<Course> pOpenCourse) {
+void Student::enrolledCourse(const List<Course> &pOpenCourse) {
     if (pScore.size() > 4) {
-        /// Thông báo sinh viên không thể đăng ký thêm
+        cout << "You have enrolled 5 courses!.";
+        return;
     } else {
         Course pickCourse;
         Score c;
@@ -37,4 +38,13 @@ void Student::removeCourse(string id) {
     }
 
     pScore.remove(pick, cmp_Course);
+}
+
+void Student::init_classid() {
+    class_id = 0;
+    long long MOD = 1333333337;
+    long long base = 2017;
+    for (int i = 0; i < class_name.length(); ++i) {
+        class_id = ((class_id * base % MOD) + class_name[i]) % MOD;
+    }
 }

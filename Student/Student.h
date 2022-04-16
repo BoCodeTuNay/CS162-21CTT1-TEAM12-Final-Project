@@ -1,7 +1,7 @@
 #pragma once
-#include "List.h"
-#include "Course.h"
-#include "Constants.h"
+#include "List/List.h"
+#include "Course/Course.h"
+#include "Constants/Constants.h"
 #include "Score.h"
 
 struct CourseScore {
@@ -22,9 +22,10 @@ struct Student {
 
     List<CourseScore> pScore;
 
-    void enrolledCourse(List<Course> pOpenCourse);
+    void enrolledCourse(const List<Course> &pOpenCourse);
     void viewEnrolledCourses();
     void removeCourse(string id);
+    void init_classid();
 };
 
-#include "Student.cpp"
+#include "Student/Student.cpp"
