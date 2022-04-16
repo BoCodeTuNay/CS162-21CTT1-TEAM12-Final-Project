@@ -26,6 +26,7 @@ struct Student {
     void viewEnrolledCourses();
     void removeCourse(string id);
     void init_classid();
+    void listOfCourses();
 };
 
 #include "Student/Student.cpp"

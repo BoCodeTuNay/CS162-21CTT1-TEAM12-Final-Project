@@ -48,3 +48,9 @@ void Student::init_classid() {
         class_id = ((class_id * base % MOD) + class_name[i]) % MOD;
     }
 }
+
+void Student::listOfCourses() {
+    cout << "This semester you study courses:\n";
+    for (Node<CourseScore>* p = pScore.begin(); p; p = p -> pNext) 
+        
+}
