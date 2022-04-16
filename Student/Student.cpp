@@ -51,6 +51,8 @@ void Student::init_classid() {
 
 void Student::listOfCourses() {
     cout << "This semester you study courses:\n";
+    int cnt = 0;
     for (Node<CourseScore>* p = pScore.begin(); p; p = p -> pNext) 
-        
+        if (ifDate(getThisDate(), (p->data.pCourse.start_date), (p->data.pCourse.end_date))) 
+            cout << ++cnt << '.' << (p->data.pCourse.name) << '\n';
 }

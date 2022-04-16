@@ -3,6 +3,7 @@
 #include "Course/Course.h"
 #include "Constants/Constants.h"
 #include "Score.h"
+#include "Date/Date.h"
 
 struct CourseScore {
     Course pCourse;
