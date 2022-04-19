@@ -83,7 +83,7 @@ bool ifDate(Date date, Date start, Date end) {
 	return false;
 }
 
-/*
+
 Date getThisDate() {
 	Date cur;
 	tm* tmp = localtime(&time(0));
@@ -92,4 +92,3 @@ Date getThisDate() {
 	cur.day = tmp->tm_mday;
 	return cur;
 }
-*/

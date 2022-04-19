@@ -13,4 +13,4 @@ int day_of_month(int month, int year);
 bool check_date(Date date);
 void enter_date(Date& date);
 bool ifDate(Date date, Date start, Date end);
-// Date getThisDate();
+Date getThisDate();
