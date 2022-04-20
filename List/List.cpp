@@ -86,37 +86,7 @@ bool List<T>::remove(const T& mem, bool (*cmp)(const T&, const T&)) {
         return false;
     }
 }
-bool List<T>::rmv(const T& mem) {
-    if (pHead->data == mem)) {
-        if (pHead == pTail) {
-            delete pHead;
-            pHead = nullptr;
-            pTail = nullptr;
-        }
-        else {
-            Node<T>* cur = pHead;
-            pHead = pHead->pNext;
-            delete cur;
-        }
-        --sz;
-        return true;
-    }
-    else {
-        for (Node<T>* cur = pHead; cur->pNext; cur = cur->pNext) {
-            if (cur->pNext->data == mem)) {
-                if (cur->pNext == pTail) {
-                    pTail = cur;
-                }
-                Node<T>* tmp = cur->pNext;
-                cur->pNext = cur->pNext->pNext;
-                delete tmp;
-                --sz;
-                return true;
-            }
-        }
-        return false;
-    }
-}
+
 
 template <typename T>
 T& List<T>::get(unsigned int index) {
@@ -129,10 +99,10 @@ T& List<T>::get(unsigned int index) {
 }
 
 template <typename T>
-int List<T>::indexOf(const T& val){
+int List<T>::indexOf(const T& val, bool (*cmp)(const T&, const T&)){
     int i = 0;
     for (Node<T>* cur = pHead; cur; cur = cur->pNext) {
-        if (cur->data == val) {
+        if (cmp(cur->data, val))) {
             return i;
         }
         ++i;
@@ -142,9 +112,9 @@ int List<T>::indexOf(const T& val){
 
 
 template <typename T>
-bool List<T>::search(const T& val){
+bool List<T>::search(const T& val, bool (*cmp)(const T&, const T&)){
     for (Node<T>* cur = pHead; cur; cur = cur->pNext) {
-        if (cur->data == val) {
+        if (cmp(cur->data,val))) {
             return true;
         }
     }
