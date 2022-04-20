@@ -86,6 +86,8 @@ bool List<T>::remove(const T& mem, bool (*cmp)(const T&, const T&)) {
         return false;
     }
 }
+
+template <typename T>
 bool List<T>::rmv(const T& mem) {
     if (pHead->data == mem)) {
         if (pHead == pTail) {
