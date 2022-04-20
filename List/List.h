@@ -42,6 +42,10 @@ public:
     bool insert(const T&);
     // remove a given element from the list (the first one found), return true/false whether the removal succeeds
     bool remove(const T&, bool (*cmp)(const T&, const T&));
+    bool rmv(const T& mem);
+    // return value on the given index, return nullptr if the index is out of range
+    T& get(unsigned int);
+    int indexOf(const T&);
+    bool search(const T&);
 };
-
 #include "List.cpp"

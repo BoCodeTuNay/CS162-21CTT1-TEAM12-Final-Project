@@ -1,10 +1,30 @@
-#include "Staff.h"
+#pragma once
+//#include "Course.h"
+#include "Schoolyear.h"
+#include "constants.h"
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+const int MAXSTR = 50; // for other features' convenience
+const int MAXID = 8; // 21125XXX
+
+struct Staff {
+    
+    char username[MAXSTR+1];
+    char password[MAXSTR+1];
+
+    char name[MAXSTR+1];
+    char id[MAXID+1];
+    char email[MAXSTR+1];
+ 
+    // các phương thức của 1 sinh viên
+
+    // At the beginning of a school year:
 
     // Create a school year
-    void Staff::createSchoolYear()
-    {
-        
-    }
+    void createSchoolYear();
 
     // Create several classes for 1st year students
     void createClasses();
@@ -48,3 +68,6 @@
 
     // View the scoreboard of a class
     void viewScoreboardOfClass(); 
+};
+
+#include "Staff.cpp"

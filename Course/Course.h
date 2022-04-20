@@ -3,7 +3,7 @@
 #include "..\\List\\List.h"
 #include "..\\Student\\Student.h"
 #include "..\\Date\\Date.h"
-#include "Profile.h"
+#include "Profile/Profile.h"
 #include "Score.h"
 
 #include <iostream>
