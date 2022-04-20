@@ -1,7 +1,13 @@
 #pragma once
+#include "Staff.h"
+#include "..\Student\Student.h"
+#include "..\Constants\Constants.h"
+#include "..\List\List.h"
+#include "..\Schoolyear\Schoolyear.h"
+
 #include "..\System\System.h"
 
-    // Create a school year
+// Create a school year
 void Staff::createSchoolYear()
 {
     Schoolyear newSchoolYear;

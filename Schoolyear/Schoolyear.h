@@ -42,4 +42,18 @@ M // số lượng Semester đang có hiện tại (phải là 1, 2, hoặc 3)
 format của 1 khối Course (dự kiến):
 // cái này chắc cần bàn thêm với mấy ông code struct Course :v
 
+<ID>
+<Name>
+<lecture>
+<numCredits>
+<maxStudents>
+
+// each of session (MON / TUE / WED / THU / FRI / SAT)
+// S1 (07:30), S2 (09:30), S3(13:30) and S4 (15:30)
+
+<day1>
+<session1>
+
+<day2>
+<session2>
 */

@@ -2,16 +2,16 @@
 #include <iostream>
 #include <cctype>
 #include "..\Student\Student.h"
-#include "..\Staff\Staff.h"
+// #include "..\Staff\Staff.h"
 #include "..\Constants\Constants.h"
 #include "..\List\List.h"
 #include "..\Schoolyear\Schoolyear.h"
 
-List<Student> listStudents;
-List<Staff> listStaffs;
+List<StudentAccount> listStudentsAccount;
+List<StaffAccount> listStaffsAccount;
 List<Schoolyear> listSchoolyears;
 int current_year_index = -1;
-struct Student {
+struct StudentAccount {
     char username[MAXSTR+1];
     char password[MAXSTR+1];
 
@@ -19,7 +19,7 @@ struct Student {
     char id[MAXID+1];
     char email[MAXSTR+1];
 };
-struct Staff {
+struct StaffAccount {
     char username[MAXSTR+1];
     char password[MAXSTR+1];
 

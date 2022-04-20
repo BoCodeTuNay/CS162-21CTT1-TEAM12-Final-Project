@@ -61,7 +61,7 @@ bool checkEmail(const char* str)
 void signup()
 {
     using namespace std;
-    Student st;
+    StudentAccount st;
 
     cout << "Name (max " << MAXSTR << " chars): ";
     cin.get(st.name, MAXSTR+1, '\n');
