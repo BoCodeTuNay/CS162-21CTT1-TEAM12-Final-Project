@@ -64,7 +64,7 @@ void addCourseToSemester(List <Schoolyear> &listSchoolyears){
         cout << "You don't have any school year yet.\n";
         return;
     }
-    Schoolyear schoolYear=listSchoolyears.get(getCurrentYear());
+    Schoolyear schoolYear=listSchoolyears.get(getCurrentYearIndex());
     Course newCourse;
     newCourse.inputCourses();
     schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.insert(newCourse);
@@ -76,7 +76,7 @@ void viewListCourses(List <Schoolyear> &listSchoolyears){
         cout << "You don't have any school year yet.\n";
         return;
     }
-    Schoolyear schoolYear=listSchoolyears.get(getCurrentYear());
+    Schoolyear schoolYear=listSchoolyears.get(getCurrentYearIndex());
     for (Node<Course>*currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester - 1].listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
         currentCourse->data.viewCourses();
     }
@@ -91,7 +91,7 @@ void updateCourseInfomation(List <Schoolyear> &listSchoolyears){
     string courseID;
     cout << "What course ID do you want to update?\n";
     cin>>courseID;
-    Schoolyear schoolYear=listSchoolyears.get(getCurrentYear());
+    Schoolyear schoolYear=listSchoolyears.get(getCurrentYearIndex());
     for (Node<Course>* currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester - 1].listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
         if (currentCourse->data.ID == courseID){
             currentCourse->data.updateCourse();
@@ -114,7 +114,7 @@ void deleteCourse(List <Schoolyear> &listSchoolyears){
     string courseID;
     cout << "What course ID do you want to delete?\n";
     cin>>courseID;
-    Schoolyear schoolYear=listSchoolyears.get(getCurrentYear());
+    Schoolyear schoolYear=listSchoolyears.get(getCurrentYearIndex());
     for (Node<Course>* currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester - 1].listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
         if (currentCourse->data.ID == courseID){
             schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.remove(currentCourse->data,cmp_course);
