@@ -24,10 +24,10 @@ struct Staff {
     // At the beginning of a school year:
 
     // Create a school year
-    void createSchoolYear();
+    void createSchoolYear(List <Schoolyear> &listSchoolyears);
 
     // Create several classes for 1st year students
-    void createClasses();
+    void createClasses(List <Class> &classes);
 
     // Add new 1st year students to 1st-year classes
     void addStudentToClasses();
@@ -35,16 +35,16 @@ struct Staff {
     // At the beginning of a semester:
 
     // Create a semester: 1, 2, or 3, school year, start date, end date
-    void createSemester();
+    void createSemester(List <Schoolyear> &listSchoolyears);
 
     // Create a course registration session: start date, end date.
     void createCourse();
 
     // Add a course to this semester
-    void addCourseToSemester();
+    void addCourseToSemester(List <Schoolyear> &listSchoolyears);
 
     // View the list of courses
-    void viewListCourses();
+    void viewListCourses(List <Schoolyear> &listSchoolyears);
 
     // Update course information
     void updateCourseInfomation();

@@ -41,4 +41,7 @@ bool checkEmail(const char*);
 void signup();
 void login();
 
+int getCurrentYear();
+// return the current year
+
 #include "System.cpp"

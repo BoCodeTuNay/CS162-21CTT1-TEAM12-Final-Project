@@ -8,3 +8,13 @@ Class::Class(char name[MAXNAME], long long class_id = 0) {
         class_id = ((class_id * base % MOD) + name[i]) % MOD;
     }
 }
+
+void Class::createClass()
+{
+    cout << "Enter class name: ";
+    cin.get(name, MAXNAME+1, '\n');
+
+    cout << "Enter class id: ";
+    fflush(stdin);
+    cin.get(ID, MAXSTR+1, '\n');
+}
