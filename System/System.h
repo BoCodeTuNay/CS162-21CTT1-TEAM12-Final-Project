@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cctype>
+#include <cstring>
 #include "..\Student\Student.h"
 // #include "..\Staff\Staff.h"
 #include "..\Constants\Constants.h"

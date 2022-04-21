@@ -69,5 +69,5 @@ struct Staff {
     // View the scoreboard of a class
     void viewScoreboardOfClass(); 
 };
-
+bool cmp_course(const Course& c1, const Course& c2);
 #include "Staff.cpp"

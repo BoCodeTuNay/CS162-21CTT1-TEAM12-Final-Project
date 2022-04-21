@@ -13,8 +13,7 @@ void Staff::createSchoolYear()
     Schoolyear newSchoolYear;
     cout << "What school year you want to create (example: 2021-2022)?\n";
     cin>>newSchoolYear.ID;
-    for (int i=0;i<listSchoolyears.size();i++){
-            Schoolyear schoolYear=listSchoolyears.get(i);
+    for (Node<Schoolyear>*schoolyear = listSchoolyears.begin(); schoolyear != nullptr; schoolyear = schoolyear->pNext) {
             if (schoolYear.ID==newSchoolYear.ID){
                 cout<<"This school year already exists.\n";
                 return;
@@ -46,10 +45,9 @@ void Staff::createSemester(){
         }
         cout << "What school year of this semester (example: 2021-2022)?\n";
         cin>>scyear;
-        for (int i=0;i<listSchoolyears.size();i++){
-            Schoolyear schoolYear=listSchoolyears.get(i);
-            if (schoolYear.ID==scyear){
-                schoolYear.createSemester();
+        for (Node<Schoolyear>* schoolyear = listSchoolyears.begin(); schoolyear != nullptr; schoolyear = schoolyear->pNext){
+            if (schoolyear.ID==scyear){
+                schoolyear.createSemester();
                 return;
             }
         }
@@ -77,8 +75,7 @@ void viewListCourses(){
         return;
     }
     Schoolyear schoolYear=listSchoolyears.get(current_year_index);
-    for (int i=0;i<schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.size();i++){
-        Course currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.get(i);
+    for (Node<Course>*currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester - 1].listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
         currentCourse.viewCourses();
     }
 }
@@ -93,8 +90,7 @@ void updateCourseInfomation(){
     cout << "What course ID do you want to update?\n";
     cin>>courseID;
     Schoolyear schoolYear=listSchoolyears.get(current_year_index);
-    for (int i=0;i<schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.size();i++){
-        Course currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.get(i);
+    for (Node<Course>* currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester - 1].listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
         if (currentCourse.id == courseID){
             currentCourse.updateCourse();
             return;
@@ -103,6 +99,10 @@ void updateCourseInfomation(){
     cout << "Do not have this course ID.\n";
 }
 
+bool cmp_course(const Course& c1, const Course& c2)
+{
+    return (strcmp(c1.id, c2.id));
+}
 // Delete a course by ID
 void deleteCourse(){
     if (current_year_index == -1){
@@ -113,10 +113,9 @@ void deleteCourse(){
     cout << "What course ID do you want to delete?\n";
     cin>>courseID;
     Schoolyear schoolYear=listSchoolyears.get(current_year_index);
-    for (int i=0;i<schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.size();i++){
-        Course currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.get(i);
+    for (Node<Course>* currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester - 1].listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
         if (currentCourse.id == courseID){
-            schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.rmv(currentCourse);
+            schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.remove(currentCourse,cmp_course);
             return;
         }
     }
