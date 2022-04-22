@@ -1,13 +1,12 @@
 #include "Semester.h"
 
-void Semester::createCourseRegistration(){
-    cout << "What is the start date of course registration session (example: 2020-01-01)?\n";
-    string tmp_str_date;
-    cin>>tmp_str_date;
-    Date tmp_date(tmp_str_date);
-    start_registration_date = tmp_date;
-    cout << "What is the end date of course registration session (example: 2020-03-31)?\n";
-    cin>>tmp_str_date;
-    Date tmp_date(tmp_str_date);
-    end_registration_date = tmp_date;
+void Semester::createCourseRegistration(List <CourseInfo>& listCourseInfo) {
+    CourseInfo course;
+    int check;
+    do {
+        course.enterCourseInfo();
+        cout << "Are you sure about all of the information of the course you want to create? (0 for No and 1 for Yes): ";
+        cin >> check;
+    } while (check == 0);
+    listCourseInfo.insert(course);
 }

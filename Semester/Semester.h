@@ -15,7 +15,7 @@ struct Semester {
     //void load_data(ifstream&);
 
     // create a Course Registration Session, this feature might need further discussion...
-    void createCourseRegistration();
+    void createCourseRegistration(List <CourseInfo>& listCourseInfo);
 };
 
 /*
