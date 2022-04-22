@@ -4,6 +4,7 @@
 
 struct Semester {
     bool created = false;
+    int ID;
     Date start_date;
     Date end_date;
     Date start_registration_date;

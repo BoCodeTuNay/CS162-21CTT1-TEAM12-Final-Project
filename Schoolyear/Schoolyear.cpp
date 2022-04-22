@@ -14,6 +14,7 @@ void Schoolyear::createSemester() {
     }
     Semester semester;
     semester.created=true;
+    semester.ID = listSem.size();
     listSem.insert(semester);
     cout << "What is the start date of this semester (example: 2020-01-01)?\n";
     string tmp_str_date;
