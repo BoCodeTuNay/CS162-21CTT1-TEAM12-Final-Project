@@ -4,7 +4,6 @@
 #include "../Date/Date.h"
 
 #include <iostream>
-#include <char>
 #include <fstream>
 
 using namespace std;

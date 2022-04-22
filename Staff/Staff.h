@@ -1,5 +1,6 @@
 #pragma once
 //#include "Course.h"
+#include "../Student/Student.h"
 #include "../Schoolyear/Schoolyear.h"
 #include "../Constants/Constants.h"
 #include <iostream>
@@ -19,6 +20,7 @@ struct Staff {
     char email[MAXSTR+1];
  
     // các phương thức của 1 sinh viên
+    void addStudent()
 
     // At the beginning of a school year:
 

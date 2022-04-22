@@ -37,7 +37,7 @@ struct Course {
     Course(){};
 
     ~Course(){
-        delete this; // from Minh: cái này là delete cái gì vậy Duy vì tui thấy trong struct này không có con trỏ ấy?
+        delete this;
     };
     
     void inputCourses();

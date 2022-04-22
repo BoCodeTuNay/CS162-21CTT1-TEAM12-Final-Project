@@ -56,16 +56,12 @@ bool check_date(Date date)
 	}
 	return true;
 }
-//*Nhap ngay thang
-void enter_date(Date& date)
-{
-	do {
-		cout << "Enter day / month / year: " << endl;
-		cin >> date.day;
-		cin >> date.month;
-		cin >> date.year;
-		cin.ignore();
-	} while (check_date(date) != true);
+// Nhap ngay
+void enter_date(Date& date) {
+	string tmp;
+	cout << "Enter the date (example: 2020-12-31): ";
+	cin >> tmp;
+	date = Date(tmp);
 }
 //*Check xem ngay da cho co nam giua 2 ngay khac khong
 bool ifDate(Date date, Date start, Date end) {
@@ -85,7 +81,7 @@ bool ifDate(Date date, Date start, Date end) {
 
 
 Date getThisDate() {
-	Date cur;
+	Date cur; 
 	time_t now = time(0);
 	tm* tmp = localtime(&now);
 	cur.year = 1900 + tmp->tm_year;

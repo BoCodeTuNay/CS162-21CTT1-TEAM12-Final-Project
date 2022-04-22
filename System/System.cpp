@@ -161,7 +161,7 @@ void login()
     
 }
 
-void load_data()
+void loadAccounts()
 {
     using namespace std;
     fstream fin("Accounts.dat", ios::in | ios::binary);
@@ -169,21 +169,12 @@ void load_data()
 
     unsigned int N;
     fin.read((char*)&N, sizeof(int));
-    Student* std_arr = new Student[N];
-    fin.read((char*)std_arr, N * sizeof(Student));
+    Account* arr = new Account[N];
+    fin.read((char*)arr, sizeof(Account));
     for (int i = 0; i < N; ++i) {
-        listStudents.insert(std_arr[i]);
+        listAccounts.insert(arr[i]);
     }
-    delete[] std_arr;
-
-    unsigned int M;
-    fin.read((char*)&M, sizeof(int));
-    Staff* staff_arr = new Staff[M];
-    fin.read((char*)staff_arr, M * sizeof(Staff));
-    for (int i = 0; i < M; ++i) {
-        listStaffs.insert(staff_arr[i]);
-    }
-    delete[] staff_arr;
+    delete[] arr;
 
     fin.close();
 }

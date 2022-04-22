@@ -1,13 +1,12 @@
 #pragma once
-#include "List.h"
+#include "..\\List\List.h"
 #include <string.h>
-#include "Profile/Profile.h"
-#include "Constants.h"
-#include "Profile/Profile.h"
+#include "..\\Profile\Profile.h"
+#include "..\\Constants\Constants.h"
 
 struct Class {
-    char name[MAXNAME+1];
-    char ID[MAXSTR+1];
+    char name[MAXNAME];
+    char ID[MAXID];
 
     List<Profile> stu_list;
 
@@ -15,8 +14,8 @@ struct Class {
     Class(char name[MAXNAME], long long class_id = 0);
 
     void createClass();
-    Profile addStudent(); //import CSV file
-    void importStudentFile();
+    List<Profile> addStudent(); 
+    List<Profile> importStudentFile();
 };
 
 #include "Class.cpp"
