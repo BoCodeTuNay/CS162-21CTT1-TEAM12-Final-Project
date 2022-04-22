@@ -18,3 +18,10 @@ void Class::createClass()
     fflush(stdin);
     cin.get(ID, MAXSTR+1, '\n');
 }
+
+Node<Profile> addStudent() {
+    Node<Profile>* tmp = new Profile;
+    
+}
+
+void importStudentFile();
