@@ -1,5 +1,5 @@
 #include "Date.h"
-//#include <ctime>
+#include <ctime>
 
 Date::Date()
 {
@@ -86,7 +86,8 @@ bool ifDate(Date date, Date start, Date end) {
 
 Date getThisDate() {
 	Date cur;
-	tm* tmp = localtime(&time(0));
+	time_t now = time(0);
+	tm* tmp = localtime(&now);
 	cur.year = 1900 + tmp->tm_year;
 	cur.month = tmp->tm_mon + 1;
 	cur.day = tmp->tm_mday;

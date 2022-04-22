@@ -4,18 +4,18 @@
 #include "../Date/Date.h"
 
 #include <iostream>
-#include <string>
+#include <char>
 #include <fstream>
 
 using namespace std;
 
 struct Profile {
-    string ID[MAXID]; //21125xxx
-    string firstName[MAXNAME];
-    string lastName[MAXNAME];
+    char ID[MAXID]; //21125xxx
+    char firstName[MAXNAME];
+    char lastName[MAXNAME];
     bool gender; // male: 1, female: 0
     Date DOB; // day of birth
-    string socialID[MAXID]; //xxxxxxxx
+    char socialID[MAXID]; //xxxxxxxx
 
     void importFromCSV(fstream &fin);
 

@@ -11,21 +11,27 @@ struct CourseScore {
 };
 
 struct Student {
+<<<<<<< HEAD
     char username[MAXSTR+1];
     char password[MAXSTR+1];
 
     char name[MAXSTR+1];
     char id[MAXID+1];
     char email[MAXSTR+1];
+=======
 
-    string class_name;
+    char id[MAXID];
+    char name[MAXNAME];
+>>>>>>> 919e43ed2fa22b260a21214cde32d02cae52664f
+
+    char class_name[MAXSTR];
     long long class_id;
 
     List<CourseScore> pScore;
 
-    void enrolledCourse(const List<Course> &pOpenCourse);
+    void enrolledCourse(List<Course> pOpenCourse);
     void viewEnrolledCourses();
-    void removeCourse(string id);
+    void removeCourse(char id[MAXNAME]);
     void init_classid();
     void listOfCourses();
 };
