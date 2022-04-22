@@ -3,8 +3,8 @@
 #include "..\\List\\List.h"
 #include "..\\Student\\Student.h"
 #include "..\\Date\\Date.h"
-#include "Profile/Profile.h"
-#include "Score.h"
+#include "../Profile/Profile.h"
+//#include "Score.h"
 
 #include <iostream>
 #include <string>
@@ -22,6 +22,7 @@ struct Course {
  
     Date start_date; // from Minh: có nên bỏ start_date và end_date không nhỉ vì bây giờ struct Course được bỏ vào Semester đã chứa Start_date và end_date rối ấy?
                      // from Duy: tui nghĩ không, start_date và end_date của mỗi course có thể khác nhau
+                     // from Minh: à nhờ, oke ông :v
     Date end_date;
  
     string id; // mã học phần
@@ -36,7 +37,7 @@ struct Course {
     Course(){};
 
     ~Course(){
-        delete this;
+        delete this; // from Minh: cái này là delete cái gì vậy Duy vì tui thấy trong struct này không có con trỏ ấy?
     };
     
     void inputCourses();

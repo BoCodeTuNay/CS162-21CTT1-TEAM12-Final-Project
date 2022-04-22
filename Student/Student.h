@@ -1,8 +1,9 @@
 #pragma once
-#include "List.h"
-#include "Course.h"
-#include "Constants.h"
-#include "Score.h"
+#include "../List/List.h"
+#include "../Course/Course.h"
+#include "../Constants/Constants.h"
+//#include "Score.h"
+#include "../Date/Date.h"
 
 struct CourseScore {
     Course pCourse;
@@ -10,21 +11,23 @@ struct CourseScore {
 };
 
 struct Student {
-    string username;
-    string password;
+    char username[MAXSTR+1];
+    char password[MAXSTR+1];
 
-    string name;
-    string id;
-    string email;
+    char name[MAXSTR+1];
+    char id[MAXID+1];
+    char email[MAXSTR+1];
 
     string class_name;
     long long class_id;
 
     List<CourseScore> pScore;
 
-    void enrolledCourse(List<Course> pOpenCourse);
+    void enrolledCourse(const List<Course> &pOpenCourse);
     void viewEnrolledCourses();
     void removeCourse(string id);
+    void init_classid();
+    void listOfCourses();
 };
 
 #include "Student.cpp"

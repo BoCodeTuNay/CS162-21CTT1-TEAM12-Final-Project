@@ -1,4 +1,6 @@
 #include "Date.h"
+//#include <ctime>
+
 Date::Date()
 {
 	day = 1;
@@ -79,4 +81,14 @@ bool ifDate(Date date, Date start, Date end) {
 		}
 	}
 	return false;
+}
+
+
+Date getThisDate() {
+	Date cur;
+	tm* tmp = localtime(&time(0));
+	cur.year = 1900 + tmp->tm_year;
+	cur.month = tmp->tm_mon + 1;
+	cur.day = tmp->tm_mday;
+	return cur;
 }
