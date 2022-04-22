@@ -4,9 +4,10 @@
 #include "../Constants/Constants.h"
 //#include "Score.h"
 #include "../Date/Date.h"
+#include "Course/CourseInfo.h"
 
 struct CourseScore {
-    Course pCourse;
+    * pCourse;
     Score score;
 };
 

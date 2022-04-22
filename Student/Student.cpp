@@ -4,8 +4,11 @@
 bool cmp_Course(const CourseScore &a, const CourseScore &b) {
     return strcmp(a.pCourse.ID, b.pCourse.ID);
 }
-
+///them courseInfo
 void Student::enrolledCourse(List<Course> pOpenCourse) {
+    CourseInfo res;
+    
+
     if (pScore.size() > 4) {
         cout << "You have enrolled 5 courses!.";
         return;

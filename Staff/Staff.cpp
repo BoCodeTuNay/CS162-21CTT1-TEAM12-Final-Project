@@ -6,7 +6,7 @@
 #include "../Constants/Constants.h"
 
 // Create a school year
-void Staff::createSchoolYear(List <Schoolyear> &listSchoolyears)
+void createSchoolYear(List <Schoolyear> &listSchoolyears)
 {
     Schoolyear newSchoolYear;
     cout << "What school year you want to create (example: 2021-2022)?\n";
@@ -22,7 +22,7 @@ void Staff::createSchoolYear(List <Schoolyear> &listSchoolyears)
 }
 
 // Create several classes for 1st year students
-void Staff::createClasses(List <Class> &classes){
+void createClasses(List <Class> &classes){
     // do create class  
     Class newClass;
     newClass.createClass();
@@ -30,14 +30,14 @@ void Staff::createClasses(List <Class> &classes){
 }
 
 // Add new 1st year students to 1st-year classes
-void Staff::addStudentToClasses(){
+void addStudentToClasses(){
     // do add student to class
 }
 
 // At the beginning of a semester:
 
 // Create a semester: 1, 2, or 3, school year, start date, end date
-void Staff::createSemester(List <Schoolyear> &listSchoolyears){
+void createSemester(List <Schoolyear> &listSchoolyears){
     char scyear[YEARLENGTH+1];
     do{
         if (listSchoolyears.size() == 0){
@@ -139,32 +139,3 @@ void updateStudentResult();
 
 // View the scoreboard of a class
 void viewScoreboardOfClass();
-
-void staffMenu(Staff& curStaff)
-{
-    clrscr();
-    std::cout << "0. Manage schoolyears.\n"
-                "1. Manage classes.\n"
-                "2. View profile.\n"
-                "3. Log out.\n";
-    int t{choose(0, 3)};
-    if (t == 0) {
-        manageSchoolyears();
-    }
-    else if (t == 1) {
-        manageClasses();
-    }
-    else if (t == 2) {
-        // view the profile of the current staff, should be an independent function to do this
-        // create a new struct named staffInfo if necessary, but I doubt not
-        // including the change-password feature -> shouldn't be a problem
-    }
-    else {
-        // go back to loginScreen()
-    }
-}
-
-void manageSchoolyears()
-{
-    
-}

@@ -8,4 +8,6 @@ struct CourseInfo
 {
     char ID[MAXSTR+1]; // mã học phần
     char name[MAXSTR+1]; // tên học phần
+    int semesterID;
+    int schoolyearID:
 };

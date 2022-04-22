@@ -158,7 +158,8 @@ void login()
         else cont_out = false;
     } while (cont_out);
 
-    
+    if (nhay vao staff)
+        staffMenu
 }
 
 void loadAccounts()
