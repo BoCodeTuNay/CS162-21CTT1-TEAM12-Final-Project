@@ -8,7 +8,7 @@ struct Semester {
     Date end_date;
     Date start_registration_date;
     Date end_registration_date;
-    List<Course> listCourses;
+    static List<Course> listCourses;
  
     // load a Semester from the given stream (the stream will be opened and closed outside this function, so don't need to do it)
     //void load_data(ifstream&);

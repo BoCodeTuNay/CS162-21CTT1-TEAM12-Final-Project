@@ -25,9 +25,9 @@ struct Course {
                      // from Minh: à nhờ, oke ông :v
     Date end_date;
  
-    string id; // mã học phần
-    string name; // tên học phần
-    string lecturer; // tên GV
+    char ID[MAXSTR+1]; // mã học phần
+    char name[MAXSTR+1]; // tên học phần
+    char lecturer[MAXSTR+1]; // tên GV
     int numCredits;
     int maxStudents{50};
 	int day[7]; // "MON", "TUE", "WED", "THU", "FRI", "SAT"; 

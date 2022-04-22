@@ -1,5 +1,6 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "iostream": "cpp",
         "valarray": "cpp",
         "ostream": "cpp",
@@ -74,4 +75,9 @@
     },
     "editor.tabCompletion": "on",
     "editor.suggest.localityBonus": true
+=======
+        "string": "cpp",
+        "iostream": "cpp"
+    }
+>>>>>>> ccdd2cd9eb2de486d2b2bada9654b6713f51cef1
 }

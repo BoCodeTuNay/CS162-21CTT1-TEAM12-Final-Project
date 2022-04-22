@@ -1,12 +1,18 @@
 #pragma once
 #include <iostream>
 #include <cctype>
+<<<<<<< HEAD
 #include <cstdlib>
 #include <fstream>
 #include <cassert>
 #include <cstring>
 //#include "..\Student\Student.h"
  //#include "..\Staff\Staff.h"
+=======
+#include <cstring>
+#include "..\Student\Student.h"
+// #include "..\Staff\Staff.h"
+>>>>>>> ccdd2cd9eb2de486d2b2bada9654b6713f51cef1
 #include "..\Constants\Constants.h"
 //#include "..\Schoolyear\Schoolyear.h"
 #include "..\List\List.h"
@@ -56,8 +62,10 @@ void load_data();
 void save_data();
 void loginScreen();
 bool checkDatabase(const char*, const char*);
-int choose(int, int);
 void signup();
 void login();
+
+int getCurrentYearIndex();
+// return currentYear - firstYear
 
 #include "System.cpp"

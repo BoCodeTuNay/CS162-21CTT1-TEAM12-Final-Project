@@ -4,8 +4,6 @@
 #include "..\Semester\Semester.h"
 #include "..\Class\Class.h"
 
-const int YEARLENGTH = 9; // of the format, e.g. 2020-2021 -> exactly 9 chars
-
 struct Schoolyear {
     char ID[YEARLENGTH+1]; 
     Semester yearSemesters[3]; // actually, there are exactly 3 according to the requirements

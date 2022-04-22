@@ -3,13 +3,17 @@
 void Course::inputCourses()
 {
     cout << "Enter Course ID: ";
-    getline(cin, id);
+    cin.get(ID, MAXSTR+1, '\n');
+
 
     cout << "Enter Course name: ";
-    getline(cin, name);
+    fflush(stdin);
+    cin.get(name, MAXSTR+1, '\n');
+
 
     cout << "Enter teacher name: ";
-    getline(cin, lecturer);
+    fflush(stdin);
+    cin.get(lecturer, MAXSTR+1, '\n');
 
     cout << "Enter number of credits: ";
     cin >> numCredits;
@@ -31,7 +35,7 @@ void Course::inputCourses()
 
 void Course::viewCourses()
 {
-    cout << "id: " << "\t" << id << "\n";
+    cout << "id: " << "\t" << ID << "\n";
     cout << "name: " << "\t" << name << "\n";
     cout << "lecturer: " << "\t" << lecturer << "\n";
     cout << "numCredits: " << "\t" << numCredits << "\n";
@@ -54,21 +58,22 @@ void Course::updateCourse()
         {
             cout << "Enter Course ID: ";
             fflush(stdin);
-            getline(cin, id);
+            cin.get(ID, MAXSTR+1, '\n');
+
             break;
         }
         case 2:
         {
             cout << "Enter Course name: ";
             fflush(stdin);
-            getline(cin, name);
+            cin.get(name, MAXSTR+1, '\n');
             break;
         }
         case 3:
         {
             cout << "Enter teacher name: ";
             fflush(stdin);
-            getline(cin, lecturer);
+            cin.get(lecturer, MAXSTR+1, '\n');
             break;
         }
         case 4:
