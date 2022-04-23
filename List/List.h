@@ -43,14 +43,11 @@ public:
     // remove a given element from the list (the first one found), return true/false whether the removal succeeds
     bool remove(const T&, bool (*cmp)(const T&, const T&));
     // return value on the given index, return nullptr if the index is out of range
-<<<<<<< HEAD
     T& get(unsigned int);
     int indexOf(const T&, bool (*cmp)(const T&, const T&));
     bool search(const T&, bool (*cmp)(const T&, const T&));
-=======
     T& get(unsigned int index);
     int indexOf(const T&, bool (*cmp)(const T&, const T&));
 
->>>>>>> ccdd2cd9eb2de486d2b2bada9654b6713f51cef1
 };
 #include "List.cpp"

@@ -1,8 +1,8 @@
 #pragma once
-#include "..\\List\List.h"
+#include "../List/List.h"
 #include <string.h>
-#include "..\\Profile\Profile.h"
-#include "..\\Constants\Constants.h"
+#include "../Account/Account.h"
+#include "../Constants/Constants.h"
 
 struct Class {
     char name[MAXNAME];
@@ -14,8 +14,8 @@ struct Class {
     Class(char name[MAXNAME], long long class_id = 0);
 
     void createClass();
-    List<Profile> addStudent(); 
-    List<Profile> importStudentFile();
+    List <Account> addStudent(); 
+    List <Account> importStudentFile();
 };
 
 #include "Class.cpp"

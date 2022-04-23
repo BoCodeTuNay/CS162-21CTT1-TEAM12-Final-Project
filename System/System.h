@@ -10,6 +10,7 @@
 #include "..\Constants\Constants.h"
 #include "..\Schoolyear\Schoolyear.h"
 #include "..\List\List.h"
+#include "../Account/Account.h"
 
 List <Student> listStudents;
 List <Staff> listStaffs;
@@ -37,12 +38,6 @@ List <Schoolyear> listSchoolyears;
 //     Staff(const char*, const char*, const char*, const char*, const char*);
 // };
 
-struct Account {
-    char username[MAXSTR+1];
-    char password[MAXSTR+1];
-    char ID[MAXID+1];
-};
-
 //List<Schoolyear> listSchoolyears;
 int current_year_index = -1;
 
@@ -57,9 +52,13 @@ bool checkDigit(const char*);
 bool checkEmail(const char*);
 
 void loadAccounts();
-void save_data();
-void loginScreen();
-bool checkDatabase(const char*, const char*);
+void saveAccounts();
+
+/*
+return 0 if no such account is found
+
+*/
+int checkDatabase(const char*, const char*);
 void signup();
 void login();
 

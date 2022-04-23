@@ -13,10 +13,9 @@ struct CourseScore {
 
 struct Student {
 
-    char id[MAXID];
-    char name[MAXNAME];
+    Account acc;
 
-    char class_name[MAXSTR];
+    char class_name[MAXSTR+1];
     long long class_id;
 
     List<CourseScore> pScore;

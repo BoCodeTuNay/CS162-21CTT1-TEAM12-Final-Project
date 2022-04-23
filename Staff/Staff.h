@@ -12,12 +12,7 @@ List<Schoolyear> listSchoolyears;
 
 struct Staff {
     
-    char username[MAXSTR+1];
-    char password[MAXSTR+1];
-
-    char name[MAXSTR+1];
-    char id[MAXID+1];
-    char email[MAXSTR+1];
+    Account acc;
 };
  
 // các phương thức của 1 sinh viên

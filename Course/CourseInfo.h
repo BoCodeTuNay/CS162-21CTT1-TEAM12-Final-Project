@@ -1,7 +1,7 @@
 #pragma once
 #include "..\\Student\\Student.h"
 #include "..\\Date\\Date.h"
-#include "Profile/Profile.h"
+#include "Account/Profile.h"
 #include "Score.h"
 
 struct CourseInfo

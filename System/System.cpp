@@ -119,6 +119,7 @@ void signup()
 void login()
 {
     using namespace std;
+    clrscr();
     
     bool cont_out{false}; // to continue looping
     do {
@@ -158,72 +159,84 @@ void login()
         else cont_out = false;
     } while (cont_out);
 
-    if (nhay vao staff)
-        staffMenu
+    
 }
 
 void loadAccounts()
 {
+    /*
+    Cấu trúc quy ước của file Account database:
+    N
+    Accout of student 1
+    Account of student 2
+    ...
+    Account of student N
+
+    M
+    Account of staff 1
+    Account of staff 2
+    ...
+    Account of staff M
+    */
     using namespace std;
-    fstream fin("Accounts.dat", ios::in | ios::binary);
+    fstream fin(ACCOUNTS_FILE, ios::in | ios::binary);
     if (!fin.is_open()) return;
 
     unsigned int N;
     fin.read((char*)&N, sizeof(int));
     Account* arr = new Account[N];
-    fin.read((char*)arr, sizeof(Account));
+    fin.read((char*)arr, N * sizeof(Account));
     for (int i = 0; i < N; ++i) {
-        listAccounts.insert(arr[i]);
+        Student s;
+        s.acc = arr[i];
+        listStudents.insert(s);
+    }
+    delete[] arr;
+
+    unsigned int M;
+    fin.read((char*)&M, sizeof(int));
+    arr = new Account[M];
+    fin.read((char*)arr, M * sizeof(Account));
+    for (int i = 0; i < N; ++i) {
+        Staff s;
+        s.acc = arr[i];
+        listStaffs.insert(s);
     }
     delete[] arr;
 
     fin.close();
 }
 
-void save_data()
+void saveAccounts()
 {
+    // Cấu trúc quy ước được ghi trong hàm loadAccounts()
     using namespace std;
-    fstream fout("Accounts.dat", ios::out | ios::binary);
+    fstream fout(ACCOUNTS_FILE, ios::out | ios::binary);
     if (!fout.is_open()) return;
 
     unsigned int N{listStudents.size()};
     fout.write((char*)&N, sizeof(int));
-    Student* std_arr = new Student[N];
+    Account* std_arr = new Account[N];
     int idx{0};
     for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
-        std_arr[idx++] = cur->data;
+        std_arr[idx++] = cur->data.acc;
     }
     assert(idx == N);
-    fout.write((char*)std_arr, N * sizeof(Student));
+    fout.write((char*)std_arr, N * sizeof(Account));
     delete[] std_arr;
 
     unsigned int M{listStaffs.size()};
     fout.write((char*)&M, sizeof(int));
-    Staff* staff_arr = new Staff[M];
+    Account* staff_arr = new Account[M];
     idx = 0;
     for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
-        staff_arr[idx++] = cur->data;
+        staff_arr[idx++] = cur->data.acc;
     }
     assert(idx == M);
-    fout.write((char*)staff_arr, M * sizeof(Staff));
+    fout.write((char*)staff_arr, M * sizeof(Account));
     delete[] staff_arr;
-
+    
     fout.close();
-}
-
-void loginScreen()
-{
-    clrscr();
-    std::cout << "0. Log in\n";
-    std::cout << "1. Sign up\n";
-    std::cout << "Your choice: ";
-    int t{choose(0, 1)};
-    if (t == 0) {
-        login();
-    }
-    else {
-        signup();
-    }
 }
 
 bool checkDatabase(const char* username, const char* password)

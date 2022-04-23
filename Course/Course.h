@@ -1,9 +1,9 @@
 #pragma once
 
-#include "..\\List\\List.h"
-#include "..\\Student\\Student.h"
-#include "..\\Date\\Date.h"
-#include "../Profile/Profile.h"
+#include "../List/List.h"
+#include "../Student/Student.h"
+#include "../Date/Date.h"
+#include "../Account/Account.h"
 //#include "Score.h"
 
 #include <iostream>

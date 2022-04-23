@@ -6,11 +6,9 @@ using namespace std;
 
 int main()
 {
-    load();
-    loginScreen();
+    loadAccounts();
     login();
 
-    save();
     return 0;
 }
 

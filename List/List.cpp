@@ -87,7 +87,7 @@ bool List<T>::remove(const T& mem, bool (*cmp)(const T&, const T&)) {
         return false;
     }
 }
-.get(...).get().get()
+
 template <typename T>
 T& List<T>::get(unsigned int index) {
     Node<T>* cur = pHead;

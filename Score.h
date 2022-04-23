@@ -1,5 +1,9 @@
+#include <iostream>
+
 struct Score {
-    double mid_term_p;
-    double process_p;
-    double final_p;
+    double midTerm, Final, HW, GPA;
+
+    Score() : midTerm(0.00), Final(0.00), HW(0.00), GPA(0.00);
+
+    void print();
 };
