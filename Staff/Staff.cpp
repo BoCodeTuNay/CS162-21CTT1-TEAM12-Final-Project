@@ -1,11 +1,6 @@
 #include "Staff.h"
-#include "..\Student\Student.h"
-#include "..\Constants\Constants.h"
-#include "..\List\List.h"
-#include "..\Schoolyear\Schoolyear.h"
-#include "../Constants/Constants.h"
 
-// Create a school year
+// 1. Create a school year
 void createSchoolYear(List <Schoolyear> &listSchoolyears)
 {
     Schoolyear newSchoolYear;
@@ -17,56 +12,62 @@ void createSchoolYear(List <Schoolyear> &listSchoolyears)
             return;
         }
     }
+    newSchoolYear.index = listSchoolyears.size();
     listSchoolyears.insert(newSchoolYear);
-    // current_year_index = listSchoolyears.size()-1;
 }
 
-// Create several classes for 1st year students
+// 2. Create several classes for 1st year students
 void createClasses(List <Class> &classes){
     // do create class  
     Class newClass;
-    newClass.createClass();
+    newClass.inputClass();
     classes.insert(newClass);
 }
 
-// Add new 1st year students to 1st-year classes
-void addStudentToClasses(){
+// 3. Add new 1st year students to 1st-year classes
+void addStudentToClasses(Class &class){
     // do add student to class
+    class.addStudent();
+}
+
+// 4. Add students by CSV file
+void importStudentFromCSVFile(Class &class)
+{
+    class.importStudentFile();
 }
 
 // At the beginning of a semester:
 
-// Create a semester: 1, 2, or 3, school year, start date, end date
-void createSemester(List <Schoolyear> &listSchoolyears){
-    char scyear[YEARLENGTH+1];
-    do{
-        if (listSchoolyears.size() == 0){
-            cout << "You don't have any school year yet.\n";
-            return;
-        }
-        cout << "What school year of this semester (example: 2021-2022)?\n";
-        cin>>scyear;
-        for (Node<Schoolyear>* schoolyear = listSchoolyears.begin(); schoolyear != nullptr; schoolyear = schoolyear->pNext){
-            if (schoolyear->data.ID==scyear){
-                schoolyear->data.createSemester();
-                return;
-            }
-        }
-        cout << "Do not have this school year or your school year invalid. Please try again.\n";
-    } while (strlen(scyear) != 9 || scyear[4] != '-');
+// 6. Create a semester: 1, 2, or 3, school year, start date, end date
+void createSemester(Schoolyear &schoolyear){
+    schoolyear.createSemester();
+    // char scyear[YEARLENGTH+1];
+    // do{
+    //     if (listSchoolyears.size() == 0){
+    //         cout << "You don't have any school year yet.\n";
+    //         return;
+    //     }
+    //     cout << "What school year of this semester (example: 2021-2022)?\n";
+    //     cin>>scyear;
+    //     for (Node<Schoolyear>* schoolyear = listSchoolyears.begin(); schoolyear != nullptr; schoolyear = schoolyear->pNext){
+    //         if (schoolyear->data.ID==scyear){
+    //             schoolyear->data.createSemester();
+    //             return;
+    //         }
+    //     }
+    //     cout << "Do not have this school year or your school year invalid. Please try again.\n";
+    // } while (strlen(scyear) != 9 || scyear[4] != '-');
 }
 
-// Add a course to this semester
+// 7, 8. Add a course to this semester
 // input school year and semester, add course to semester in school year
-void addCourseToSemester(List <Schoolyear> &listSchoolyears){
-    if (listSchoolyears.size() == 0){
-        cout << "You don't have any school year yet.\n";
-        return;
-    }
-    Schoolyear schoolYear=listSchoolyears.get(getCurrentYearIndex());
+void addCourseToSemester(Semester &semester, List <CourseInfo> &listRegis){
+    CourseInfo newCourseInfo;
+    newCourseInfo.inputCourseInfo();
     Course newCourse;
-    newCourse.inputCourses();
-    schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.insert(newCourse);
+    newCourse.info = newCourseInfo;
+    semester.listCourses.insert(newCourse);
+    listRegis.insert(newCourseInfo);
 }
 
 // View the list of courses

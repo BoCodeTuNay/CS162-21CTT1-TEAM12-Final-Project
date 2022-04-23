@@ -13,15 +13,12 @@ void Schoolyear::createSemester() {
         return;
     }
     Semester semester;
-    semester.created=true;
+    // semester.created=true;
+    semester.index = listSem.size();
     listSem.insert(semester);
     cout << "What is the start date of this semester (example: 2020-01-01)?\n";
-    string tmp_str_date;
-    cin>>tmp_str_date;
-    Date tmp_date(tmp_str_date);
-    semester.start_date = tmp_date;
+    semester.start_date.enter_date();
+
     cout << "What is the end date of this semester (example: 2020-03-31)?\n";
-    cin>>tmp_str_date;
-    Date tmp_date(tmp_str_date);
-    semester.end_date = tmp_date;
+    semester.end_date.enter_date();
 }

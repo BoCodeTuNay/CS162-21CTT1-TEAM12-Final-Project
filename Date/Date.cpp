@@ -1,5 +1,4 @@
 #include "Date.h"
-#include <ctime>
 
 Date::Date()
 {
@@ -57,11 +56,14 @@ bool check_date(Date date)
 	return true;
 }
 // Nhap ngay
-void enter_date(Date& date) {
+void Date::enter_date() {
 	string tmp;
 	cout << "Enter the date (example: 2020-12-31): ";
 	cin >> tmp;
-	date = Date(tmp);
+
+	year = stoi(tmp.substr(0, 4));
+	month = stoi(tmp.substr(5, 2));
+	day = stoi(tmp.substr(8, 2));
 }
 //*Check xem ngay da cho co nam giua 2 ngay khac khong
 bool ifDate(Date date, Date start, Date end) {
@@ -80,7 +82,7 @@ bool ifDate(Date date, Date start, Date end) {
 }
 
 
-Date getThisDate() {
+Date getCurrentDate() {
 	Date cur; 
 	time_t now = time(0);
 	tm* tmp = localtime(&now);

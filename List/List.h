@@ -46,8 +46,5 @@ public:
     T& get(unsigned int);
     int indexOf(const T&, bool (*cmp)(const T&, const T&));
     bool search(const T&, bool (*cmp)(const T&, const T&));
-    T& get(unsigned int index);
-    int indexOf(const T&, bool (*cmp)(const T&, const T&));
-
 };
 #include "List.cpp"

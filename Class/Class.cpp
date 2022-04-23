@@ -8,7 +8,7 @@ Class::Class(char name[MAXNAME], long long class_id = 0) {
     }
 }
 
-void Class::createClass()
+void Class::inputClass()
 {
     cout << "Enter class name: ";
     cin.get(name, MAXNAME+1, '\n');
@@ -37,7 +37,7 @@ List<Profile> Class::addStudent() {
 
     stu_list.insert(tmp);
 
-    return tmp;
+    // return tmp;
 }
 
 List<Profile> Class::importStudentFile() {
@@ -66,5 +66,5 @@ List<Profile> Class::importStudentFile() {
             res.insert(tmp);            
         } while (!row.empty());
     }
-    return res;
+    // return res;
 }

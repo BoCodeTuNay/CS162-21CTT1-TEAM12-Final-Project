@@ -8,14 +8,14 @@ struct Class {
     char name[MAXNAME];
     char ID[MAXID];
 
-    List<Profile> stu_list;
+    List <Account> stu_list;
 
     Class(){}
     Class(char name[MAXNAME], long long class_id = 0);
 
-    void createClass();
-    List <Account> addStudent(); 
-    List <Account> importStudentFile();
+    void inputClass();
+    void addStudent(); 
+    void importStudentFile();
 };
 
 #include "Class.cpp"

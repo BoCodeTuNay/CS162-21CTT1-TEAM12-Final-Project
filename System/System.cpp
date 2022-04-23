@@ -58,61 +58,52 @@ bool checkEmail(const char* str)
     return false;
 }
 
-void signup()
+void manageSchoolyears()
 {
-    using namespace std;
-    Student st;
-
-    cout << "Name (max " << MAXSTR << " chars): ";
-    cin.get(st.name, MAXSTR+1, '\n');
-    while (cin.fail() || cin.get() != '\n' || !checkName(st.name)) {
-        cin.clear();
-        fflush(stdin);
-        cout << "Invalid name. Please try again.\n";
-        cout << "Name (max " << MAXSTR << " chars): ";
-        cin.get(st.name, MAXSTR+1, '\n');
-    }
-
-    cout << "Email (max " << MAXSTR << " chars): ";
-    cin.get(st.email, MAXSTR+1, '\n');
-    while (cin.fail() || cin.get() != '\n' || !checkEmail(st.email)) {
-        cin.clear();
-        fflush(stdin);
-        cout << "Invalid email. Please try again.\n";
-        cout << "Email (max " << MAXSTR << " chars): ";
-        cin.get(st.email, MAXSTR+1, '\n');
-    }
-
-    // From now on, the information below needs to be checked in the database first.
-
-    cout << "ID (max " << MAXID << " chars): ";
-    cin.get(st.id, MAXID+1, '\n');
-    while (cin.fail() || cin.get() != '\n' || !checkDigit(st.id)) {
-        cin.clear();
-        fflush(stdin);
-        cout << "Invalid ID. Please try again.\n";
-        cout << "ID (max " << MAXID << " chars): ";
-        cin.get(st.id, MAXID+1, '\n');
-    }
-
-    cout << "Username (max " << MAXSTR << " chars): ";
-    cin.get(st.username, MAXSTR+1, '\n');
-    while (cin.fail() || cin.get() != '\n' || !checkAlphaDigit(st.username)) {
-        cin.clear();
-        fflush(stdin);
-        cout << "Invalid username. Please try again.\n";
-        cout << "Username (max " << MAXSTR << " chars): ";
-        cin.get(st.username, MAXSTR+1, '\n');
-    }
+    // viewAllSchoolYears();
+    // chooseSchoolYears();
+    // if (choose == createSchoolYear)
+    // {
+    //     createSchoolYear(listSchoolyears);
+    // }
+    // else (choose == viewSchoolYearX)
+    // {
+    //     manageSemesters(schoolYearX);
+    // }
     
-    cout << "Password (max " << MAXSTR << " chars): ";
-    cin.get(st.password, MAXSTR+1, '\n');
-    while (cin.fail() || cin.get() != '\n' || !checkAlphaDigit(st.password)) {
-        cin.clear();
-        fflush(stdin);
-        cout << "Invalid password. Please try again.\n";
-        cout << "Password (max " << MAXSTR << " chars): ";
-        cin.get(st.password, MAXSTR+1, '\n');
+    int N{0}; // number of commands in this screen
+    for (Node<Schoolyear>* cur = Staff::listSchoolyears.begin(); cur; cur = cur->pNext) {
+        std::cout << N++ << ". View schoolyear " << cur->data.ID << endl;
+    }
+    std::cout << N++ << ". Create a new schoolyear\n";
+    std::cout << N++ << ". Go back\n";
+    std::cout << std::endl;
+
+    std::cout << "Your choice (press Enter to go back): ";
+    
+}
+
+void staffMenu()
+{
+    clrscr();
+    cout << "0. Manage schoolyears.\n"
+            "1. Manage classes.\n"
+            "2. View profile.\n"
+            "3. Log out.\n";
+    int t{choose(0, 3)};
+    if (t == 0) {
+        manageSchoolyears();
+    }
+    else if (t == 1) {
+        manageClasses();
+    }
+    else if (t == 2) {
+        // view the profile of the current staff, should be an independent function to do this
+        // create a new struct named staffInfo if necessary, but I doubt not
+        // including the change-password feature -> shouldn't be a problem
+    }
+    else {
+        // go back to loginScreen()
     }
 }
 
@@ -120,46 +111,73 @@ void login()
 {
     using namespace std;
     clrscr();
+    std::cout << "PLEASE LOG IN USING YOUR ID AND PASSWORD. KEEP PRESSING ENTER TO GO BACK.\n\n";
     
     bool cont_out{false}; // to continue looping
+    char ID[MAXID+1]; ID[0] = 0;
+    char password[MAXSTR+1]; password[0] = 0;
     do {
         cout << endl;
         bool cont_in{false}; // to continue looping inside
-        char username[MAXSTR+1];
         do {
-            cout << "Username (max " << MAXSTR << " chars): ";
-            cin.get(username, MAXSTR+1, '\n');
-            if (cin.fail() || cin.get() != '\n' || !checkAlphaDigit(username)) {
+            cout << "ID (max " << MAXID << " chars): ";
+            cin.get(ID, MAXID+1, '\n');
+            if (cin.fail()) { // nothing was inputted
                 cin.clear();
                 fflush(stdin);
-                cout << "Invalid username. Please try again.\n";
+                break;
+            }
+            else if (cin.get() != '\n' || !checkDigit(ID)) {
+                fflush(stdin);
+                cout << "Invalid ID. Please try again.\n";
                 cont_in = true;
             }
             else cont_in = false;
         } while (cont_in);
         
         cont_in = false;
-        char password[MAXSTR+1];
         do {
             cout << "Password (max " << MAXSTR << " chars): ";
             cin.get(password, MAXSTR+1, '\n');
-            if (cin.fail() || cin.get() != '\n' || !checkAlphaDigit(password)) {
+            if (cin.fail()) { // nothing was inputted
                 cin.clear();
                 fflush(stdin);
+                break;
+            }
+            else if (cin.get() != '\n' || !checkAlphaDigit(password)) {
                 cout << "Invalid password. Please try again.\n";
                 cont_in = true;
             }
             else cont_in = false;
         } while (cont_in);
 
-        if (!checkDatabase(username, password)) {
+        if (!checkDatabase(ID, password)) {
             cout << "\nThe account's information does not exist. Please try again.\n";
             cont_out = true;
         }
         else cont_out = false;
     } while (cont_out);
+    if (ID[0] == 0 && password[0] == 0) 
 
-    
+    if (checkDatabase(ID, password) == 1) {
+        // go to Student's menu
+    }
+    else {
+        staffMenu();
+    }
+}
+
+bool loginScreen()
+{
+    clrscr();
+    std::cout << "0. Log in\n"
+                "1. Exit\n";
+    int t{choose(0, 1)};
+    if (t == 0) {
+        login();
+        return true;
+    }
+    else return false;
 }
 
 void loadAccounts()
@@ -239,23 +257,17 @@ void saveAccounts()
     fout.close();
 }
 
-bool checkDatabase(const char* username, const char* password)
+int checkDatabase(const char* ID, const char* password)
 {
-    auto cmp_std = [](const Student& std1, const Student& std2) -> bool {
-        return strcmp(std1.username, std2.username) == 0 && strcmp(std1.password, std2.password) == 0;
-    };
-    Student std(username, password, 0, 0, 0);
-    if (listStudents.search(std, cmp_std))
-        return true;
-
-    auto cmp_staff = [](const Staff& stf1, const Staff& stf2) -> bool {
-        return strcmp(stf1.username, stf2.username) == 0 && strcmp(stf1.password, stf2.password) == 0;
-    };
-    Staff stf(username, password, 0, 0, 0);
-    if (listStaffs.search(stf, cmp_staff))
-        return true;
-    
-    return false;
+    for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
+        if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0)
+            return 1;
+    }
+    for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
+        if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0)
+            return 2;
+    }
+    return 0;
 }
 
 Student::Student(const char* usn, const char* pass, const char* nm, const char* i, const char* mail)
@@ -275,3 +287,47 @@ Staff::Staff(const char* usn, const char* pass, const char* nm, const char* i, c
     strcpy(id, i);
     strcpy(email, mail);
 }
+
+void studentMenu(Student &student)
+{
+    // CourseInfo courseInfo = student.enrollCourse(listRegisCourses); // return courseInfo
+    // Schoolyear &schoolyearX = getSchoolyearByID(courseInfo.schoolyearID);
+    // Semester &semesterX = getSemesterByID(courseInfo.semesterID);
+    // Course &courseX = getCourseByID(courseInfo.ID);
+    // courseX.addStudent(student);
+
+    CourseInfo coursein4 = student.enrolledCourse(listRegisCourses);
+    Course &courseX = listSchoolyears.get(coursein4.schoolyearID).listSemesters.get(coursein4.semesterID).listCourses.get(coursein4.ID);
+    courseX.updateCourseStudent(student.profile);
+    // add student to student list of courseX
+
+}
+
+void manageSemesters(Schoolyear &schoolyearX)
+{
+    viewAllSemester();
+    chooseSemesters();
+    if (choose == createSemester)
+    {
+        createSemester(schoolyearX.listSemester);
+    }
+    else(choose == semesterX)
+    {
+        manageCourse(semesterX);
+    }
+}
+
+void manageSemesterX(Semester &semesterX)
+{
+    viewAllCourse();
+    choose();
+    semesterX.createCourseRegistration(listRegisCourses);
+    // add course to this semester
+}
+
+// bỏ Profile -> account
+// sửa mảng semester trong schoolyear
+// courseRegistration() -> add course
+// enrollCourse() // update accountList in course
+// unEnrollCourse() // update accountList in course
+// ID đổi thành index (chỉ số mảng)

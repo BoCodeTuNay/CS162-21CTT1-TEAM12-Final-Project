@@ -6,9 +6,8 @@
 
 struct Schoolyear {
     char ID[YEARLENGTH+1]; 
-    Semester yearSemesters[3]; // actually, there are exactly 3 according to the requirements
-    int numSemesters = 0;
-    int currentSemester = -1; // 0, 1, or 2
+    char index;
+    List<Semester> listSem;
     // load a Schoolyear from the given stream (the stream will be opened and closed outside this function, so don't need to do it)
     // void load_data(ifstream&);
 

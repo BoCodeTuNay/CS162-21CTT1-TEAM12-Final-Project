@@ -1,5 +1,3 @@
-#include <iostream>
-
 struct Score {
     double midTerm, Final, HW, GPA;
 

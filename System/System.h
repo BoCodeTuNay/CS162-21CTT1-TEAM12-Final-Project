@@ -15,8 +15,6 @@
 List <Student> listStudents;
 List <Staff> listStaffs;
 List <Class> listClass;
-List <Schoolyear> listSchoolyears;
-
 // struct Student {
 //     char username[MAXSTR+1];
 //     char password[MAXSTR+1];
@@ -56,11 +54,13 @@ void saveAccounts();
 
 /*
 return 0 if no such account is found
-
+return 1 if the account found is of student
+return 2 if the account found is of staff
 */
 int checkDatabase(const char*, const char*);
-void signup();
+// return true if go to that screen again, return false otherwise
 void login();
+bool loginScreen();
 
 int getCurrentYearIndex();
 // return currentYear - firstYear

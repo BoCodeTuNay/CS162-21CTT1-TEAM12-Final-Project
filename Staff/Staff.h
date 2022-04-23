@@ -1,8 +1,10 @@
 #pragma once
-//#include "Course.h"
+#include "../Course/Course.h"
+#include "../Course/CourseInfo.h"
 #include "../Student/Student.h"
 #include "../Schoolyear/Schoolyear.h"
 #include "../Constants/Constants.h"
+#include "../List/List.h"
 #include <iostream>
 #include <string.h>
 
@@ -11,12 +13,12 @@ using namespace std;
 List<Schoolyear> listSchoolyears;
 
 struct Staff {
-    
     Account acc;
+    List<Schoolyear> listSchoolyears;
 };
  
 // các phương thức của 1 sinh viên
-void addStudent()
+void addStudent();
 
 // At the beginning of a school year:
 

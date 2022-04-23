@@ -13,16 +13,20 @@ Chắc tụi mình tạm thời bỏ Date DOB đi cho dễ quản lý nhỉ? T�
 ok ong
 */
 
+//#include "Profile.cpp"
 struct Account {
-    char username[MAXSTR+1];
+    char ID[MAXID+1]; //21125xxx
     char password[MAXSTR+1];
 
-    char ID[MAXID+1]; //21125xxx
     char name[MAXNAME+1];
     char email[MAXSTR+1];
-    char socialID[MAXSTR+1];
-    //void importFromCSV(fstream &fin);
+    //bool gender; // male: 1, female: 0
+    //Date DOB; // day of birth
+    char socialID[MAXSTR+1]; //xxxxxxxx
 
+    //void importFromCSV(fstream &fin);
+    
+    void view();
 };
 
-//#include "Profile.cpp"
+#include "Account.cpp"
