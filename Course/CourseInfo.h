@@ -10,6 +10,8 @@ struct CourseInfo
 
     Date start_date;
     Date end_date;
+    Date start_regis;
+    Date end_regis;
     char name[MAXSTR+1]; // tên học phần
     char lecturer[MAXSTR+1]; // tên GV
     int numCredits;

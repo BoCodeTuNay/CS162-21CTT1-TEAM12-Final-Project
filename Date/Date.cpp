@@ -57,11 +57,11 @@ bool check_date(Date date)
 	return true;
 }
 // Nhap ngay
-void enter_date(Date& date) {
+void Date::enter_date() {
 	string tmp;
 	cout << "Enter the date (example: 2020-12-31): ";
 	cin >> tmp;
-	date = Date(tmp);
+	*this = Date(tmp);
 }
 //*Check xem ngay da cho co nam giua 2 ngay khac khong
 bool ifDate(Date date, Date start, Date end) {

@@ -6,6 +6,7 @@
 
 struct Schoolyear {
     char ID[YEARLENGTH+1]; 
+    char index;
     List<Semester> listSem;
     // load a Schoolyear from the given stream (the stream will be opened and closed outside this function, so don't need to do it)
     // void load_data(ifstream&);

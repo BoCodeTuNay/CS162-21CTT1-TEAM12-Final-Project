@@ -21,6 +21,11 @@ void CourseInfo::input()
     cout << "Enter maximum students: ";
     cin >> maxStudents;
 
+    start_date.enter_date();
+    end_date.enter_date();
+    start_regis.enter_date();
+    end_regis.enter_date();
+
     for (int i=1; i<=2; i++)
     {
         cout << "Enter day of session " << i << ": ";
