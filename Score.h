@@ -1,5 +1,7 @@
+#pragma once
+
 struct Score {
-    double mid_term_p;
-    double process_p;
-    double final_p;
+    double mid_term;
+    double process;
+    double final;
 };
