@@ -45,6 +45,5 @@ public:
     // return value on the given index, return nullptr if the index is out of range
     T& get(unsigned int);
     int indexOf(const T&, bool (*cmp)(const T&, const T&));
-    bool search(const T&, bool (*cmp)(const T&, const T&));
 };
 #include "List.cpp"

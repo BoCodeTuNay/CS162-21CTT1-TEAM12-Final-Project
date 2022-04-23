@@ -22,6 +22,9 @@ struct Course {
     CourseInfo info;
 
     Course(){};
+    Course(char _ID[MAXSTR+1]){
+        info.ID = 
+    }
     
 	void viewCourses(); //move to courseInfo
     void updateCourse(); //move to courseInfo
@@ -31,5 +34,7 @@ struct Course {
     void addStudent();
     void isRegistrable();
 };
+
+bool cmp_course(const Course& s1, const Course& s2);
 
 // #include "Course.cpp"

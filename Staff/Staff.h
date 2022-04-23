@@ -13,8 +13,15 @@ using namespace std;
 List<Schoolyear> listSchoolyears;
 
 struct Staff {
+    static List<Schoolyear> listSchoolyears;
+    static List<Class> listClasses;
     Account acc;
-    List<Schoolyear> listSchoolyears;
+    
+    void staffMenu();
+    // return true if go to this function again, return false otherwise
+    void manageSchoolyears();
+    void createSchoolyear();
+    void createClasses();
 };
  
 // các phương thức của 1 sinh viên
@@ -22,11 +29,7 @@ void addStudent();
 
 // At the beginning of a school year:
 
-// Create a school year
-void createSchoolYear(List <Schoolyear> &listSchoolyears);
 
-// Create several classes for 1st year students
-void createClasses(List <Class> &classes);
 
 // Add new 1st year students to 1st-year classes
 void addStudentToClasses();

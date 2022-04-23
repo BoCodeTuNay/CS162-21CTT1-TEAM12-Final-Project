@@ -1,112 +1,5 @@
 #include "System.h"
 
-bool checkName(const char* str)
-{
-    for (int i = 0; str[i]; ++i) {
-        if (!isalpha(str[i]) && str[i] != ' ')
-            return false;
-    }
-    return true;
-}
-
-bool checkAlphaDigit(const char* str)
-{
-    for (int i = 0; str[i]; ++i) {
-        if (!isalpha(str[i]) && !isdigit(str[i]))
-            return false;
-    }
-    return true;
-}
-
-bool checkDigit(const char* str)
-{
-    for (int i = 0; str[i]; ++i) {
-        if (!isdigit(str[i]))
-            return false;
-    }
-    return true;
-}
-
-bool checkEmail(const char* str)
-{
-    for (int i = 0; str[i]; ++i) {
-        if (str[i] == '@') {
-            if (i == 0 || str[i+1] == 0) return false;
-            if (i > MAXSTR) return false; // the local-part is too long
-
-            char local_part[MAXSTR+1];
-            for (int j = 0; j < i; ++j) {
-                local_part[j] = str[j];
-            }
-            local_part[i] = '\0';
-            if (!checkAlphaDigit(local_part))
-                return false;
-
-            for (int j = i + 1; str[j]; ++j) {
-                if (j - i > MAXSTR) return false; // the domain name is too long
-                if (str[j] == '@') return false;
-                else if (str[j] == '.') {
-                    if (j == i + 1) return false; // the period character cannot be in the beginning
-                    else if (str[j+1] == '\0') return false; // the period character cannot be in the end
-                    else if (str[j-1] == '.') return false; // consecutive period characters are not allowed
-                }
-                else if (!islower(str[j])) return false; 
-            }
-            return true;
-        }
-    }
-    return false;
-}
-
-void manageSchoolyears()
-{
-    // viewAllSchoolYears();
-    // chooseSchoolYears();
-    // if (choose == createSchoolYear)
-    // {
-    //     createSchoolYear(listSchoolyears);
-    // }
-    // else (choose == viewSchoolYearX)
-    // {
-    //     manageSemesters(schoolYearX);
-    // }
-    
-    int N{0}; // number of commands in this screen
-    for (Node<Schoolyear>* cur = Staff::listSchoolyears.begin(); cur; cur = cur->pNext) {
-        std::cout << N++ << ". View schoolyear " << cur->data.ID << endl;
-    }
-    std::cout << N++ << ". Create a new schoolyear\n";
-    std::cout << N++ << ". Go back\n";
-    std::cout << std::endl;
-
-    std::cout << "Your choice (press Enter to go back): ";
-    
-}
-
-void staffMenu()
-{
-    clrscr();
-    cout << "0. Manage schoolyears.\n"
-            "1. Manage classes.\n"
-            "2. View profile.\n"
-            "3. Log out.\n";
-    int t{choose(0, 3)};
-    if (t == 0) {
-        manageSchoolyears();
-    }
-    else if (t == 1) {
-        manageClasses();
-    }
-    else if (t == 2) {
-        // view the profile of the current staff, should be an independent function to do this
-        // create a new struct named staffInfo if necessary, but I doubt not
-        // including the change-password feature -> shouldn't be a problem
-    }
-    else {
-        // go back to loginScreen()
-    }
-}
-
 void login()
 {
     using namespace std;
@@ -159,11 +52,14 @@ void login()
     } while (cont_out);
     if (ID[0] == 0 && password[0] == 0) 
 
-    if (checkDatabase(ID, password) == 1) {
-        // go to Student's menu
+    for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
+        if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) {
+            cur->data.studentMenu();
+        }
     }
-    else {
-        staffMenu();
+    for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
+        if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) {
+            cur->data.staffMenu();
     }
 }
 
@@ -303,19 +199,7 @@ void studentMenu(Student &student)
 
 }
 
-void manageSemesters(Schoolyear &schoolyearX)
-{
-    viewAllSemester();
-    chooseSemesters();
-    if (choose == createSemester)
-    {
-        createSemester(schoolyearX.listSemester);
-    }
-    else(choose == semesterX)
-    {
-        manageCourse(semesterX);
-    }
-}
+
 
 void manageSemesterX(Semester &semesterX)
 {

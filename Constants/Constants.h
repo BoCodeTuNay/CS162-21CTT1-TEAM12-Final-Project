@@ -17,6 +17,14 @@ const int YEARLENGTH = 9; // of the format, e.g. 2020-2021 -> exactly 9 chars
 
 void clrscr();
 int choose(int, int);
+// to check whether a given string consists of only alphabet characters and spaces
+bool checkName(const char*);
+// to check whether a given string consists of only alphabet characters and digits
+bool checkAlphaDigit(const char*);
+// to check whether a given string consists of only digits
+bool checkDigit(const char*);
+// to check whether an email is in the valid format
+bool checkEmail(const char*);
 
 #include "Constants.cpp"
 

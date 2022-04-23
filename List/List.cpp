@@ -108,14 +108,4 @@ int List<T>::indexOf(const T& val, bool (*cmp)(const T&, const T&)) {
     }
     return -1;
 }
-
-
-template <typename T>
-bool List<T>::search(const T& val, bool (*cmp)(const T&, const T&)) {
-    for (Node<T>* cur = pHead; cur; cur = cur->pNext) {
-        if (cmp(cur->data,val)) {
-            return true;
-        }
-    }
-    return false;
-}
+// if the Node is invalid, the indexOf is -1

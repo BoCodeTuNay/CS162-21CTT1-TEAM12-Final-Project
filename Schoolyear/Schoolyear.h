@@ -5,9 +5,9 @@
 #include "..\Class\Class.h"
 
 struct Schoolyear {
+    List<Semester> listSemesters;
     char ID[YEARLENGTH+1]; 
-    char index;
-    List<Semester> listSem;
+    int index;
     // load a Schoolyear from the given stream (the stream will be opened and closed outside this function, so don't need to do it)
     // void load_data(ifstream&);
 
@@ -15,6 +15,7 @@ struct Schoolyear {
     // ask the user to fill in the Semester's info (remember to flush the input stream first by fflush(stdin)) and then 
     // add it to this schoolyear by inserting it into listSemester
     void createSemester();
+    void manageSemesters();
 };
 
 

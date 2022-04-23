@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
-#include "..\Course\Course.h"
+#include "../Course/Course.h"
+#include "../Course/CourseInfo.h"
 
 struct Semester {
     // char ID[MAXSTR+1]; 
@@ -19,6 +20,10 @@ struct Semester {
 
     // create a Course Registration Session, this feature might need further discussion...
     void createCourseRegistration(List <CourseInfo>& listCourseInfo, int schoolyearID);
+    void addCourseToSemester(List <CourseInfo> &listRegis);
+    void viewListCourses();
+    void updateCourseInfomation();
+    void deleteCourse(List <CourseInfo> &listRegis);
 };
 
 /*

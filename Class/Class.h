@@ -5,14 +5,12 @@
 #include "../Constants/Constants.h"
 
 struct Class {
-    char name[MAXNAME];
-    char ID[MAXID];
+    char ID[MAXID+1];
+    char name[MAXNAME+1];
+    long long class_id;
+    List <Account> StudentsList;
 
-    List <Account> stu_list;
-
-    Class(){}
-    Class(char name[MAXNAME], long long class_id = 0);
-
+    void initInfo();
     void inputClass();
     void addStudent(); 
     void importStudentFile();

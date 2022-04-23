@@ -1,14 +1,15 @@
 #pragma once
 #include "Student.h"
+#include <vector>
 
-bool cmp_Course(const CourseScore &a, const CourseScore &b) {
-    return strcmp(a.pCourse.ID, b.pCourse.ID);
+bool cmp_CourseScore(const CourseScore &a, const CourseScore &b) {
+    return a.pCourse == b.pCourse;
 }
 
 int Student::CurCourses() {
     int cnt = 0;
     for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext)
-        cnt += ifDate(getCurrentDate(), (p->data->pScourse).start_date, (p->data.pScoure).end_date);
+        cnt += ifDate(getCurrentDate(), ((p->data).pCourse)->start_date, ((p->data).pCourse)->end_date);
     return cnt;
 }
 
@@ -26,7 +27,7 @@ List<CourseInfo> Student::enrolledCourse(List<Course> pOpenCourse) {
         vector<Course*> vCourse;
         
         int reg_Num, Num = 0;
-        for (Node<Course>* p = pOpenCourse.begin(); p; p = p.pNext) {
+        for (Node<Course>* p = pOpenCourse.begin(); p; p = p->pNext) {
             bool check = true;
             for (int i = 1; i < 7; ++i) 
                 if ((p->data).info.day[i] > 0 && !fClass[i][(p->data).info.day[i]])
@@ -45,33 +46,38 @@ List<CourseInfo> Student::enrolledCourse(List<Course> pOpenCourse) {
         Course* pickCourse = vCourse[reg_Num - 1];
 
         for (int i = 1; i < 7; ++i)
-            if (*pickCourse.info.day[i] > 0)
-                fClass[i][*pickCourse.info.day[i]] = true;
+            if ((*pickCourse).info.day[i] > 0)
+                fClass[i][(*pickCourse).info.day[i]] = true;
         
-        Score* tmp = NULL;
+        CourseScore* pickCS = new CourseScore(&(pickCourse->info), NULL);
 
-        CoursesList.insert(CourseScore(pickCourse, tmp));
+        // pickCS.pCourse = &(pickCourse->info);
+        // pickCS.pScore = NULL;
+
+        CoursesList.insert(*pickCS);
         res.insert((*pickCourse).info);
     }
 }
 
 void Student::viewEnrolledCourses() {
-    for (Node<CourseScore>* p = pScore.begin(); p; p = p -> pNext) {
-        /// Hiển thị danh sách sinh viên đã enroll
+    int Num = 0;
+    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
+        ++Num;
+        cout << Num << ". " << ((p->data).pCourse->name) << '\n';
     }
 }
 
-void Student::removeCourse(char id[MAXNAME]) {
+void Student::removeCourse(char id[MAXID+1]) {
     CourseScore pick;
 
-    for (Node<CourseScore>* p = pScore.begin(); p; p = p -> pNext) {
-        if (strcmp(p -> data.pCourse.ID, id)) {
+    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
+        if (strcmp((p->data).pCourse->ID, id)) {
             pick = p->data;
             break;
         }
     }
 
-    pScore.remove(pick, cmp_Course);
+    CoursesList.remove(pick, cmp_CourseScore);
 }
 
 void Student::init_StudentInfo() {
@@ -86,8 +92,10 @@ void Student::init_StudentInfo() {
 
 void Student::listOfCourses() {
     cout << "This semester you study courses:\n";
-    int cnt = 0;
-    for (Node<CourseScore>* p = pScore.begin(); p; p = p -> pNext) 
-        if (ifDate(getThisDate(), (p->data.pCourse.start_date), (p->data.pCourse.end_date))) 
-            cout << ++cnt << '.' << (p->data.pCourse.name) << '\n';
+    int Num = 0;
+    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) 
+        if (ifDate(getCurrentDate(), ((p->data).pCourse)->start_date, ((p->data).pCourse)->end_date)) {
+            ++Num;
+            cout << Num << ". " << ((p->data).pCourse->name) << '\n';
+        }
 }

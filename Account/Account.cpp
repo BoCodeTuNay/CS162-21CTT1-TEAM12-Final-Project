@@ -1,5 +1,14 @@
 #include "Account.h"
 
+Account::Account(const char* _ID, const char* _password, const char* _name, const char* _email, const char* _socialID)
+{
+    strcpy(ID, _ID);
+    strcpy(password, _password);
+    strcpy(name, _name);
+    strcpy(email, _email);
+    strcpy(socialID, _socialID);
+}
+
 void Account::view()
 {
     char ID[MAXID+1]; //21125xxx

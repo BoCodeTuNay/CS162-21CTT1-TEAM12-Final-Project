@@ -1,16 +1,16 @@
 #pragma once
 #include "../List/List.h"
-// #include "../Course/Course.h"
 #include "../Constants/Constants.h"
-//#include "Score.h"
+#include "Score.h"
 #include "../Date/Date.h"
+#include "../Course/Course.h"
 #include "../Course/CourseInfo.h"
 
 struct CourseScore {
     CourseInfo* pCourse;
-    Score**pSpScore;
+    Score* pScore;
 
-    CourseScore : pCourse(NULL), pSpSore(NULL);
+    CourseScore(CourseInfo* pC = NULL, Score* pS = NULL) : pCourse(pC), pScore(pS) {}
 };
 
 struct Student {

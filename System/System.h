@@ -39,16 +39,6 @@ List <Class> listClass;
 //List<Schoolyear> listSchoolyears;
 int current_year_index = -1;
 
-void clrscr();
-// to check whether a given string consists of only alphabet characters and spaces
-bool checkName(const char*);
-// to check whether a given string consists of only alphabet characters and digits
-bool checkAlphaDigit(const char*);
-// to check whether a given string consists of only digits
-bool checkDigit(const char*);
-// to check whether an email is in the valid format
-bool checkEmail(const char*);
-
 void loadAccounts();
 void saveAccounts();
 

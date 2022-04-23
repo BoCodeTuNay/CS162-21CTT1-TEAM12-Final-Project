@@ -25,7 +25,8 @@ struct Account {
     char socialID[MAXSTR+1]; //xxxxxxxx
 
     //void importFromCSV(fstream &fin);
-    
+    Account() {}
+    Account(const char*, const char*, const char*, const char*, const char*);
     void view();
 };
 
