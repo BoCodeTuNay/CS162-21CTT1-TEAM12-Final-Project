@@ -1,9 +1,6 @@
 #include "Date.h"
-
-// from MINH: Đầu tiên cần quy ước format hiển thị ngày là dd/mm/yyyy, hay là dd-mm-yyyy, hay là yyyy-mm-dd.
-// vì format trong hàm enter_date() một kiểu và format trong hàm output_date lại một kiểu
-// Viết format đó ở đầu file này nhé
-
+#include <stdlib.h>
+//format date là yyyy/mm/dd nhe ông
 Date::Date()
 {
 	day = 1;
@@ -18,7 +15,7 @@ Date::Date(string date) {
 }
 void output_date(Date date)
 {
-	cout << date.day << "/" << date.month << "/" << date.year; // quy ước format lại
+	cout << date.year << "/" << date.month << "/" << date.day; // quy ước format lại
 }
 
 //*Kiem tra nam nhuan
@@ -61,13 +58,47 @@ bool check_date(Date date)
 }
 // Nhap ngay
 void Date::enter_date() {
-	string tmp;
-	cout << "Enter the date (example: 2020-12-31): "; // from MINH: không cần dòng này vì chỗ nào gọi hàm này sẽ tự cout trước khi gọi
-	cin >> tmp; // from MINH: Kiểm tra bad input (không nhập gì, nhập sai format date đã quy ước, ký tự lạ). Có thể dùng char[] thay string
-
-	year = stoi(tmp.substr(0, 4)); // from MINH: kiểm tra 4 ký tự này có phải chữ số không, có thể dùng hàm checkDigit trong Constants.h
-	month = stoi(tmp.substr(5, 2)); // tương tự
-	day = stoi(tmp.substr(8, 2)); // tương tự
+	char tmp[11];
+	auto validDate = [](char* date) -> bool {
+		if (strlen(date) != 10) return false;
+		if (date[4] != '/' || date[6] != '/') return false;
+		char* fi = date; fi[4] = '0'; fi[6] = '0';
+		if (!checkDigit(fi)) return false;
+		Date dat;
+		char* day = (fi + 8);
+		dat.day = atoi(day);
+		char* month = (fi + 5);
+		dat.month = (atoi(month) - dat.day) / 1000;
+		long long x = atoi(fi);
+		x = (x - dat.month - dat.day)/1000000;
+		dat.year = x;
+		if (!check_date(dat)) return false;
+		return true;
+	};
+	bool cont{ false };
+	do {
+		std::cout << "Enter the date (format: yyyy/mm/dd): ";
+		// check for bad input
+		fflush(stdin);
+		std::cin.get(tmp, 11 , '\n');
+		if (std::cin.fail()) { // nothing was inputted, so go back
+			std::cin.clear();
+			fflush(stdin);
+			break;
+		}
+		else if (std::cin.get() != '\n' || !validDate(tmp)) {
+			std::cout << "The date format is invalid. Please try again.\n";
+			cont = true;
+		}
+	} while (cont);
+	tmp[4] = '0'; tmp[6] = '0';
+	char* d = (tmp + 8);
+	day = atoi(d);
+	char* m = (tmp + 5);
+	month = (atoi(m) - day) / 1000;
+	long long x = atoi(tmp);
+	x = (x - month - day) / 1000000;
+	year = x;
 }
 //*Check xem ngay da cho co nam giua 2 ngay khac khong
 bool ifDate(Date date, Date start, Date end) {

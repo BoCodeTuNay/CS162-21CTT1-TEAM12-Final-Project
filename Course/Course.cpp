@@ -13,5 +13,5 @@ void Course::viewStudents()
 
 bool cmp_course(const Course& s1, const Course& s2)
 {
-    return strcmp(s1.info.ID, s2.info.ID); // so sánh bằng MSSV
+    return strcmp(s1.info.ID, s2.info.ID); // so sánh bằng Course ID
 }
