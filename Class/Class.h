@@ -12,7 +12,7 @@ struct Class {
 
     void initInfo();
     void inputClass();
-    void addStudent(); 
+    List<Account> addStudent(); 
     void importStudentFile();
 };
 

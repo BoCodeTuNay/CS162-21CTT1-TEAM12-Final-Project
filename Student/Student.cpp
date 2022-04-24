@@ -14,7 +14,7 @@ int Student::CurCourses() {
 }
 
 ///them courseInfo
-List<CourseInfo> Student::enrolledCourse(List<Course> pOpenCourse) {
+List<CourseInfo> Student::enrolledCourse(List<Course*> pOpenCourse) {
     List<CourseInfo> res;
     
     if (CurCourses() > 4) {
@@ -22,40 +22,74 @@ List<CourseInfo> Student::enrolledCourse(List<Course> pOpenCourse) {
         return res;
     }
 
+    // while (CurCourses() < 5) {
+    //     clrscr();
+    //     vector<Course*> vCourse;
+        
+    //     int reg_Num, Num = 0;
+    //     for (Node<Course>* p = pOpenCourse.begin(); p; p = p->pNext) {
+    //         bool check = true;
+    //         for (int i = 1; i < 7; ++i) 
+    //             if ((p->data).info.day[i] > 0 && fClass[i][(p->data).info.day[i]])
+    //                 check = false;
+    //         if ((p->data).Student.size() >= (p->data).info.maxStudents) check = false;
+
+    //         if (!check) continue;
+    //         vCourse.push_back(&(p->data));
+    //         ++Num;
+    //         cout << Num << ". " << (p->data).info.name << '\n'; 
+    //     }
+
+    //     cout << "Please enter the number of course you want to regis: ";
+    //     cin >> reg_Num;
+
+    //     Course* pickCourse = vCourse[reg_Num - 1];
+
+    //     for (int i = 1; i < 7; ++i)
+    //         if ((*pickCourse).info.day[i] > 0)
+    //             fClass[i][(*pickCourse).info.day[i]] = true;
+        
+    //     CourseScore* pickCS = new CourseScore(&(pickCourse->info), NULL);
+
+    //     // pickCS.pCourse = &(pickCourse->info);
+    //     // pickCS.pScore = NULL;
+
+    //     CoursesList.insert(*pickCS);
+    //     res.insert((*pickCourse).info);
+    // }
+
     while (CurCourses() < 5) {
         clrscr();
         vector<Course*> vCourse;
-        
+
         int reg_Num, Num = 0;
-        for (Node<Course>* p = pOpenCourse.begin(); p; p = p->pNext) {
+        for (Node <Course*>* p = pOpenCourse.begin(); p; p = p -> pNext) {
             bool check = true;
-            for (int i = 1; i < 7; ++i) 
-                if ((p->data).info.day[i] > 0 && !fClass[i][(p->data).info.day[i]])
+            Course* data = p->data;
+            for (int i = 1; i < 7; ++i)
+                if ((data->info).day[i] > 0 && fClass[i][(data->info).day[i]])
                     check = false;
-            if ((p->data).Student.size() >= (p->data).info.maxStudents) check = false;
+            if ((data->Student).size() > (data->info).maxStudents) check = false;
 
             if (!check) continue;
-            vCourse.push_back(&(p->data));
-            ++Num;
-            cout << Num << ". " << (p->data).info.name << '\n'; 
+
+            vCourse.push_back(data);
+            cout << ++Num << ". " << (data->info).name << '\n';
         }
 
-        cout << "Please enter the number of course you want to regis: ";
+        cout << "Please enter the number of course you want to regis: " << '\n';
         cin >> reg_Num;
 
         Course* pickCourse = vCourse[reg_Num - 1];
 
         for (int i = 1; i < 7; ++i)
-            if ((*pickCourse).info.day[i] > 0)
-                fClass[i][(*pickCourse).info.day[i]] = true;
-        
+            if ((data->info).day[i] > 0)
+                fClass[i][(data->info).day[i]] = true;
+            
         CourseScore* pickCS = new CourseScore(&(pickCourse->info), NULL);
 
-        // pickCS.pCourse = &(pickCourse->info);
-        // pickCS.pScore = NULL;
-
-        CoursesList.insert(*pickCS);
-        res.insert((*pickCourse).info);
+        CoursesList.insert(pickCS);
+        res.insert()
     }
 }
 

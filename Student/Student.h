@@ -24,7 +24,7 @@ struct Student {
     List<CourseScore> CoursesList;
 
     int CurCourses();
-    List<CourseInfo> enrolledCourse(List<Course> pOpenCourse);
+    List<CourseInfo> enrolledCourse(List<Course*> pOpenCourse);
     void viewEnrolledCourses();
     void removeCourse(char id[MAXID+1]);
     void init_StudentInfo();
