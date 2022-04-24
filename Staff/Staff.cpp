@@ -4,10 +4,12 @@ void Staff::staffMenu()
 {
     // this function cannot return true/false to go back because before it is the login screen
     clrscr();
-    cout << "0. Manage schoolyears.\n"
+    std::cout << "WELCOME TO THE SYSTEM, " << acc.name << endl << endl;
+    std::cout << "0. Manage schoolyears.\n"
             "1. Manage classes.\n"
             "2. View profile.\n"
-            "3. Log out.\n";
+            "3. Log out.\n\n";
+    std::cout << "Your choice: ";
     int t{choose(0, 3)};
     if (t == 0) {
         manageSchoolyears();
@@ -15,15 +17,84 @@ void Staff::staffMenu()
     }
     else if (t == 1) {
         manageClasses();
+        staffMenu();
     }
     else if (t == 2) {
-        // view the profile of the current staff, should be an independent function to do this
-        // create a new struct named staffInfo if necessary, but I doubt not
-        // including the change-password feature -> shouldn't be a problem
+        viewProfile();
+        staffMenu();
     }
     else {
         // go back to loginScreen()
     }
+}
+
+void Staff::viewProfile()
+{
+    clrscr();
+    std::cout << "WELCOME TO YOUR PERSONAL PAGE.\n\n";
+
+    std::cout << "Name: " << acc.name << endl;
+    std::cout << "Email: " << acc.email << endl;
+    std::cout << "Social ID: " << acc.socialID << endl;
+    std::cout << "ID: " << acc.ID << endl;
+    std::cout << std::endl;
+
+    std::cout << "0. Change password\n";
+    std::cout << "1. Go back\n\n";
+    std::cout << "Your choice: ";
+    int t{choose(0, 1)};
+    if (t == 0) {
+        changePassword();
+        viewProfile();
+    }
+    else {
+        // lets go back
+    }
+}
+
+void Staff::changePassword()
+{
+    clrscr();
+    std::cout << "CHANGE PASSWORD\n";
+    std::cout << "Press Enter to go back.\n\n";
+    
+    bool cont{false};
+    char cur_pass[MAXSTR+1];
+    do {
+        std::cout << "Enter your current password: ";
+        fflush(stdin);
+        std::cin.get(cur_pass, MAXSTR+1, '\n');
+        if (std::cin.fail()) { // nothing was inputted
+            std::cin.clear();
+            fflush(stdin);
+            return;
+        }
+        else if (std::cin.get() != '\n' || !checkAlphaDigit(cur_pass)) {
+            std::cout << "Invalid password. Please try again.\n";
+            cont = true;
+        }
+        else if (strcmp(cur_pass, acc.password)) {
+            std::cout << "The password is incorrect. Please try again.\n";
+            cont = true;
+        }
+        else cont = false;
+    } while (cont);
+
+    cont = false;
+    char new_pass[MAXSTR+1];
+    do {
+        std::cout << "Enter your new password: ";
+        fflush(stdin);
+        std::cin.get(new_pass, MAXSTR+1, '\n');
+        if (std::cin.fail() || std::cin.get() != '\n' || !checkAlphaDigit(new_pass)) {
+            std::cin.clear();
+            fflush(stdin);
+            std::cout << "Invalid password. Please try again.\n";
+            cont = true;
+        }
+        else cont = false;
+    } while (cont);
+    strcpy(acc.password, new_pass);
 }
 
 void Staff::manageSchoolyears()
@@ -39,6 +110,7 @@ void Staff::manageSchoolyears()
     //     manageSemesters(schoolYearX);
     // }
     clrscr();
+    std::cout << "MANAGE THE AVAILABLE SCHOOLYEARS\n\n";
     int N{0}; // number of commands in this screen
     for (Node<Schoolyear>* cur = listSchoolyears.begin(); cur; cur = cur->pNext) {
         std::cout << N++ << ". View schoolyear " << cur->data.ID << endl;
@@ -47,7 +119,7 @@ void Staff::manageSchoolyears()
     std::cout << N++ << ". Go back\n";
     std::cout << std::endl;
 
-    std::cout << "Your choice (press Enter to go back): ";
+    std::cout << "Your choice: ";
     int t{choose(0, N - 1)};
     if (t < N - 2) {
         listSchoolyears.get(t).manageSemesters();
@@ -88,6 +160,7 @@ void Staff::createSchoolyear()
     do {
         std::cout << "Enter the schoolyear (e.g. 2021-2022): ";
         // check for bad input
+        fflush(stdin);
         std::cin.get(newSchoolYear.ID, YEARLENGTH+1, '\n');
         if (std::cin.fail()) { // nothing was inputted, so go back
             std::cin.clear();
@@ -104,10 +177,13 @@ void Staff::createSchoolyear()
         }
         else {
             cont = false;
+            newSchoolYear.index = listSchoolyears.size();
+            listSchoolyears.insert(newSchoolYear);
+            std::cout << "The schoolyear is added successfully.\n";
+            // wait a couple of secs
         }
     } while (cont);
-    newSchoolYear.index = listSchoolyears.size();
-    listSchoolyears.insert(newSchoolYear);
+    
 }
 
 // 2. Create several classes for 1st year students
@@ -129,6 +205,7 @@ void createClass(){
     do {
         std::cout << "Enter the class (e.g. 21APCS01): ";
         // check for bad input
+        fflush(stdin);
         std::cin.get(newClass.name, MAXNAME+1, '\n');
         if (std::cin.fail()) { // nothing was inputted, so go back
             std::cin.clear();

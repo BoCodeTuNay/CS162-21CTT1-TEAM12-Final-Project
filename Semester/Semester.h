@@ -11,12 +11,15 @@ struct Semester {
     Date end_date;
     Date start_registration_date;
     Date end_registration_date;
+    
     List <Course> listCourses;
 
     // bool created = false;
  
     // load a Semester from the given stream (the stream will be opened and closed outside this function, so don't need to do it)
     //void load_data(ifstream&);
+
+    void manageCourses();
 
     // create a Course Registration Session, this feature might need further discussion...
     void createCourseRegistration(List <CourseInfo>& listCourseInfo, int schoolyearID);

@@ -1,5 +1,9 @@
 #include "Date.h"
 
+// from MINH: Đầu tiên cần quy ước format hiển thị ngày là dd/mm/yyyy, hay là dd-mm-yyyy, hay là yyyy-mm-dd.
+// vì format trong hàm enter_date() một kiểu và format trong hàm output_date lại một kiểu
+// Viết format đó ở đầu file này nhé
+
 Date::Date()
 {
 	day = 1;
@@ -8,13 +12,13 @@ Date::Date()
 }
 
 Date::Date(string date) {
-		year = stoi(date.substr(0, 4));
-		month = stoi(date.substr(5, 2));
-		day = stoi(date.substr(8, 2));
+		year = stoi(date.substr(0, 4)); // from MINH: kiểm tra 4 ký tự này có phải chữ số không, có thể dùng hàm checkDigit trong Constants.h
+		month = stoi(date.substr(5, 2)); // tương tự...
+		day = stoi(date.substr(8, 2)); // tương tự...
 }
 void output_date(Date date)
 {
-	cout << date.day << "/" << date.month << "/" << date.year;
+	cout << date.day << "/" << date.month << "/" << date.year; // quy ước format lại
 }
 
 //*Kiem tra nam nhuan
@@ -58,12 +62,12 @@ bool check_date(Date date)
 // Nhap ngay
 void Date::enter_date() {
 	string tmp;
-	cout << "Enter the date (example: 2020-12-31): ";
-	cin >> tmp;
+	cout << "Enter the date (example: 2020-12-31): "; // from MINH: không cần dòng này vì chỗ nào gọi hàm này sẽ tự cout trước khi gọi
+	cin >> tmp; // from MINH: Kiểm tra bad input (không nhập gì, nhập sai format date đã quy ước, ký tự lạ). Có thể dùng char[] thay string
 
-	year = stoi(tmp.substr(0, 4));
-	month = stoi(tmp.substr(5, 2));
-	day = stoi(tmp.substr(8, 2));
+	year = stoi(tmp.substr(0, 4)); // from MINH: kiểm tra 4 ký tự này có phải chữ số không, có thể dùng hàm checkDigit trong Constants.h
+	month = stoi(tmp.substr(5, 2)); // tương tự
+	day = stoi(tmp.substr(8, 2)); // tương tự
 }
 //*Check xem ngay da cho co nam giua 2 ngay khac khong
 bool ifDate(Date date, Date start, Date end) {

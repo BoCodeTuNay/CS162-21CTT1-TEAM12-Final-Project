@@ -10,6 +10,7 @@ struct CourseInfo
     char semesterID[MAXSTR+1];
     char schoolyearID[MAXSTR+1];
 
+    // make sure (start_regis < end_regis < start_date < end_date)
     Date start_date;
     Date end_date;
     Date start_regis;

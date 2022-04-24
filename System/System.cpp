@@ -4,7 +4,8 @@ void login()
 {
     using namespace std;
     clrscr();
-    std::cout << "PLEASE LOG IN USING YOUR ID AND PASSWORD. KEEP PRESSING ENTER TO GO BACK.\n\n";
+    std::cout << "PLEASE LOG IN USING YOUR ID AND PASSWORD.\n";
+    std::cout << "Press Enter first to go back.\n\n";
     
     bool cont_out{false}; // to continue looping
     char ID[MAXID+1]; ID[0] = 0;
@@ -18,7 +19,7 @@ void login()
             if (cin.fail()) { // nothing was inputted
                 cin.clear();
                 fflush(stdin);
-                break;
+                return;
             }
             else if (cin.get() != '\n' || !checkDigit(ID)) {
                 fflush(stdin);
@@ -31,13 +32,9 @@ void login()
         cont_in = false;
         do {
             cout << "Password (max " << MAXSTR << " chars): ";
-            cin.get(password, MAXSTR+1, '\n');
-            if (cin.fail()) { // nothing was inputted
+            if (cin.fail() || cin.get() != '\n' || !checkAlphaDigit(password)) {
                 cin.clear();
                 fflush(stdin);
-                break;
-            }
-            else if (cin.get() != '\n' || !checkAlphaDigit(password)) {
                 cout << "Invalid password. Please try again.\n";
                 cont_in = true;
             }

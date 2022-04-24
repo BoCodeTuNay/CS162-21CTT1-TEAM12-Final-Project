@@ -26,8 +26,6 @@ struct Course {
         info.ID = 
     }
     
-	void viewCourses(); //move to courseInfo
-    void updateCourse(); //move to courseInfo
     void viewStudents(); 
     void exportStudents(); // to a CSV file
 	void viewScoreboard(); //

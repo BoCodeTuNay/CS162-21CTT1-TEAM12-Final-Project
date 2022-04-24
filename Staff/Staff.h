@@ -22,6 +22,8 @@ struct Staff {
     void manageSchoolyears();
     void createSchoolyear();
     void createClasses();
+    void viewProfile();
+    void changePassword();
 };
  
 // các phương thức của 1 sinh viên

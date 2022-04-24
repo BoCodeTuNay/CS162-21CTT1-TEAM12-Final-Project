@@ -1,4 +1,5 @@
 #include "Semester.h"
+#include <cassert>
 
 // void Semester::createCourseRegistration(List <CourseInfo>& listCourseInfo, int schoolyearID) {
 //     CourseInfo courseInfo;
@@ -17,6 +18,33 @@
     
 //     listCourses.insert(course);
 // }
+
+void Semester::manageCourses()
+{
+    clrscr();
+    std::cout << "MANAGE THE AVAILABLE COURSES\n\n";
+
+    int N{0};
+    for (Node<Course>* cur = listCourses.begin(); cur; cur = cur->pNext) {
+        std::cout << N++ << ". View course " << cur->data.info.ID << std::endl;
+    }
+    std::cout << N++ << ". Create a new course registration session\n";
+    std::cout << N++ << ". Go back\n\n";
+
+    std::cout << "Your choice: ";
+    int t{choose(0, N - 1)};
+    if (t < N - 2) {
+        listCourses.get(t).info.viewCourseInfo();
+        manageCourses();
+    }
+    else if (t == N - 2) {
+        // create a course registration session...
+    }
+    else if (t == N - 1) {
+        // lets go back
+    }
+    else assert(false); // just to make sure this case cannot happen
+}
 
 void Semester::addCourseToSemester(List <CourseInfo> &listRegis){
     CourseInfo newCourseInfo;
