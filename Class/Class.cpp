@@ -1,13 +1,5 @@
 #include "Class.h"
 
-Class::Class(char name[MAXNAME], long long class_id = 0) {
-    long long MOD = 1333333337;
-    long long base = 2017;
-    for (int i = 0; i < strlen(name); ++i) {
-        class_id = ((class_id * base % MOD) + name[i]) % MOD;
-    }
-}
-
 void Class::inputClass()
 {
     cout << "Enter class name: ";
@@ -18,14 +10,12 @@ void Class::inputClass()
     cin.get(ID, MAXSTR, '\n');
 }
 
-List<Profile> Class::addStudent() {
-    Profile tmp;
+List<Account> Class::addStudent() {
+    Account tmp;
     cout << "Please enter your Student ID: ";
     cin >> tmp.ID;
-    cout << "Please enter your first name: ";
-    cin >> tmp.firstName;
-    cout << "Please enter your last name: ";
-    getline(cin, tmp.LastName);
+    cout << "Please enter your name: ";
+    getline(cin, tmp.name);
     cout << "Please enter your gender (1: male/ 2: female): ";
     int x;
     cin >> x;
