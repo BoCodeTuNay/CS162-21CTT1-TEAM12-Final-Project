@@ -99,12 +99,28 @@ void CourseInfo::updateCourseInfo()
 
 void CourseInfo::viewCourseInfo()
 {
+    clrscr();
+    cout << "MANAGE COURSE " << name << ".\n\n";
+
     cout << "id: " << "\t" << ID<< "\n";
-    cout << "name: " << "\t" << name << "\n";
+    // cout << "name: " << "\t" << name << "\n";
     cout << "lecturer: " << "\t" << lecturer << "\n";
     cout << "numCredits: " << "\t" << numCredits << "\n";
     cout << "maxStudents: " << "\t" << maxStudents << "\n";
-    cout << "day: " << "\t" << day << "\n";
-    // cout << "session: " << "\t" << session << "\n";
+    // cout << "day: " << "\t" << day << "\n";
+    cout << endl;
+
+    cout << "0. Change courseInfo\n";
+    cout << "1. Go back\n\n";
+    cout << "Your choice: ";
+    int t{choose(0, 1)};
+    if (t == 0) {
+        updateCourseInfo();
+        viewCourseInfo();
+    }
+    else {
+        // lets go back
+    }
+
 
 }
