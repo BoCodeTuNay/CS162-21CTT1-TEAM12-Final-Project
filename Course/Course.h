@@ -22,9 +22,9 @@ struct Course {
     CourseInfo info;
 
     Course(){};
-    // Course(char _ID[MAXSTR+1]){
-    //     info.ID = 
-    // }
+    Course(char _ID[MAXSTR+1]){
+        strcpy(info.ID, _ID);
+    }
     
     void viewStudents(); 
     void exportStudents(); // to a CSV file

@@ -34,7 +34,7 @@ void Semester::manageCourses()
     std::cout << "Your choice: ";
     int t{choose(0, N - 1)};
     if (t < N - 2) {
-        listCourses.get(t).info.viewCourseInfo();
+        listCourses.get(t).info.manageCourseInfo();
         manageCourses();
     }
     else if (t == N - 2) {
@@ -82,8 +82,11 @@ void Semester::deleteCourse(List <CourseInfo> &listRegis){
     char inputID[MAXSTR+1];
     cout << "What course ID do you want to update?\n";
     cin.get(inputID, MAXSTR+1, '\n');
-    listCourses.remove(Course("???", inputID), cmp_course);
-    
-    cout << "Do not have this course ID.\n";
+    if (listCourses.remove(Course(inputID), cmp_course)) {
+        cout << "Course delete successfully!\n";
+    }
+    else {
+        cout << "Do not have this course ID.\n";
+    }
 }
 
