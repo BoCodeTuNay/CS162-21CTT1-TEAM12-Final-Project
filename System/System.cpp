@@ -52,11 +52,16 @@ void login()
     for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
         if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) {
             cur->data.studentMenu();
+            login();
+            return;
         }
     }
     for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
-        if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) {
+        if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) { {
             cur->data.staffMenu();
+            login();
+            return;
+        }
     }
 }
 
@@ -64,7 +69,7 @@ bool loginScreen()
 {
     clrscr();
     std::cout << "0. Log in\n"
-                "1. Exit\n";
+                 "1. Exit\n";
     int t{choose(0, 1)};
     if (t == 0) {
         login();
@@ -82,7 +87,6 @@ void loadAccounts()
     Account of student 2
     ...
     Account of student N
-
     M
     Account of staff 1
     Account of staff 2
@@ -90,30 +94,28 @@ void loadAccounts()
     Account of staff M
     */
     using namespace std;
-    fstream fin(ACCOUNTS_FILE, ios::in | ios::binary);
+    fstream fin(ACCOUNTS_FILE, ios::in);
     if (!fin.is_open()) return;
 
     unsigned int N;
-    fin.read((char*)&N, sizeof(int));
-    Account* arr = new Account[N];
-    fin.read((char*)arr, N * sizeof(Account));
+    fin >> N;
     for (int i = 0; i < N; ++i) {
+        Account cur;
+        cur.read_data(fin);
         Student s;
-        s.acc = arr[i];
+        s.acc = cur;
         listStudents.insert(s);
     }
-    delete[] arr;
 
     unsigned int M;
-    fin.read((char*)&M, sizeof(int));
-    arr = new Account[M];
-    fin.read((char*)arr, M * sizeof(Account));
-    for (int i = 0; i < N; ++i) {
+    fin >> M;
+    for (int i = 0; i < M; ++i) {
+        Account cur;
+        cur.read_data(fin);
         Staff s;
-        s.acc = arr[i];
+        s.acc = cur;
         listStaffs.insert(s);
     }
-    delete[] arr;
 
     fin.close();
 }
@@ -122,30 +124,20 @@ void saveAccounts()
 {
     // Cấu trúc quy ước được ghi trong hàm loadAccounts()
     using namespace std;
-    fstream fout(ACCOUNTS_FILE, ios::out | ios::binary);
+    fstream fout(ACCOUNTS_FILE, ios::out);
     if (!fout.is_open()) return;
 
     unsigned int N{listStudents.size()};
-    fout.write((char*)&N, sizeof(int));
-    Account* std_arr = new Account[N];
-    int idx{0};
+    fout << N << endl;
     for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
-        std_arr[idx++] = cur->data.acc;
+        cur->data.save_data(fout);
     }
-    assert(idx == N);
-    fout.write((char*)std_arr, N * sizeof(Account));
-    delete[] std_arr;
 
     unsigned int M{listStaffs.size()};
-    fout.write((char*)&M, sizeof(int));
-    Account* staff_arr = new Account[M];
-    idx = 0;
+    fout << M << endl;
     for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
-        staff_arr[idx++] = cur->data.acc;
+        cur->data.save_data(fout);
     }
-    assert(idx == M);
-    fout.write((char*)staff_arr, M * sizeof(Account));
-    delete[] staff_arr;
     
     fout.close();
 }
@@ -194,16 +186,6 @@ void studentMenu(Student &student)
     courseX.updateCourseStudent(student.profile);
     // add student to student list of courseX
 
-}
-
-
-
-void manageSemesterX(Semester &semesterX)
-{
-    viewAllCourse();
-    choose();
-    semesterX.createCourseRegistration(listRegisCourses);
-    // add course to this semester
 }
 
 // bỏ Profile -> account

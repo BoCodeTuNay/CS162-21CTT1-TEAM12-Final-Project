@@ -26,7 +26,7 @@ struct Semester {
     void addCourseToSemester(List <CourseInfo> &listRegis);
     void viewListCourses();
     void updateCourseInfomation();
-    void deleteCourse(List <CourseInfo> &listRegis);
+    void deleteCourse();
 };
 
 /*

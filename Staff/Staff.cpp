@@ -16,7 +16,7 @@ void Staff::staffMenu()
         staffMenu();
     }
     else if (t == 1) {
-        manageClasses();
+        manageClasses(); // chua co
         staffMenu();
     }
     else if (t == 2) {
@@ -134,8 +134,44 @@ void Staff::manageSchoolyears()
     }
     else assert(false); // just to make sure this case cannot happen
 }
+void Staff::manageClasses()
+{
+    // viewAllSchoolYears();
+    // chooseSchoolYears();
+    // if (choose == createSchoolYear)
+    // {
+    //     createSchoolYear(listSchoolyears);
+    // }
+    // else (choose == viewSchoolYearX)
+    // {
+    //     manageSemesters(schoolYearX);
+    // }
+    clrscr();
+    std::cout << "MANAGE THE AVAILABLE CLASSES\n\n";
+    int N{0}; // number of commands in this screen
+    for (Node<Class>* cur = listClasses.begin(); cur; cur = cur->pNext) {
+        std::cout << N++ << ". View class " << cur->data.ID << endl;
+    }
+    std::cout << N++ << ". Create a new class\n";
+    std::cout << N++ << ". Go back\n";
+    std::cout << std::endl;
 
-// 1. Create a school year
+    std::cout << "Your choice: ";
+    int t{choose(0, N - 1)};
+    if (t < N - 2) {
+        listClasses.get(t).manageStudent();
+        manageClasses();
+    }
+    else if (t == N - 2) {
+        createClasses();
+        manageClasses();
+    }
+    else if (t == N - 1) {
+        // let's go back
+    }
+    else assert(false); // just to make sure this case cannot happen
+}
+
 void Staff::createSchoolyear()
 {
     clrscr();
@@ -146,6 +182,7 @@ void Staff::createSchoolyear()
         if (yearID[4] != '-') return false;
         char* fi = yearID; fi[4] = 0;
         if (!checkDigit(fi)) return false;
+        fi[4] = '-';
         char* se = (yearID + 5);
         if (!checkDigit(se)) return false;
         if (atoi(fi) + 1 != atoi(se)) return false;
@@ -187,7 +224,7 @@ void Staff::createSchoolyear()
 }
 
 // 2. Create several classes for 1st year students
-void createClass(){
+void Staff::createClasses(){
     clrscr();
     auto validClass = [](char* classname) -> bool {
         char* ch= classname;
@@ -195,10 +232,16 @@ void createClass(){
             if (ch[i]<65 || ch[i]>90){
                 return false;
             }
-            ch[i]='0';
         }
-        if (!checkDigit(ch)) return false;
+        char a[2];
+        a[0]=classname[0];
+        a[1]=classname[1];
+        char* b = (classname+strlen(classname)-2);
+        if (!checkDigit(a)||!checkDigit(b)) return false;
         return true;
+    };
+    auto cmp = [](const Class& c1, const Class& c2) -> bool {
+        return strcmp(c1.ID, c2.ID) == 0;
     };
     Class newClass;
     bool cont{false};
@@ -206,31 +249,39 @@ void createClass(){
         std::cout << "Enter the class (e.g. 21APCS01): ";
         // check for bad input
         fflush(stdin);
-        std::cin.get(newClass.name, MAXNAME+1, '\n');
+        std::cin.get(newClass.ID, MAXNAME+1, '\n');
         if (std::cin.fail()) { // nothing was inputted, so go back
             std::cin.clear();
             fflush(stdin);
-            break;
+            return;
         }
-        else if (std::cin.get() != '\n' || !validClass(newClass.name)) {
+        else if (std::cin.get() != '\n' || !validClass(newClass.ID)) {
             std::cout << "The class format is invalid. Please try again.\n";
             cont = true;
         }
+        else if (listClasses.indexOf(newClass, cmp) != -1) {
+            std::cout << "This class already exists. Please try again.\n";
+            cont = true;
+        }
+        else {
+            cont = false;
+            listClasses.insert(newClass);
+            std::cout << "The class is added successfully.\n";
+            // wait a couple of secs
+        }
     } while (cont);
-    newClass.inputClass();
-    listClasses.insert(newClass);
 }
 
 // 3. Add new 1st year students to 1st-year classes
-void addStudentToClasses(Class &class){
+void addStudentToClasses(Class &curclass){
     // do add student to class
-    class.addStudent();
+    curclass.addStudent();
 }
 
 // 4. Add students by CSV file
-void importStudentFromCSVFile(Class &class)
+void importStudentFromCSVFile(Class &curclass)
 {
-    class.importStudentFile();
+    curclass.importStudentFile();
 }
 
 // At the beginning of a semester:
@@ -276,13 +327,14 @@ void deleteCourse(List <Schoolyear> &listSchoolyears){
         cout << "You don't have any school year yet.\n";
         return;
     }
-    string courseID;
+    char courseID[MAXSTR+1];
     cout << "What course ID do you want to delete?\n";
-    cin>>courseID;
+    fflush(stdin);
+    std::cin.get(courseID, MAXSTR+1, '\n');
     Schoolyear schoolYear=listSchoolyears.get(getCurrentYearIndex());
-    for (Node<Course>* currentCourse = schoolYear.yearSemesters[schoolYear.currentSemester - 1].listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
-        if (currentCourse->data.ID == courseID){
-            schoolYear.yearSemesters[schoolYear.currentSemester-1].listCourses.remove(currentCourse->data,cmp_course);
+    for (Node<Course>* currentCourse = schoolYear.listSemesters.get((schoolYear.listSemesters.size() - 1)).listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
+        if (currentCourse->data.info.ID == courseID){
+            schoolYear.listSemesters.get((schoolYear.listSemesters.size() - 1)).listCourses.remove(currentCourse->data,cmp_course);
             return;
         }
     }

@@ -29,12 +29,17 @@ void Semester::manageCourses()
         std::cout << N++ << ". View course " << cur->data.info.ID << std::endl;
     }
     std::cout << N++ << ". Create a new course registration session\n";
+    std::cout << N++ << ". Delete a course\n";
     std::cout << N++ << ". Go back\n\n";
 
     std::cout << "Your choice: ";
     int t{choose(0, N - 1)};
-    if (t < N - 2) {
-        listCourses.get(t).info.manageCourseInfo();
+    if (t < N - 3) {
+        listCourses.get(t).manageCourseInfo();
+        manageCourses();
+    }
+    else if (t == N - 3){
+        deleteCourse();
         manageCourses();
     }
     else if (t == N - 2) {
@@ -62,25 +67,24 @@ void Semester::viewListCourses(){
     }
 }
 
-void Semester::updateCourseInfomation(){
-    Semester::viewListCourses();
-    char inputID[MAXSTR+1];
-    cout << "What course ID do you want to update?\n";
-    cin.get(inputID, MAXSTR+1, '\n');
+// void Semester::updateCourseInfomation(){
+//     Semester::viewListCourses();
+//     char inputID[MAXSTR+1];
+//     cout << "Which course ID do you want to update?\n";
+//     cin.get(inputID, MAXSTR+1, '\n');
 
-    for (Node<Course>* i = listCourses.begin(); i != nullptr; i = i->pNext){
-        if (strcmp(i->data.info.ID, inputID)){
-            i->data.updateCourse();
-            return;
-        }
-    }
-    cout << "Do not have this course ID.\n";
-}
+//     for (Node<Course>* i = listCourses.begin(); i != nullptr; i = i->pNext){
+//         if (strcmp(i->data.info.ID, inputID)){
+//             i->data.updateCourse();
+//             return;
+//         }
+//     }
+//     cout << "Do not have this course ID.\n";
+// }
 
-void Semester::deleteCourse(List <CourseInfo> &listRegis){
-    Semester::viewListCourses();
+void Semester::deleteCourse(){
     char inputID[MAXSTR+1];
-    cout << "What course ID do you want to update?\n";
+    cout << "Which course ID do you want to update?\n";
     cin.get(inputID, MAXSTR+1, '\n');
     if (listCourses.remove(Course(inputID), cmp_course)) {
         cout << "Course delete successfully!\n";

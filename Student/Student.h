@@ -7,10 +7,10 @@
 #include "../Course/CourseInfo.h"
 
 struct CourseScore {
-    CourseInfo* pCourse;
+    Course* pCourse;
     Score* pScore;
 
-    CourseScore(CourseInfo* pC = NULL, Score* pS = NULL) : pCourse(pC), pScore(pS) {}
+    CourseScore(Course* pC = NULL, Score* pS = NULL) : pCourse(pC), pScore(pS) {}
 };
 
 struct Student {
@@ -23,12 +23,17 @@ struct Student {
 
     List<CourseScore> CoursesList;
 
+    void studentMenu();
+    void viewProfile();
+    void changePassword();
     int CurCourses();
-    List<CourseInfo> enrolledCourse(List<Course*> pOpenCourse);
+    void enrolledCourse(List<Course*> pOpenCourse);
     void viewEnrolledCourses();
     void removeCourse(char id[MAXID+1]);
     void init_StudentInfo();
     void listOfCourses();
+    void viewScoreBoard();
+    
 };
 
 #include "Student.cpp"

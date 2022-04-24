@@ -1,13 +1,53 @@
 #include "Class.h"
 
+void Class::manageStudent()
+{
+    clrscr();
+    std::cout << "MANAGE CLASS " << ID << endl << endl;
+    std::cout << "1. View a list of student.\n"
+            "2. Add student.\n"
+            "3. Import student from CSV file.\n"
+            "4. Go back.\n\n";
+    std::cout << "Your choice: ";
+    int t{choose(1, 4)};
+    if (t == 1) {
+        viewStudentList();
+        manageStudent();
+    }
+    else if (t == 2) {
+        addStudent();
+        manageStudent();
+    }
+    else if (t == 3) {
+        importStudentFile();
+        manageStudent();
+    }
+    else if (t == 4) {
+        // lets go back
+    }
+    else assert(false); // just to make sure this case cannot happen
+}
+
+void Class::viewStudentList()
+{
+    clrscr();
+    std::cout << "STUDENT LIST " << endl << endl;
+
+    int N{1};
+    for (Node <Student*> *i; i; i = i -> pNext)
+    {
+        std::cout << N++ << ". " << i->data->acc.name << "\n";
+    }
+    std::cout << "\n";
+    std::cout << "Press any key to continue...\n";
+    int x;
+    std::cin >> x;
+}
+
 void Class::inputClass()
 {
     cout << "Enter class name: ";
-    cin.get(name, MAXNAME+1, '\n');
-
-    cout << "Enter class id: ";
-    fflush(stdin);
-    cin.get(ID, MAXSTR, '\n');
+    cin.get(ID, MAXSTR+1, '\n');
 }
 
 List<Account> Class::addStudent() {

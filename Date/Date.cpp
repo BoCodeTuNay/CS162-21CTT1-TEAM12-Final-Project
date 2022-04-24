@@ -1,5 +1,7 @@
 #include "Date.h"
+#include "..\Constants\Constants.h"
 #include <stdlib.h>
+#include <string.h>
 //format date là yyyy/mm/dd nhe ông
 Date::Date()
 {
@@ -61,8 +63,8 @@ void Date::enter_date() {
 	char tmp[11];
 	auto validDate = [](char* date) -> bool {
 		if (strlen(date) != 10) return false;
-		if (date[4] != '/' || date[6] != '/') return false;
-		char* fi = date; fi[4] = '0'; fi[6] = '0';
+		if (date[4] != '/' || date[7] != '/') return false;
+		char* fi = date; fi[4] = '0'; fi[7] = '0';
 		if (!checkDigit(fi)) return false;
 		Date dat;
 		char* day = (fi + 8);
@@ -87,11 +89,11 @@ void Date::enter_date() {
 			break;
 		}
 		else if (std::cin.get() != '\n' || !validDate(tmp)) {
-			std::cout << "The date format is invalid. Please try again.\n";
+			std::cout << "The date is invalid. Please try again.\n";
 			cont = true;
 		}
 	} while (cont);
-	tmp[4] = '0'; tmp[6] = '0';
+	tmp[4] = '0'; tmp[7] = '0';
 	char* d = (tmp + 8);
 	day = atoi(d);
 	char* m = (tmp + 5);

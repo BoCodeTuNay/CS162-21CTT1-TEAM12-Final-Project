@@ -1,5 +1,7 @@
 #include "CourseInfo.h"
 
+using namespace std;
+
 void CourseInfo::inputCourseInfo()
 {
     cout << "Enter Course ID: ";
@@ -40,6 +42,7 @@ void CourseInfo::inputCourseInfo()
 
 void CourseInfo::updateCourseInfo()
 {
+    clrscr();
     cout << "Which elements you want to edit ?\n";
     cout << "id: 1\tname: 2\tlecturer: 3\tnumCredits: 4\tmaxStudents: 5\tcourseSession: 6\n";
     int choose;
@@ -95,32 +98,4 @@ void CourseInfo::updateCourseInfo()
             }
         }
     }
-}
-
-void CourseInfo::manageCourseInfo()
-{
-    clrscr();
-    cout << "MANAGE COURSE " << name << ".\n\n";
-
-    cout << "id: " << "\t" << ID<< "\n";
-    // cout << "name: " << "\t" << name << "\n";
-    cout << "lecturer: " << "\t" << lecturer << "\n";
-    cout << "numCredits: " << "\t" << numCredits << "\n";
-    cout << "maxStudents: " << "\t" << maxStudents << "\n";
-    // cout << "day: " << "\t" << day << "\n";
-    cout << endl;
-
-    cout << "0. Change courseInfo\n";
-    cout << "1. Go back\n\n";
-    cout << "Your choice: ";
-    int t{choose(0, 1)};
-    if (t == 0) {
-        updateCourseInfo();
-        manageCourseInfo();
-    }
-    else {
-        // lets go back
-    }
-
-
 }

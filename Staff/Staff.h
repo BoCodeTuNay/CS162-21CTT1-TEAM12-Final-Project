@@ -20,6 +20,7 @@ struct Staff {
     void staffMenu();
     // return true if go to this function again, return false otherwise
     void manageSchoolyears();
+    void manageClasses();
     void createSchoolyear();
     void createClasses();
     void viewProfile();

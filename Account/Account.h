@@ -6,8 +6,6 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-
 /*
 Chắc tụi mình tạm thời bỏ Date DOB đi cho dễ quản lý nhỉ? Tới lúc cuối deadline cần thiết thì thêm vào
 ok ong
@@ -27,6 +25,8 @@ struct Account {
     //void importFromCSV(fstream &fin);
     Account() {}
     Account(const char*, const char*, const char*, const char*, const char*);
+    void read_data(std::fstream&);
+    void save_data(std::fstream&);
     void view();
 };
 

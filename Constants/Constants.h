@@ -8,7 +8,7 @@ The purpose is to avoid re-definitions of these constants.
 #pragma once
 #include <iostream>
 
-const char* ACCOUNTS_FILE = "Accounts.dat";
+const char* ACCOUNTS_FILE = "Accounts.txt";
 
 const int MAXNAME = 40; // for students and staffs name length
 const int MAXSTR = 50; // for other features' convenience

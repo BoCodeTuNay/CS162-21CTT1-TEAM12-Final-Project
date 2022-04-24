@@ -8,12 +8,13 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
 struct StudentScore{
     Account acc;
-    Score score;
+    Score* score;
 };
 
 struct Course {
@@ -27,10 +28,11 @@ struct Course {
     }
     
     void viewStudents(); 
-    void exportStudents(); // to a CSV file
 	void viewScoreboard(); //
     void addStudent();
     void isRegistrable();
+    void manageCourseInfo();
+    void exportStudentsToCSV();
 };
 
 bool cmp_course(const Course& s1, const Course& s2);
