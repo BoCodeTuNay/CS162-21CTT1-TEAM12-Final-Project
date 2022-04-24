@@ -97,7 +97,7 @@ void CourseInfo::updateCourseInfo()
     }
 }
 
-void CourseInfo::viewCourseInfo()
+void CourseInfo::manageCourseInfo()
 {
     clrscr();
     cout << "MANAGE COURSE " << name << ".\n\n";
@@ -116,7 +116,7 @@ void CourseInfo::viewCourseInfo()
     int t{choose(0, 1)};
     if (t == 0) {
         updateCourseInfo();
-        viewCourseInfo();
+        manageCourseInfo();
     }
     else {
         // lets go back

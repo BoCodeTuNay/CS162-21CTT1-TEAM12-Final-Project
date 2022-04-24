@@ -25,5 +25,5 @@ struct CourseInfo
 
     void inputCourseInfo();
     void updateCourseInfo();
-    void viewCourseInfo();
+    void manageCourseInfo();
 };
