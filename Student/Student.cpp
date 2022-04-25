@@ -10,13 +10,14 @@ void Student::studentMenu()
 
     std::cout << "0. View my courses\n";
     std::cout << "1. View courses in registration session\n";
-    std::cout << "2. View profile\n";
-    std::cout << "3. Log out\n\n";
+    std::cout << "2. View scoreboard\n";
+    std::cout << "3. View profile\n";
+    std::cout << "4. Log out\n\n";
     std::cout << "Your choice: ";
     int t{choose(0, 3)};
     if (t == 0) {
         // view the student's courses (both registered and in session)
-        viewEnrolledCourses();
+        viewCourses();
         studentMenu();
     }
     else if (t == 1) {
@@ -24,6 +25,10 @@ void Student::studentMenu()
         //enrolledCourse(pOpenCourse);
     }
     else if (t == 2) {
+        viewScoreBoard();
+        studentMenu();
+    }
+    else if (t == 3) {
         viewProfile();
         studentMenu();
     }
@@ -115,7 +120,8 @@ int Student::CurCourses() {
 ///them courseInfo
 void Student::enrolledCourse(List<Course*> pOpenCourse) {
     List<CourseInfo> res;
-    
+
+    // nếu còn thời gian fix: mình check số tín chỉ max <= 22
     if (CurCourses() > 4) {
         cout << "You have registered 5 courses!";
         return;
@@ -125,14 +131,14 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
         clrscr();
         vector<Course*> vCourse;
 
-        int reg_Num, Num = 0;
+        int Num = 0;
         for (Node <Course*>* p = pOpenCourse.begin(); p; p = p -> pNext) {
             bool check = true;
             Course* data = p->data;
             for (int i = 1; i < 7; ++i)
                 if ((data->info).day[i] > 0 && fClass[i][(data->info).day[i]])
                     check = false;
-            if ((data->Student).size() > (data->info).maxStudents) check = false;
+            if ((data->student).size() > (data->info).maxStudent) check = false;
 
             if (!check) continue;
 
@@ -141,7 +147,8 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
         }
 
         cout << "Please enter the number of course you want to regis: " << '\n';
-        cin >> reg_Num;
+        // ues choose() here to check bad input
+        int reg_Num{choose(0, Num - 1)};
 
         Course* pickCourse = vCourse[reg_Num - 1];
         Score* pickScore = new Score;
@@ -154,7 +161,7 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
         SS->score = pickScore;
         SS->acc = acc;
 
-        pickCourse->Student.insert(*SS);
+        pickCourse->student.insert(*SS);
             
         CourseScore* pickCS = new CourseScore(pickCourse, pickScore);
 
@@ -162,24 +169,38 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
     }
 }
 
-void Student::viewEnrolledCourses() {
+void Student::viewCourses() {
     clrscr();
+    std::cout << "MANAGE THE AVAILABLE COURSES\n\n";
+
+    /*
+    TO-DO:
+    - Thực hiện chức năng view thông tin của course (option 0 đến Num - 2) already
+    */
 
     int Num = 0;
     for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
         ++Num;
-        cout << Num << ". " << (((p->data).pCourse->info).name) << '\n';
+        cout << Num << ". View course " << (((p->data).pCourse->info).name) << '\n';
     }
 
-    int cNum = 0;
-    cout << ++cNum << ". Remove a course\n";
-    cout << ++cNum << ". Go back\n";
+    cout << ++Num << ". Remove a course\n";
+    cout << ++Num << ". Go back\n";
 
     cout << "Your choice: ";
-    int t{choose(0, cNum - 1)};
-    if (t == 0) {
+    int t{choose(0, Num - 1)};
+    if (t < Num - 2) {
+        Num = 0;
+        for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
+            if (Num == t) {
+                (p->data).pCourse->info.viewCourseInfo();
+                break;
+            }
+            ++Num;
+        }
+    } else if (t == Num - 2) {
         cout << "Please enter the number of course you want to remove: ";
-        int nCourse{choose(0, Num - 1)};
+        int nCourse{choose(0, Num - 3)};
         Num = 0;
         for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
             if (Num == nCourse) {
@@ -224,8 +245,44 @@ void Student::listOfCourses() {
             ++Num;
             cout << Num << ". " << (((p->data).pCourse->info).name) << '\n';
         }
+    cout << "\n";
+}
+
+int Student::listOfCourseStudied() {
+    cout << "List of course you have studied: \n";
+    int Num = 0;
+    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) 
+        if (cmpDate(getCurrentDate(), p->data.pCourse->info.end_date)) {
+            ++Num;
+            cout << Num << ". " << (((p->data).pCourse->info).name) << '\n';
+        }
+
+    cout << "\n";
+    return Num;
 }
 
 void Student::viewScoreBoard() {
+    cout << "STUDENT SCOREBOARD\n\n";
+    int Num = 0;
+    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
+        Score* tmp = p->data.pScore;
+        cout << ++Num << "\t" << (p->data).pCourse->info.name << '\t';
+        cout << tmp->midTerm << '\t' << tmp->Final << '\t' << tmp->HW << '\t' << tmp->GPA << '\n';
+    }
 
+    std::cout << "\n";
+    std::cout << "Press any key to continue...\n";
+    int x;
+    std::cin >> x;
+}
+
+void Student::updateResult() {
+    int N = listOfCourseStudied();
+    cout << "Enter course you want to update result (1 -> " << N << "): ";
+    int t = choose(1, N);
+    cout << "Enter midterm score, final score: ";
+    int midTermScore, finalScore;
+    cin >> midTermScore >> finalScore;
+    CoursesList.get(t-1).pScore->midTerm = midTermScore;
+    CoursesList.get(t-1).pScore->Final = finalScore;
 }

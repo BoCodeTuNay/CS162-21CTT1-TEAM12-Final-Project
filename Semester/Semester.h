@@ -22,7 +22,7 @@ struct Semester {
     void manageCourses();
 
     // create a Course Registration Session, this feature might need further discussion...
-    void createCourseRegistration(List <CourseInfo>& listCourseInfo, int schoolyearID);
+    void createCourseRegistration(List<Course*> &pOpenCourse);
     void addCourseToSemester(List <CourseInfo> &listRegis);
     void viewListCourses();
     void updateCourseInfomation();

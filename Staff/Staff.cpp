@@ -99,16 +99,6 @@ void Staff::changePassword()
 
 void Staff::manageSchoolyears()
 {
-    // viewAllSchoolYears();
-    // chooseSchoolYears();
-    // if (choose == createSchoolYear)
-    // {
-    //     createSchoolYear(listSchoolyears);
-    // }
-    // else (choose == viewSchoolYearX)
-    // {
-    //     manageSemesters(schoolYearX);
-    // }
     clrscr();
     std::cout << "MANAGE THE AVAILABLE SCHOOLYEARS\n\n";
     int N{0}; // number of commands in this screen
@@ -136,16 +126,6 @@ void Staff::manageSchoolyears()
 }
 void Staff::manageClasses()
 {
-    // viewAllSchoolYears();
-    // chooseSchoolYears();
-    // if (choose == createSchoolYear)
-    // {
-    //     createSchoolYear(listSchoolyears);
-    // }
-    // else (choose == viewSchoolYearX)
-    // {
-    //     manageSemesters(schoolYearX);
-    // }
     clrscr();
     std::cout << "MANAGE THE AVAILABLE CLASSES\n\n";
     int N{0}; // number of commands in this screen
@@ -226,17 +206,18 @@ void Staff::createSchoolyear()
 // 2. Create several classes for 1st year students
 void Staff::createClasses(){
     clrscr();
-    auto validClass = [](char* classname) -> bool {
-        char* ch= classname;
+    auto validClass = [](const char* classname) -> bool {
+        const char* ch= classname;
         for (int i=2; i<strlen(classname)-2; i++){
             if (ch[i]<65 || ch[i]>90){
                 return false;
             }
         }
-        char a[2];
+        char a[3];
         a[0]=classname[0];
         a[1]=classname[1];
-        char* b = (classname+strlen(classname)-2);
+        a[2] = 0;
+        const char* b = (classname+strlen(classname)-2);
         if (!checkDigit(a)||!checkDigit(b)) return false;
         return true;
     };
@@ -249,7 +230,7 @@ void Staff::createClasses(){
         std::cout << "Enter the class (e.g. 21APCS01): ";
         // check for bad input
         fflush(stdin);
-        std::cin.get(newClass.ID, MAXNAME+1, '\n');
+        std::cin.get(newClass.ID, MAXSTR+1, '\n');
         if (std::cin.fail()) { // nothing was inputted, so go back
             std::cin.clear();
             fflush(stdin);
@@ -271,89 +252,3 @@ void Staff::createClasses(){
         }
     } while (cont);
 }
-
-// 3. Add new 1st year students to 1st-year classes
-void addStudentToClasses(Class &curclass){
-    // do add student to class
-    curclass.addStudent();
-}
-
-// 4. Add students by CSV file
-void importStudentFromCSVFile(Class &curclass)
-{
-    curclass.importStudentFile();
-}
-
-// At the beginning of a semester:
-
-// 6. Create a semester: 1, 2, or 3, school year, start date, end date
-void createSemester(Schoolyear &schoolyear){
-    schoolyear.createSemester();
-    // char scyear[YEARLENGTH+1];
-    // do{
-    //     if (listSchoolyears.size() == 0){
-    //         cout << "You don't have any school year yet.\n";
-    //         return;
-    //     }
-    //     cout << "What school year of this semester (example: 2021-2022)?\n";
-    //     cin>>scyear;
-    //     for (Node<Schoolyear>* schoolyear = listSchoolyears.begin(); schoolyear != nullptr; schoolyear = schoolyear->pNext){
-    //         if (schoolyear->data.ID==scyear){
-    //             schoolyear->data.createSemester();
-    //             return;
-    //         }
-    //     }
-    //     cout << "Do not have this school year or your school year invalid. Please try again.\n";
-    // } while (strlen(scyear) != 9 || scyear[4] != '-');
-}
-
-// 7, 8. Add a course to this semester
-// input school year and semester, add course to semester in school year
-// semester.cpp
-
-// 9. View the list of courses
-// semester.cpp
-
-// 10. Update course information
-// semester.cpp
-
-bool cmp_course(const Course& c1, const Course& c2)
-{
-    return (strcmp(c1.info.ID, c2.info.ID));
-}
-// Delete a course by ID
-void deleteCourse(List <Schoolyear> &listSchoolyears){
-    if (listSchoolyears.size() == 0){
-        cout << "You don't have any school year yet.\n";
-        return;
-    }
-    char courseID[MAXSTR+1];
-    cout << "What course ID do you want to delete?\n";
-    fflush(stdin);
-    std::cin.get(courseID, MAXSTR+1, '\n');
-    Schoolyear schoolYear=listSchoolyears.get(getCurrentYearIndex());
-    for (Node<Course>* currentCourse = schoolYear.listSemesters.get((schoolYear.listSemesters.size() - 1)).listCourses.begin(); currentCourse != nullptr; currentCourse = currentCourse->pNext){
-        if (currentCourse->data.info.ID == courseID){
-            schoolYear.listSemesters.get((schoolYear.listSemesters.size() - 1)).listCourses.remove(currentCourse->data,cmp_course);
-            return;
-        }
-    }
-    cout << "Do not have this course ID.\n";
-}
-
-// At the end of a semester, an academic staff member can:
-
-// Export a list of students in a course to a CSV file
-void exportListStudentsToCSVFile();
-
-// Import the scoreboard of a course
-void importScoreboard();
-
-// View the scoreboard of a course
-void viewScoreboardOfCourse();
-
-// Update student result
-void updateStudentResult();
-
-// View the scoreboard of a class
-void viewScoreboardOfClass();

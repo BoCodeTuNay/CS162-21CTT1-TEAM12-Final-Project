@@ -65,8 +65,7 @@ void login()
     }
 }
 
-bool loginScreen()
-{
+bool loginScreen() {
     clrscr();
     std::cout << "0. Log in\n"
                  "1. Exit\n";
@@ -171,21 +170,6 @@ Staff::Staff(const char* usn, const char* pass, const char* nm, const char* i, c
     strcpy(name, nm);
     strcpy(id, i);
     strcpy(email, mail);
-}
-
-void studentMenu(Student &student)
-{
-    // CourseInfo courseInfo = student.enrollCourse(listRegisCourses); // return courseInfo
-    // Schoolyear &schoolyearX = getSchoolyearByID(courseInfo.schoolyearID);
-    // Semester &semesterX = getSemesterByID(courseInfo.semesterID);
-    // Course &courseX = getCourseByID(courseInfo.ID);
-    // courseX.addStudent(student);
-
-    CourseInfo coursein4 = student.enrolledCourse(listRegisCourses);
-    Course &courseX = listSchoolyears.get(coursein4.schoolyearID).listSemesters.get(coursein4.semesterID).listCourses.get(coursein4.ID);
-    courseX.updateCourseStudent(student.profile);
-    // add student to student list of courseX
-
 }
 
 // bỏ Profile -> account

@@ -2,6 +2,19 @@
 
 using namespace std;
 
+void CourseInfo::viewCourseInfo(){
+    cout << "ID: " << ID << "\n";
+    cout << "Start day: "; start_date.output_date(); cout << "\n";
+    cout << "End day: "; end_date.output_date(); cout << "\n";
+    cout << "Start regis day: "; start_regis.output_date(); cout << "\n";
+    cout << "End regis day: "; end_regis.output_date(); cout << "\n";
+    cout << "Name: " << name << "\n";
+    cout << "Lecturer: " << lecturer << "\n";
+    cout << "numCredits " << numCredits << "\n";
+    cout << "maxStudent" << maxStudent << "\n";
+    //session
+}
+
 void CourseInfo::inputCourseInfo()
 {
     cout << "Enter Course ID: ";
@@ -21,7 +34,7 @@ void CourseInfo::inputCourseInfo()
     cin >> numCredits;
 
     cout << "Enter maximum students: ";
-    cin >> maxStudents;
+    cin >> maxStudent;
 
     start_date.enter_date();
     end_date.enter_date();
@@ -81,7 +94,7 @@ void CourseInfo::updateCourseInfo()
         case 5:
         {
             cout << "Enter maximum students: ";
-            cin >> maxStudents;
+            cin >> maxStudent;
             break;
         }
         case 6:

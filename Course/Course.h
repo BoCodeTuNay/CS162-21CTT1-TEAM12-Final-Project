@@ -19,7 +19,7 @@ struct StudentScore{
 
 struct Course {
  
-	List <StudentScore> Student; // -> scoreboard ???
+	List <StudentScore> student; // -> scoreboard ???
     CourseInfo info;
 
     Course(){};
@@ -33,6 +33,7 @@ struct Course {
     void isRegistrable();
     void manageCourseInfo();
     void exportStudentsToCSV();
+    void importStudentsFromCSV();
 };
 
 bool cmp_course(const Course& s1, const Course& s2);

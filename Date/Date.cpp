@@ -15,9 +15,9 @@ Date::Date(string date) {
 		month = stoi(date.substr(5, 2)); // tương tự...
 		day = stoi(date.substr(8, 2)); // tương tự...
 }
-void output_date(Date date)
+void Date::output_date()
 {
-	cout << date.year << "/" << date.month << "/" << date.day; // quy ước format lại
+	cout << year << "/" << month << "/" << day; // quy ước format lại
 }
 
 //*Kiem tra nam nhuan
@@ -71,8 +71,8 @@ void Date::enter_date() {
 		dat.day = atoi(day);
 		char* month = (fi + 5);
 		dat.month = (atoi(month) - dat.day) / 1000;
-		long long x = atoi(fi);
-		x = (x - dat.month - dat.day)/1000000;
+		int x = atoi(fi);
+		x = (x - dat.month*1000 - dat.day)/1000000;
 		dat.year = x;
 		if (!check_date(dat)) return false;
 		return true;
@@ -83,23 +83,21 @@ void Date::enter_date() {
 		// check for bad input
 		fflush(stdin);
 		std::cin.get(tmp, 11 , '\n');
-		if (std::cin.fail()) { // nothing was inputted, so go back
+		if (std::cin.fail() || std::cin.get() != '\n' || !validDate(tmp)) {
 			std::cin.clear();
 			fflush(stdin);
-			break;
-		}
-		else if (std::cin.get() != '\n' || !validDate(tmp)) {
 			std::cout << "The date is invalid. Please try again.\n";
 			cont = true;
 		}
-	} while (cont);
+		else cont = false;
+	} while (!cont);
 	tmp[4] = '0'; tmp[7] = '0';
 	char* d = (tmp + 8);
 	day = atoi(d);
 	char* m = (tmp + 5);
 	month = (atoi(m) - day) / 1000;
 	long long x = atoi(tmp);
-	x = (x - month - day) / 1000000;
+	x = (x - month*1000 - day) / 1000000;
 	year = x;
 }
 //*Check xem ngay da cho co nam giua 2 ngay khac khong
@@ -116,6 +114,31 @@ bool ifDate(Date date, Date start, Date end) {
 		}
 	}
 	return false;
+}
+
+// return true: A >= B, false: B < A
+bool cmpDate(Date A, Date B)
+{
+	if (A.year > B.year)
+		return true;
+	else if (A.year == B.year)
+	{
+		if (A.month > B.month)
+			return true;
+		else if (A.month == B.month)
+		{
+			if (A.day > B.day)
+				return true;
+			else if (A.day == B.day)
+				return false;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+	else
+		return false;
 }
 
 

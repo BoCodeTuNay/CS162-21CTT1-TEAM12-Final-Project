@@ -28,12 +28,13 @@ struct Student {
     void changePassword();
     int CurCourses();
     void enrolledCourse(List<Course*> pOpenCourse);
-    void viewEnrolledCourses();
-    void removeCourse(char id[MAXID+1]);
+    void viewCourses();
+    void removeCourse(char id[MAXID+1]);    
     void init_StudentInfo();
     void listOfCourses();
+    int listOfCourseStudied();
     void viewScoreBoard();
-    
+    void updateResult();
 };
 
 #include "Student.cpp"
