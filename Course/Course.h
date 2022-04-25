@@ -4,7 +4,7 @@
 #include "..\\Date\\Date.h"
 #include "..\\Account\\Account.h"
 #include "CourseInfo.h"
-#include "Score.h"
+#include "../Score.h"
 
 #include <iostream>
 #include <string>
@@ -38,4 +38,4 @@ struct Course {
 
 bool cmp_course(const Course& s1, const Course& s2);
 
-// #include "Course.cpp"
+#include "Course.cpp"

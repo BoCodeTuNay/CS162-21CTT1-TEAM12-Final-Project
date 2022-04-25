@@ -1,8 +1,8 @@
 #pragma once
 
 #include "..\\Date\\Date.h"
-#include "Account/Account.h"
-#include "Score.h"
+#include "../Account/Account.h"
+#include "../Score.h"
 
 struct CourseInfo
 {
@@ -28,3 +28,5 @@ struct CourseInfo
     void updateCourseInfo();
     void manageCourseInfo();
 };
+
+#include "CourseInfo.cpp"

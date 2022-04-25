@@ -5,6 +5,7 @@
 #include "../Schoolyear/Schoolyear.h"
 #include "../Constants/Constants.h"
 #include "../List/List.h"
+#include "../Class/Class.h"
 #include <iostream>
 #include <string.h>
 #include <cassert>
@@ -16,15 +17,18 @@ struct Staff {
     static List<Class> listClasses;
     Account acc;
     
-    void staffMenu(); // CHECKED
+    void staffMenu(List<Student>&); // CHECKED
     // return true if go to this function again, return false otherwise
     void manageSchoolyears(); // CHECKED
-    void manageClasses(); // CHECKED
+    void manageClasses(List<Student>&); // CHECKED
     void createSchoolyear(); // CHECKED
     void createClasses(); // CHECKED
     void viewProfile(); // CHECKED
     void changePassword(); // CHECKED
 };
+
+List<Schoolyear> Staff::listSchoolyears;
+List<Class> Staff::listClasses;
 
 // // At the end of a semester, an academic staff member can:
 

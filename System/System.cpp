@@ -57,8 +57,8 @@ void login()
         }
     }
     for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
-        if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) { {
-            cur->data.staffMenu();
+        if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) {
+            cur->data.staffMenu(listStudents);
             login();
             return;
         }
@@ -129,13 +129,13 @@ void saveAccounts()
     unsigned int N{listStudents.size()};
     fout << N << endl;
     for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
-        cur->data.save_data(fout);
+        cur->data.acc.save_data(fout);
     }
 
     unsigned int M{listStaffs.size()};
     fout << M << endl;
     for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
-        cur->data.save_data(fout);
+        cur->data.acc.save_data(fout);
     }
     
     fout.close();
@@ -154,23 +154,23 @@ int checkDatabase(const char* ID, const char* password)
     return 0;
 }
 
-Student::Student(const char* usn, const char* pass, const char* nm, const char* i, const char* mail)
-{
-    strcpy(username, usn);
-    strcpy(password, pass);
-    strcpy(name, nm);
-    strcpy(id, i);
-    strcpy(email, mail);
-}
+// Student::Student(const char* usn, const char* pass, const char* nm, const char* i, const char* mail)
+// {
+//     strcpy(username, usn);
+//     strcpy(password, pass);
+//     strcpy(name, nm);
+//     strcpy(id, i);
+//     strcpy(email, mail);
+// }
 
-Staff::Staff(const char* usn, const char* pass, const char* nm, const char* i, const char* mail)
-{
-    strcpy(username, usn);
-    strcpy(password, pass);
-    strcpy(name, nm);
-    strcpy(id, i);
-    strcpy(email, mail);
-}
+// Staff::Staff(const char* usn, const char* pass, const char* nm, const char* i, const char* mail)
+// {
+//     strcpy(username, usn);
+//     strcpy(password, pass);
+//     strcpy(name, nm);
+//     strcpy(id, i);
+//     strcpy(email, mail);
+// }
 
 // bỏ Profile -> account
 // sửa mảng semester trong schoolyear

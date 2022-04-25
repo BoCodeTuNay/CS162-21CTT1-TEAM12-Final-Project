@@ -1,3 +1,4 @@
+#pragma once
 struct Score {
     double midTerm, Final, HW, GPA;
 

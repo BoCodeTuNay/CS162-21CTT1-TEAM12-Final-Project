@@ -1,6 +1,8 @@
 #include "Class.h"
 
-void Class::manageStudent(List <Student> listStudents)
+using namespace std;
+
+void Class::manageStudent(List <Student>& listStudents)
 {
     clrscr();
     std::cout << "MANAGE CLASS " << ID << endl << endl;
@@ -58,8 +60,10 @@ void Class::inputClass()
     cin.get(ID, MAXSTR+1, '\n');
 }
 
-bool Class::addStudent(List<Student> listStudents) {
+bool Class::addStudent(List<Student>& listStudents) {
     clrscr();
+    std::cout << "ADD A NEW STUDENT TO THIS CLASS\n\n";
+    
     char inpID[MAXID+1];
     cout << "Please enter Student ID: ";
     cin >> inpID;
@@ -74,12 +78,12 @@ bool Class::addStudent(List<Student> listStudents) {
     return false;
 }
 
-void Class::importStudentFile(List <Student> listStudents) {
+void Class::importStudentFile(List <Student>& listStudents) {
     ifstream fin;
     fin.open("input.csv", ios::in);
 
     if (!fin.is_open()) {
-        cout << "Invalid Fil!";
+        cout << "Invalid File!";
         return;
     }
 

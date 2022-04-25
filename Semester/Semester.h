@@ -29,6 +29,8 @@ struct Semester {
     void deleteCourse();
 };
 
+#include "Semester.cpp"
+
 /*
     
 

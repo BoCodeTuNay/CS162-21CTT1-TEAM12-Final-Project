@@ -36,14 +36,18 @@ void CourseInfo::inputCourseInfo()
     cout << "Enter maximum students: ";
     cin >> maxStudent;
 
+    std::cout << "Enter start date:\n";
     start_date.enter_date();
+    std::cout << "Enter end date:\n";
     end_date.enter_date();
+    std::cout << "Enter start date of registration session:\n";
     start_regis.enter_date();
+    std::cout << "Enter end date of registration session:\n";
     end_regis.enter_date();
 
     for (int i=1; i<=2; i++)
     {
-        cout << "Enter day of session " << i << ": ";
+        cout << "Enter day of session " << i << " (1 -> 7 as MON to SAT): ";
         int x;
         cin >> x;
         cout << "Enter session (S1 (07:30), S2 (09:30), S3(13:30), S4 (15:30)): ";

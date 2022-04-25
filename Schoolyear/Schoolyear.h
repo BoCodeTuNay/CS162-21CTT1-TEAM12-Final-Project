@@ -18,6 +18,7 @@ struct Schoolyear {
     void manageSemesters();
 };
 
+#include "Schoolyear.cpp"
 
 /*
 format của database Schoolyear (dự kiến):

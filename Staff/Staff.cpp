@@ -1,6 +1,6 @@
 #include "Staff.h"
 
-void Staff::staffMenu()
+void Staff::staffMenu(List<Student>& listStudents)
 {
     // this function cannot return true/false to go back because before it is the login screen
     clrscr();
@@ -13,15 +13,15 @@ void Staff::staffMenu()
     int t{choose(0, 3)};
     if (t == 0) {
         manageSchoolyears();
-        staffMenu();
+        staffMenu(listStudents);
     }
     else if (t == 1) {
-        manageClasses(); // chua co
-        staffMenu();
+        manageClasses(listStudents); // chua co
+        staffMenu(listStudents);
     }
     else if (t == 2) {
         viewProfile();
-        staffMenu();
+        staffMenu(listStudents);
     }
     else {
         // go back to loginScreen()
@@ -124,7 +124,7 @@ void Staff::manageSchoolyears()
     }
     else assert(false); // just to make sure this case cannot happen
 }
-void Staff::manageClasses()
+void Staff::manageClasses(List<Student>& listStudents)
 {
     clrscr();
     std::cout << "MANAGE THE AVAILABLE CLASSES\n\n";
@@ -139,12 +139,12 @@ void Staff::manageClasses()
     std::cout << "Your choice: ";
     int t{choose(0, N - 1)};
     if (t < N - 2) {
-        listClasses.get(t).manageStudent();
-        manageClasses();
+        listClasses.get(t).manageStudent(listStudents);
+        manageClasses(listStudents);
     }
     else if (t == N - 2) {
         createClasses();
-        manageClasses();
+        manageClasses(listStudents);
     }
     else if (t == N - 1) {
         // let's go back

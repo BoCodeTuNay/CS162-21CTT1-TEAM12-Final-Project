@@ -12,11 +12,11 @@ struct Class {
     // long long class_id;
     List <Student*> studentsList;
 
-    void manageStudent(List <Student> listStudents); // CHECKED
+    void manageStudent(List <Student>& listStudents); // CHECKED
     // void initInfo();
     void inputClass();
-    bool addStudent(List<Student> listStudents); 
-    void importStudentFile(List <Student> listStudents);
+    bool addStudent(List<Student>& listStudents); 
+    void importStudentFile(List <Student>& listStudents);
     void viewScoreBoard();
     void viewStudentList();
     void updateStudentResult();

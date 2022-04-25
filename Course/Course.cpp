@@ -1,5 +1,5 @@
 #include "Course.h"
-
+#include <string.h>
 void Course::manageCourseInfo()
 {
     clrscr();
@@ -107,7 +107,7 @@ void Course::importStudentsFromCSV(){
 
     string line;
     getline(fin, line);
-    string N{0}, ID, name;
+    string N, ID, name;
     double midTerm, final;
     
     for (Node <StudentScore> *cur = student.begin(); cur; cur = cur -> pNext){
@@ -132,8 +132,8 @@ void Course::importStudentsFromCSV(){
         pos = line.find(",");
         final = stod(line.substr(0, pos));
 
-        strcpy(cur->data.acc.ID, ID);
-        strcpy(cur->data.acc.name, name);
+        strcpy(cur->data.acc.ID, ID.c_str());
+        strcpy(cur->data.acc.name, name.c_str());
         cur->data.score->midTerm = midTerm;
         cur->data.score->Final = final;
     }

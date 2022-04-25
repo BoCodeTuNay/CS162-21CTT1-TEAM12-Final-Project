@@ -14,7 +14,8 @@
 
 List <Student> listStudents;
 List <Staff> listStaffs;
-List <Class> listClass;
+List <Course*> listOpenCourse;
+//List <Class> listClass;
 // struct Student {
 //     char username[MAXSTR+1];
 //     char password[MAXSTR+1];

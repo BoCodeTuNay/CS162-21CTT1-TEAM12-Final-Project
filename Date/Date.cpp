@@ -1,7 +1,5 @@
 #include "Date.h"
-#include "..\Constants\Constants.h"
-#include <stdlib.h>
-#include <string.h>
+
 //format date là yyyy/mm/dd nhe ông
 Date::Date()
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include "../List/List.h"
 #include "../Constants/Constants.h"
-#include "Score.h"
+#include "../Score.h"
 #include "../Date/Date.h"
 #include "../Course/Course.h"
 #include "../Course/CourseInfo.h"

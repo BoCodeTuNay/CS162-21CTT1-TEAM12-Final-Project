@@ -270,10 +270,7 @@ void Student::viewScoreBoard() {
         cout << tmp->midTerm << '\t' << tmp->Final << '\t' << tmp->HW << '\t' << tmp->GPA << '\n';
     }
 
-    std::cout << "\n";
-    std::cout << "Press any key to continue...\n";
-    int x;
-    std::cin >> x;
+    system("pause");
 }
 
 void Student::updateResult() {
