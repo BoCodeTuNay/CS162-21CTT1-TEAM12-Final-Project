@@ -1,5 +1,9 @@
 #include "Course.h"
 #include <string.h>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b7245cefc5640f6222e578abdae59aecc96910c
 void Course::manageCourseInfo()
 {
     clrscr();
