@@ -1,4 +1,5 @@
 #include "Course.h"
+#include <string.h>
 
 void Course::manageCourseInfo()
 {
