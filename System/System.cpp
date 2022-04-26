@@ -95,8 +95,13 @@ void loadAccounts()
     Account of staff M
     */
     using namespace std;
+<<<<<<< HEAD
     //std::cerr << "BEGIN TO LOAD ACCOUNTS" << std::endl;
     fstream fin(ACCOUNTS_FILE, ios::in);
+=======
+    std::cerr << "BEGIN TO LOAD ACCOUNTS" << std::endl;
+    fstream fin("Accounts.txt", ios::in);
+>>>>>>> 3c7d117d065a3fabe2047d7296b8dd487170fc9b
     if (!fin.is_open()) return;
 
     unsigned int N;
