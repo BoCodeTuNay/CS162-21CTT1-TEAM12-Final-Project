@@ -309,6 +309,10 @@ void Student::load_data(fstream &fin, List<Course*> pAllCourses) {
                 Score* pScore = new Score;
                 CourseScore CS = {p->data, pScore};
                 CoursesList.insert(CS);
+
+                for (int i = 1; i < 7; ++i) 
+                    fClass[i][(p->data)->info.day[i]] = true;
+
                 break;
             }
     }
