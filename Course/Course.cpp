@@ -143,11 +143,10 @@ void Course::importStudentsFromCSV(){
 }
 
 void Course::load_data(fstream &fin) {
-
+    info.save_data(fin);
 }
 
 void Course::save_data(fstream &fout) {
     info.save_data(fout);
-    
 }
 
