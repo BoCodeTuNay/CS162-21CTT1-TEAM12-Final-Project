@@ -20,6 +20,15 @@ void Schoolyear::createSemester() {
     listSemesters.insert(cur);
 }
 
+void Schoolyear::save_data(fstream& fout)
+{
+    if (!fout.is_open()) return;
+    fout << ID << endl << index << endl;
+    fout << listSemesters.size() << endl;
+    for (Node<Semester>* cur = listSemesters.begin(); cur; cur = cur->pNext)
+        cur->data.save_data(fout);
+}
+
 void Schoolyear::manageSemesters()
 {
     clrscr();

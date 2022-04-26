@@ -4,74 +4,62 @@
 Tu Canh Minh
 minhandrew@gmail.com
 22345678
-
 21125028
 1234viet
 Le Viet
 leviet@gmail.com
 22345679
-
 21125013
 1234khang
 Vo Hoang Phuc Khang
 vokhang1412@gmail.com
 32345678
-
 21125006
-1234duy
+1234DUY
 Ho Khanh Duy
 duy@gmail.com
 12312312
-
 21125027
 1234nviet
 Hoang Nghia Viet
 nviet@gmail.com
 12345678
-
 21125087
 1234phong
 Vuong Quoc Phong
 phong@gmail.com
 12332112
-
 21125101
 1234anh
 Yang Tuan Anh
 anh@gmail.com
 12344321
-
 21125007
 1234giang
 Pham Vu Minh Giang
 giang@gmail.com
 12345432
-
 21125082
 1234nam
 Nguyen Nhu Hoai Nam
 nam@gmail.com
 12333321
-
 21125155
 1234nghiem
 Diep Tuong Nghiem
 nghiem@gmail.com	
 12345654
-
 3
 12345678
 1234tien
 Dinh Ba Tien
 tien@gmail.com
 87654321
-
 12345677
 1234loc
 Truong Phuoc Loc
 loc@gmail.com
 87654322
-
 12345676
 1234kha
 Do Nguyen Kha

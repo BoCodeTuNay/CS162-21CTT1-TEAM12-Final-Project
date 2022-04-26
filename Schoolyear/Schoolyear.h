@@ -16,6 +16,7 @@ struct Schoolyear {
     // add it to this schoolyear by inserting it into listSemester
     void createSemester(); // CHECKED
     void manageSemesters();
+    void save_data(fstream&);
 };
 
 #include "Schoolyear.cpp"

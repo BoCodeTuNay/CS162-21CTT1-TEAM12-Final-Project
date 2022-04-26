@@ -24,8 +24,40 @@ void Staff::staffMenu(List<Student>& listStudents)
         staffMenu(listStudents);
     }
     else {
+        fstream fout(COURSES_FILE, ios::out);
+        if (!fout.is_open()) {
+            std::cerr << "Cannot save the updated courses' data into " << COURSES_FILE << std::endl;
+            return;
+        }
+        save_courses(fout);
+        fout.close();
+
+        fout.open(CLASSES_FILE, ios::out);
+        if (!fout.is_open()) {
+            std::cerr << "Cannot save the updated classes' data into " << CLASSES_FILE << std::endl;
+            return;
+        }
+        save_classes(fout);
+        fout.close();
         // go back to loginScreen()
     }
+}
+
+void Staff::save_courses(fstream& fout)
+{
+    if (!fout.is_open()) return;
+    fout << listSchoolyears.size() << endl;
+    for (Node<Schoolyear>* cur = listSchoolyears.begin(); cur; cur = cur->pNext)
+        cur->data.save_data(fout);
+    fout << endl;
+}
+
+void Staff::save_classes(fstream& fout)
+{
+    if (!fout.is_open()) return;
+    fout << listClasses.size() << endl;
+    for (Node<Class>* cur = listClasses.begin(); cur; cur = cur->pNext)
+        cur->data.save_data(fout);
 }
 
 void Staff::viewProfile()

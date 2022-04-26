@@ -9,8 +9,8 @@ void Class::manageStudent(List <Student>& listStudents)
     std::cout << "1. View a list of students.\n"
             "2. Add student.\n"
             "3. Import student from CSV file.\n"
-            "4. Update student result.\n";
-            "5. View scoreboard.\n";
+            "4. Update student result.\n"
+            "5. View scoreboard.\n"
             "6. Go back.\n\n";
     std::cout << "Your choice: ";
     int t{choose(1, 4)};
@@ -38,6 +38,11 @@ void Class::manageStudent(List <Student>& listStudents)
         // lets go back
     }
     else assert(false); // just to make sure this case cannot happen
+}
+
+void save_data(fstream&)
+{
+    
 }
 
 void Class::viewStudentList()

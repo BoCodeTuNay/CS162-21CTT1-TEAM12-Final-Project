@@ -20,6 +20,7 @@ struct Class {
     void viewScoreBoard();
     void viewStudentList();
     void updateStudentResult();
+    void save_data(fstream&);
 };
 
 #include "Class.cpp"

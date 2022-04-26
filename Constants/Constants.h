@@ -9,6 +9,8 @@ The purpose is to avoid re-definitions of these constants.
 #include <iostream>
 
 const char* ACCOUNTS_FILE = "Accounts.txt";
+const char* COURSES_FILE = "Courses.txt";
+const char* CLASSES_FILE = "Classes.txt";
 
 const int MAXNAME = 40; // for students and staffs name length
 const int MAXSTR = 50; // for other features' convenience

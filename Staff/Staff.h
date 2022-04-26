@@ -25,7 +25,8 @@ struct Staff {
     void createClasses(); // CHECKED
     void viewProfile(); // CHECKED
     void changePassword(); // CHECKED
-    //void save_da
+    void save_courses(fstream&);
+    void save_classes(fstream&);
 };
 
 List<Schoolyear> Staff::listSchoolyears;
