@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstring>
 
-void Student::studentMenu()
+void Student::studentMenu(List <Course*> pOpenCourse)
 {
     clrscr();
     // fstream fin;
@@ -22,19 +22,20 @@ void Student::studentMenu()
     if (t == 0) {
         // view the student's courses (both registered and in session)
         viewCourses();
-        studentMenu();
+        studentMenu(pOpenCourse);
     }
     else if (t == 1) {
-        // traverse listOpenCourse ...
-        //enrolledCourse(pOpenCourse);
+        //viewListOpenCourse(pOpenCourse);
+        enrolledCourse(pOpenCourse);
+        studentMenu(pOpenCourse);
     }
     else if (t == 2) {
         viewScoreBoard();
-        studentMenu();
+        studentMenu(pOpenCourse);
     }
     else if (t == 3) {
         viewProfile();
-        studentMenu();
+        studentMenu(pOpenCourse);
     }
     else {
         // lets go back
@@ -135,6 +136,12 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
         return;
     }
 
+    if (pOpenCourse.size() == 0) {
+        cout << "There is no course to regis!";
+        system("pause");
+        return;
+    }
+
     while (CurCourses() < 5) {
         clrscr();
         vector<Course*> vCourse;
@@ -154,9 +161,10 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
             cout << ++Num << ". " << (data->info).name << '\n';
         }
 
-        cout << "Please enter the number of course you want to regis: " << '\n';
+        cout << "Please enter the number of course you want to regis (or 0 to exit):" << '\n';
         // ues choose() here to check bad input
-        int reg_Num{choose(1, Num)};
+        int reg_Num{choose(0, Num)};
+        if (reg_Num == 0) return;
 
         Course* pickCourse = vCourse[reg_Num - 1];
         Score* pickScore = new Score;
@@ -199,8 +207,8 @@ void Student::viewCourses() {
     cout << ++Num << ". Go back\n";
 
     cout << "Your choice: ";
-    int t{choose(0, Num - 1)};
-    if (t < Num - 2) {
+    int t{choose(1, Num)};
+    if (t <= Num - 2) {
         Num = 0;
         for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
             if (Num == t) {
@@ -209,7 +217,7 @@ void Student::viewCourses() {
             }
             ++Num;
         }
-    } else if (t == Num - 2) {
+    } else if (t == Num - 1) {
         cout << "Please enter the number of course you want to remove: ";
         int nCourse{choose(0, Num - 3)};
         Num = 0;
@@ -224,6 +232,17 @@ void Student::viewCourses() {
 
     return;
 }
+
+void Student::viewListOpenCourse(List <Course*> pOpenCourse)
+{
+    cout << "LIST OPEN COURSE\n\n";
+    for (Node <Course*> *i = pOpenCourse.begin(); i; i = i -> pNext)
+    {
+        cout << i->data->info.name << " ";
+    }
+    cout << "\n";
+}
+
 
 void Student::removeCourse(char id[MAXID+1]) {
     CourseScore pick;
@@ -257,6 +276,8 @@ void Student::listOfCourses() {
             cout << Num << ". " << (((p->data).pCourse->info).name) << '\n';
         }
     cout << "\n";
+
+    system("pause");
 }
 
 int Student::listOfCourseStudied() {
@@ -269,6 +290,7 @@ int Student::listOfCourseStudied() {
         }
 
     cout << "\n";
+    system("pause");
     return Num;
 }
 

@@ -87,7 +87,7 @@ void Date::enter_date() {
 			cont = true;
 		}
 		else cont = false;
-	} while (!cont);
+	} while (cont);
 	tmp[4] = '0'; tmp[7] = '0';
 	char* d = (tmp + 8);
 	day = atoi(d);

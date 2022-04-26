@@ -12,10 +12,11 @@ void Schoolyear::createSemester() {
     cur.index = listSemesters.size();
     std::cout << "Creating semester " << cur.index + 1 << " ...\n";
     
-    std::cout << "Enter start date (yyyy-mm-dd):\n";
+    std::cerr << __LINE__ << std::endl;
+    std::cout << "Enter start date (yyyy/mm/dd):\n";
     cur.start_date.enter_date();
 
-    std::cout << "Enter end date (yyyy-mm-dd):\n";
+    std::cout << "Enter end date (yyyy/mm/dd):\n";
     cur.end_date.enter_date();
     listSemesters.insert(cur);
 }
@@ -29,14 +30,14 @@ void Schoolyear::save_data(fstream& fout)
         cur->data.save_data(fout);
 }
 
-void Schoolyear::load_data(fstream& fin)
+void Schoolyear::load_data(fstream& fin, List <Course*>& pAllCourse)
 {
     if (!fin.is_open()) return;
     int N;
     fin >> ID >> index >> N;
     for (int i = 0; i < N; ++i) {
         Semester cur;
-        cur.load_data(fin);
+        cur.load_data(fin, pAllCourse);
         listSemesters.insert(cur);
     }
 }

@@ -53,7 +53,7 @@ void login()
 
     for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
         if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) {
-            cur->data.studentMenu();
+            cur->data.studentMenu(pOpenCourse);
             login();
             return;
         }
@@ -170,13 +170,13 @@ void load_data()
     fstream fin(COURSES_FILE, ios::in);
     Staff dummy;
     if (fin.is_open()) {
-        dummy.load_courses(fin);
+        dummy.load_courses(fin, pAllCourse);
         fin.close();
     }
 
     fin.open(CLASSES_FILE, ios::in);
     if (fin.is_open()) {
-        dummy.load_classes(fin);
+        dummy.load_classes(fin, listStudents);
         fin.close();
     }
 }

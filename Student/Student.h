@@ -24,7 +24,7 @@ struct Student {
 
     List<CourseScore> CoursesList;
 
-    void studentMenu();
+    void studentMenu(List <Course*> pOpenCourse);
     void viewProfile();
     void changePassword();
     int CurCourses();
@@ -36,6 +36,7 @@ struct Student {
     int listOfCourseStudied();
     void viewScoreBoard();
     void updateResult();
+    void viewListOpenCourse(List <Course*> pOpenCourse);
     void load_data(fstream &fin, List<Course*> pAllCourses);
     void save_data(fstream &fout);
 };

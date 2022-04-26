@@ -78,6 +78,12 @@ void Semester::viewListCourses(){
 // }
 
 void Semester::deleteCourse(){
+    if (listCourses.size() == 0)
+    {
+        cout << "You do not have any course!";
+        system("pause");
+        return;
+    }
     char inputID[MAXSTR+1];
     cout << "Which course ID do you want to update?\n";
     cin.get(inputID, MAXSTR+1, '\n');
@@ -89,7 +95,7 @@ void Semester::deleteCourse(){
     }
 }
 
-void Semester::load_data(fstream& fin)
+void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
 {
     if (!fin.is_open()) return;
     fin >> index;
@@ -103,6 +109,7 @@ void Semester::load_data(fstream& fin)
         Course cur;
         cur.load_data(fin);
         listCourses.insert(cur);
+        pAllCourse.insert(&cur);
     }
 }
 

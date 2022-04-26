@@ -19,7 +19,7 @@ struct Semester {
     // load a Semester from the given stream (the stream will be opened and closed outside this function, so don't need to do it)
     //void load_data(ifstream&);
 
-    void manageCourses(List <Course*>& pOpenCourse, List <Course*>& pAllCourse);
+    void manageCourses(List <Course*> &pOpenCourse, List<Course*> &pAllCourse);
 
     // create a Course Registration Session, this feature might need further discussion...
     void createCourseRegistration(List<Course*> &pOpenCourse);
@@ -28,7 +28,7 @@ struct Semester {
     void updateCourseInfomation();
     void deleteCourse();
 
-    void load_data(fstream&);
+    void load_data(fstream&, List <Course*>& pAllCourse);
     void save_data(fstream&);
 };
 

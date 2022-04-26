@@ -50,7 +50,7 @@ void Class::save_data(fstream& fout)
     fout << '\n';
 }
 
-void Class::load_data(fstream& fin, List<Student> &listAllStudents)
+void Class::load_data(fstream& fin, List<Student>& listStudents)
 {
     if (!fin.is_open()) return;
     fin >> ID;
@@ -59,7 +59,7 @@ void Class::load_data(fstream& fin, List<Student> &listAllStudents)
     for (int i = 0; i < n; ++i) {
         char inpID[MAXID+1];
         fin >> inpID;
-        for (Node<Student>* p = listAllStudents.begin(); p; p = p -> pNext) 
+        for (Node<Student>* p = listStudents.begin(); p; p = p -> pNext) 
             if (strcmp(inpID, (p->data).acc.ID)) {
                 studentsList.insert(&(p->data));
                 break;
