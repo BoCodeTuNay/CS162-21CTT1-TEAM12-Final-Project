@@ -21,11 +21,7 @@ void Account::read_data(fstream& fin)
     fin.get(socialID, MAXSTR+1, '\n').get();
     // std::cerr << "What been read are:" << std::endl;
     // std::cerr << ID << std::endl << password << std::endl << name << std::endl << email << std::endl << socialID << std::endl;
-<<<<<<< HEAD
-    //system("pause");
-=======
     system("pause");
->>>>>>> b7644efc8bf7e2ab4da8b59cce8d0a52042e2aba
 }
 
 void Account::save_data(fstream& fout)
