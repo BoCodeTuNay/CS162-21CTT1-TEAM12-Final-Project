@@ -13,12 +13,15 @@ void Account::read_data(fstream& fin)
 {
     using namespace std;
     if (!fin.is_open()) return;
-
-    fin >> ID >> password;
-    fin.ignore(); // eat the enter
-    fin.get(name, MAXNAME+1, '\n');
-    fin.get(email, MAXSTR+1, '\n');
-    fin.get(socialID, MAXSTR+1, '\n');
+    std::cerr << "BEGIN TO READ AN ACCOUNT" << std::endl;
+    (fin >> ID >> password).get();
+    //fin.ignore(); // eat the enter
+    fin.get(name, MAXNAME+1, '\n').get();
+    fin.get(email, MAXSTR+1, '\n').get();
+    fin.get(socialID, MAXSTR+1, '\n').get();
+    std::cerr << "What been read are:" << std::endl;
+    std::cerr << ID << std::endl << password << std::endl << name << std::endl << email << std::endl << socialID << std::endl;
+    system("pause");
 }
 
 void Account::save_data(fstream& fout)

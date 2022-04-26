@@ -14,7 +14,7 @@ void Student::studentMenu()
     std::cout << "3. View profile\n";
     std::cout << "4. Log out\n\n";
     std::cout << "Your choice: ";
-    int t{choose(0, 3)};
+    int t{choose(0, 4)};
     if (t == 0) {
         // view the student's courses (both registered and in session)
         viewCourses();

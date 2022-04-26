@@ -15,6 +15,7 @@ void login()
         bool cont_in{false}; // to continue looping inside
         do {
             cout << "ID (max " << MAXID << " chars): ";
+            fflush(stdin);
             cin.get(ID, MAXID+1, '\n');
             if (cin.fail()) { // nothing was inputted
                 cin.clear();
@@ -32,6 +33,8 @@ void login()
         cont_in = false;
         do {
             cout << "Password (max " << MAXSTR << " chars): ";
+            fflush(stdin);
+            cin.get(password, MAXSTR+1, '\n');
             if (cin.fail() || cin.get() != '\n' || !checkAlphaDigit(password)) {
                 cin.clear();
                 fflush(stdin);
@@ -47,7 +50,6 @@ void login()
         }
         else cont_out = false;
     } while (cont_out);
-    if (ID[0] == 0 && password[0] == 0) 
 
     for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
         if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) {
@@ -93,16 +95,20 @@ void loadAccounts()
     Account of staff M
     */
     using namespace std;
+    std::cerr << "BEGIN TO LOAD ACCOUNTS" << std::endl;
     fstream fin(ACCOUNTS_FILE, ios::in);
     if (!fin.is_open()) return;
 
     unsigned int N;
     fin >> N;
+    std::cerr << "N = " << N << std::endl;
     for (int i = 0; i < N; ++i) {
         Account cur;
         cur.read_data(fin);
         Student s;
         s.acc = cur;
+        std::cerr << "Student s is:" << std::endl;
+        std::cerr << s.acc.ID << std::endl << s.acc.password << std::endl << s.acc.name << std::endl << s.acc.email << std::endl << s.acc.socialID << std::endl;
         listStudents.insert(s);
     }
 
@@ -113,6 +119,8 @@ void loadAccounts()
         cur.read_data(fin);
         Staff s;
         s.acc = cur;
+        std::cerr << "Staff s is:" << std::endl;
+        std::cerr << s.acc.ID << std::endl << s.acc.password << std::endl << s.acc.name << std::endl << s.acc.email << std::endl << s.acc.socialID << std::endl;
         listStaffs.insert(s);
     }
 
@@ -143,11 +151,14 @@ void saveAccounts()
 
 int checkDatabase(const char* ID, const char* password)
 {
+    std::cerr << "Checking " << ID << " and " << password << std::endl;
     for (Node<Student>* cur = listStudents.begin(); cur; cur = cur->pNext) {
+        std::cerr << "Current student " << cur->data.acc.ID << " and " << cur->data.acc.password << std::endl;
         if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0)
             return 1;
     }
     for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
+        std::cerr << "Current staff " << cur->data.acc.ID << " and " << cur->data.acc.password << std::endl;
         if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0)
             return 2;
     }
