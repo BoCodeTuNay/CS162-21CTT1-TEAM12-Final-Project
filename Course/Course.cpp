@@ -142,3 +142,12 @@ void Course::importStudentsFromCSV(){
     fin.close();
 }
 
+void Course::load_data(fstream &fin) {
+
+}
+
+void Course::save_data(fstream &fout) {
+    info.save_data();
+    
+}
+

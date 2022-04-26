@@ -7,8 +7,8 @@
 struct CourseInfo
 {
     char ID[MAXSTR+1]; // mã học phần
-    char semesterID[MAXSTR+1];
-    char schoolyearID[MAXSTR+1];
+    // char semesterID[MAXSTR+1];
+    // char schoolyearID[MAXSTR+1];
 
     // make sure (start_regis < end_regis < start_date < end_date)
     Date start_date;
@@ -27,6 +27,9 @@ struct CourseInfo
     void inputCourseInfo();
     void updateCourseInfo();
     void manageCourseInfo();
+
+    void load_data(fstream& fin);
+    void save_data(fstream& fout);
 };
 
 #include "CourseInfo.cpp"

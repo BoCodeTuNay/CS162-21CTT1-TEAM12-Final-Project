@@ -116,3 +116,34 @@ void CourseInfo::updateCourseInfo()
         }
     }
 }
+
+void CourseInfo::load_data(fstream& fin)
+{
+    while (fin.get() != '\n');
+    fin.get(ID, MAXSTR+1, '\n').get();
+    start_date.load_date(fin);
+    end_date.load_date(fin);
+    start_regis.load_date(fin);
+    end_regis.load_date(fin);
+    fin.get(name, MAXSTR+1, '\n').get();
+    fin.get(lecturer, MAXSTR+1, '\n').get();
+    fin >> numCredits;
+    fin >> maxStudent;
+    for (int i=0; i<7; i++)
+        fin >> day[i];
+
+}
+void CourseInfo::save_data(fstream& fout)
+{
+    fout << ID << "\n";
+    start_date.save_date(fout);
+    end_date.save_date(fout);
+    start_regis.save_date(fout);
+    fout << name << "\n";
+    fout << lecturer << "\n";
+    fout << numCredits << "\n";
+    fout << maxStudent << "\n";
+    for (int i=0; i<7; i++)
+        fout << day[i] << " ";
+    fout << "\n";
+}

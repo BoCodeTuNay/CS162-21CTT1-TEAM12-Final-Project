@@ -1,6 +1,6 @@
 #include "Date.h"
 
-//format date là yyyy/mm/dd nhe ông
+//format date là yyyy/mm/dd 
 Date::Date()
 {
 	day = 1;
@@ -9,9 +9,9 @@ Date::Date()
 }
 
 Date::Date(string date) {
-		year = stoi(date.substr(0, 4)); // from MINH: kiểm tra 4 ký tự này có phải chữ số không, có thể dùng hàm checkDigit trong Constants.h
-		month = stoi(date.substr(5, 2)); // tương tự...
-		day = stoi(date.substr(8, 2)); // tương tự...
+		year = stoi(date.substr(0, 4)); 
+		month = stoi(date.substr(5, 2));
+		day = stoi(date.substr(8, 2)); 
 }
 void Date::output_date()
 {
@@ -77,7 +77,6 @@ void Date::enter_date() {
 	};
 	bool cont{ false };
 	do {
-		std::cout << "Enter the date (format: yyyy/mm/dd): ";
 		// check for bad input
 		fflush(stdin);
 		std::cin.get(tmp, 11 , '\n');
@@ -148,4 +147,18 @@ Date getCurrentDate() {
 	cur.month = tmp->tm_mon + 1;
 	cur.day = tmp->tm_mday;
 	return cur;
+}
+void Date::load_date(fstream& fin) {
+	string s;
+	if (!fin.is_open()){
+		return;
+	} else {
+		fin >> s;
+		Date(s);
+	}
+}
+void Date::save_date(fstream& fout) {
+	if (!fout.is_open()){
+		return;
+	} else {fout << year << "/" << month << "/" << day << endl; }
 }

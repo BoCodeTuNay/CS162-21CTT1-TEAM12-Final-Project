@@ -1,7 +1,7 @@
 #include "Semester.h"
 #include <cassert>
 
-void Semester::createCourseRegistration(List<Course*> &pOpenCourse) {
+void Semester::createCourseRegistration(List <Course*>& pOpenCourse) {
     Course newCourse;
     int check{0};
     do {
@@ -14,7 +14,7 @@ void Semester::createCourseRegistration(List<Course*> &pOpenCourse) {
     pOpenCourse.insert(&newCourse);
 }
 
-void Semester::manageCourses()
+void Semester::manageCourses(List <Course*>& pOpenCourse, List <Course*>& pAllCourse)
 {
     clrscr();
     std::cout << "MANAGE THE AVAILABLE COURSES\n\n";
@@ -31,14 +31,14 @@ void Semester::manageCourses()
     int t{choose(0, N - 1)};
     if (t < N - 3) {
         listCourses.get(t).manageCourseInfo();
-        manageCourses();
+        manageCourses(pOpenCourse, pAllCourse);
     }
     else if (t == N - 3){
-        // create a course registration session...
+        createCourseRegistration(pOpenCourse);
     }
     else if (t == N - 2) {
         deleteCourse();
-        manageCourses();
+        manageCourses(pOpenCourse, pAllCourse);
     }
     else if (t == N - 1) {
         // lets go back

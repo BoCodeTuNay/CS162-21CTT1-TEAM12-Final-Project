@@ -40,9 +40,31 @@ void Class::manageStudent(List <Student>& listStudents)
     else assert(false); // just to make sure this case cannot happen
 }
 
-void save_data(fstream&)
+void Class::save_data(fstream& fout)
 {
-    
+    if (!fout.is_open()) return;
+    fout << ID << ' ' << studentsList.size() << '\n';
+    for (Node<Student*>* p = studentsList.begin(); p; p = p -> pNext) {
+        fout << p->data->acc.ID << ' ';
+    }
+    fout << '\n';
+}
+
+void Class::load_data(fstream& fin, List<Student> &listAllStudents)
+{
+    if (!fin.is_open()) return;
+    fin >> ID;
+    int n;
+    fin >> n;
+    for (int i = 0; i < n; ++i) {
+        char inpID[MAXID+1];
+        fin >> inpID;
+        for (Node<Student>* p = listAllStudents.begin(); p; p = p -> pNext) 
+            if (strcmp(inpID, (p->data).acc.ID)) {
+                studentsList.insert(&(p->data));
+                break;
+            }
+    }
 }
 
 void Class::viewStudentList()
@@ -51,7 +73,7 @@ void Class::viewStudentList()
     std::cout << "STUDENT LIST " << endl << endl;
 
     int N{1};
-    for (Node <Student*> *i; i; i = i -> pNext)
+    for (Node <Student*> *i = studentsList.begin(); i; i = i -> pNext)
     {
         std::cout << N++ << ". " << i->data->acc.name << "\n";
     }

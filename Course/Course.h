@@ -18,9 +18,8 @@ struct StudentScore{
 };
 
 struct Course {
- 
-	List <StudentScore> student; // -> scoreboard ???
     CourseInfo info;
+	List <StudentScore> student; // -> scoreboard ???
 
     Course(){};
     Course(char _ID[MAXSTR+1]){
@@ -34,6 +33,9 @@ struct Course {
     void manageCourseInfo();
     void exportStudentsToCSV();
     void importStudentsFromCSV();
+
+    void load_data(fstream &fin);
+    void save_data(fstream &fout);
 };
 
 bool cmp_course(const Course& s1, const Course& s2);

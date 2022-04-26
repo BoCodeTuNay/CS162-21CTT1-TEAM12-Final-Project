@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 #include "../List/List.h"
 #include "../Constants/Constants.h"
 #include "../Score.h"
@@ -35,6 +36,8 @@ struct Student {
     int listOfCourseStudied();
     void viewScoreBoard();
     void updateResult();
+    void load_data(fstream &fin, List<Course*> pAllCourses);
+    void save_data(fstream &fout);
 };
 
 #include "Student.cpp"

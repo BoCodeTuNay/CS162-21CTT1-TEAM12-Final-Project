@@ -15,8 +15,9 @@ struct Schoolyear {
     // ask the user to fill in the Semester's info (remember to flush the input stream first by fflush(stdin)) and then 
     // add it to this schoolyear by inserting it into listSemester
     void createSemester(); // CHECKED
-    void manageSemesters();
+    void manageSemesters(List <Course*>&, List <Course*>&);
     void save_data(fstream&);
+    void load_data(fstream&);
 };
 
 #include "Schoolyear.cpp"

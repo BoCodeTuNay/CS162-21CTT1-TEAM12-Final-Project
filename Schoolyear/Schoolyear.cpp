@@ -29,7 +29,19 @@ void Schoolyear::save_data(fstream& fout)
         cur->data.save_data(fout);
 }
 
-void Schoolyear::manageSemesters()
+void Schoolyear::load_data(fstream& fin)
+{
+    if (!fin.is_open()) return;
+    int N;
+    fin >> ID >> index >> N;
+    for (int i = 0; i < N; ++i) {
+        Semester cur;
+        cur.load_data(fin);
+        listSemesters.insert(cur);
+    }
+}
+
+void Schoolyear::manageSemesters(List <Course*>& pOpenCourse, List <Course*>& pAllCourse)
 {
     clrscr();
     std::cout << "MANAGE THE AVAILABLE SEMESTERS.\n\n";
@@ -41,12 +53,12 @@ void Schoolyear::manageSemesters()
     std::cout << N++ << ". Go back\n";
     int t{choose(0, N - 1)};
     if (t < N - 2) {
-        listSemesters.get(t).manageCourses();
-        manageSemesters();
+        listSemesters.get(t).manageCourses(pOpenCourse, pAllCourse);
+        manageSemesters(pOpenCourse, pAllCourse);
     }
     else if (t == N - 2) {
         createSemester();
-        manageSemesters();
+        manageSemesters(pOpenCourse, pAllCourse);
     }
     else if (t == N - 1) {
         // lets go back

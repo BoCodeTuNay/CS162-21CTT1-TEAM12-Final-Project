@@ -17,15 +17,17 @@ struct Staff {
     static List<Class> listClasses;
     Account acc;
     
-    void staffMenu(List<Student>&); // CHECKED
+    void staffMenu(List<Student>&, List <Course*>&, List <Course*>&); // CHECKED
     // return true if go to this function again, return false otherwise
-    void manageSchoolyears(); // CHECKED
+    void manageSchoolyears(List <Course*>&, List <Course*>&); // CHECKED
     void manageClasses(List<Student>&); // CHECKED
     void createSchoolyear(); // CHECKED
     void createClasses(); // CHECKED
     void viewProfile(); // CHECKED
     void changePassword(); // CHECKED
+    void load_courses(fstream&);
     void save_courses(fstream&);
+    void load_classes(fstream&);
     void save_classes(fstream&);
 };
 

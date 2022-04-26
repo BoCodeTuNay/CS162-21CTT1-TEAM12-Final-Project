@@ -17,6 +17,8 @@ struct Date {
 
 	void enter_date();
 	void output_date();
+	void load_date(fstream&);
+	void save_date(fstream&);
 };
 
 bool check_leap_year(int year);

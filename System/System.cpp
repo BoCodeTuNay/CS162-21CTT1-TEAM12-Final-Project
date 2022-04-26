@@ -60,7 +60,7 @@ void login()
     }
     for (Node<Staff>* cur = listStaffs.begin(); cur; cur = cur->pNext) {
         if (strcmp(cur->data.acc.ID, ID) == 0 && strcmp(cur->data.acc.password, password) == 0) {
-            cur->data.staffMenu(listStudents);
+            cur->data.staffMenu(listStudents, pOpenCourse, pAllCourse);
             login();
             return;
         }
@@ -95,13 +95,8 @@ void loadAccounts()
     Account of staff M
     */
     using namespace std;
-<<<<<<< HEAD
     //std::cerr << "BEGIN TO LOAD ACCOUNTS" << std::endl;
-    fstream fin(ACCOUNTS_FILE, ios::in);
-=======
-    std::cerr << "BEGIN TO LOAD ACCOUNTS" << std::endl;
     fstream fin("Accounts.txt", ios::in);
->>>>>>> 3c7d117d065a3fabe2047d7296b8dd487170fc9b
     if (!fin.is_open()) return;
 
     unsigned int N;
@@ -170,27 +165,40 @@ int checkDatabase(const char* ID, const char* password)
     return 0;
 }
 
-// Student::Student(const char* usn, const char* pass, const char* nm, const char* i, const char* mail)
-// {
-//     strcpy(username, usn);
-//     strcpy(password, pass);
-//     strcpy(name, nm);
-//     strcpy(id, i);
-//     strcpy(email, mail);
-// }
+void load_data()
+{
+    fstream fin(COURSES_FILE, ios::in);
+    Staff dummy;
+    if (fin.is_open()) {
+        dummy.load_courses(fin);
+        fin.close();
+    }
 
-// Staff::Staff(const char* usn, const char* pass, const char* nm, const char* i, const char* mail)
-// {
-//     strcpy(username, usn);
-//     strcpy(password, pass);
-//     strcpy(name, nm);
-//     strcpy(id, i);
-//     strcpy(email, mail);
-// }
+    fin.open(CLASSES_FILE, ios::in);
+    if (fin.is_open()) {
+        dummy.load_classes(fin);
+        fin.close();
+    }
+}
 
-// bỏ Profile -> account
-// sửa mảng semester trong schoolyear
-// courseRegistration() -> add course
-// enrollCourse() // update accountList in course
-// unEnrollCourse() // update accountList in course
-// ID đổi thành index (chỉ số mảng)
+void save_data()
+{
+    fstream fout(COURSES_FILE, ios::out);
+    Staff dummy;
+    if (fout.is_open()) {
+        dummy.save_courses(fout);
+        fout.close();
+    }
+    else {
+        std::cerr << "Cannot save the updated courses' data into " << COURSES_FILE << std::endl;
+    }
+
+    fout.open(CLASSES_FILE, ios::out);
+    if (fout.is_open()) {
+        dummy.save_classes(fout);
+        fout.close();
+    }
+    else {
+        std::cerr << "Cannot save the updated classes' data into " << CLASSES_FILE << std::endl;
+    }
+}

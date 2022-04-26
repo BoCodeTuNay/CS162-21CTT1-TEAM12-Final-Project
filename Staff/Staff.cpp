@@ -1,6 +1,6 @@
 #include "Staff.h"
 
-void Staff::staffMenu(List<Student>& listStudents)
+void Staff::staffMenu(List<Student>& listStudents, List <Course*>& pOpenCourse, List <Course*>& pAllCourse)
 {
     // this function cannot return true/false to go back because before it is the login screen
     clrscr();
@@ -12,33 +12,18 @@ void Staff::staffMenu(List<Student>& listStudents)
     std::cout << "Your choice: ";
     int t{choose(0, 3)};
     if (t == 0) {
-        manageSchoolyears();
-        staffMenu(listStudents);
+        manageSchoolyears(pOpenCourse, pAllCourse);
+        staffMenu(listStudents, pOpenCourse, pAllCourse);
     }
     else if (t == 1) {
         manageClasses(listStudents); // chua co
-        staffMenu(listStudents);
+        staffMenu(listStudents, pOpenCourse, pAllCourse);
     }
     else if (t == 2) {
         viewProfile();
-        staffMenu(listStudents);
+        staffMenu(listStudents, pOpenCourse, pAllCourse);
     }
     else {
-        fstream fout(COURSES_FILE, ios::out);
-        if (!fout.is_open()) {
-            std::cerr << "Cannot save the updated courses' data into " << COURSES_FILE << std::endl;
-            return;
-        }
-        save_courses(fout);
-        fout.close();
-
-        fout.open(CLASSES_FILE, ios::out);
-        if (!fout.is_open()) {
-            std::cerr << "Cannot save the updated classes' data into " << CLASSES_FILE << std::endl;
-            return;
-        }
-        save_classes(fout);
-        fout.close();
         // go back to loginScreen()
     }
 }
@@ -52,12 +37,36 @@ void Staff::save_courses(fstream& fout)
     fout << endl;
 }
 
+void Staff::load_courses(fstream& fin)
+{
+    if (!fin.is_open()) return;
+    int N;
+    fin >> N;
+    for (int i = 0; i < N; ++i) {
+        Schoolyear cur;
+        cur.load_data(fin);
+        listSchoolyears.insert(cur);
+    }
+}
+
 void Staff::save_classes(fstream& fout)
 {
     if (!fout.is_open()) return;
     fout << listClasses.size() << endl;
     for (Node<Class>* cur = listClasses.begin(); cur; cur = cur->pNext)
         cur->data.save_data(fout);
+}
+
+void Staff::load_classes(fstream& fin)
+{
+    if (!fin.is_open()) return;
+    int N;
+    fin >> N;
+    for (int i = 0; i < N; ++i) {
+        Class cur;
+        cur.load_data(fin);
+        listClasses.insert(cur);
+    }
 }
 
 void Staff::viewProfile()
@@ -129,7 +138,7 @@ void Staff::changePassword()
     strcpy(acc.password, new_pass);
 }
 
-void Staff::manageSchoolyears()
+void Staff::manageSchoolyears(List <Course*>& pOpenCourse, List <Course*>& pAllCourse)
 {
     clrscr();
     std::cout << "MANAGE THE AVAILABLE SCHOOLYEARS\n\n";
@@ -144,12 +153,12 @@ void Staff::manageSchoolyears()
     std::cout << "Your choice: ";
     int t{choose(0, N - 1)};
     if (t < N - 2) {
-        listSchoolyears.get(t).manageSemesters();
-        manageSchoolyears();
+        listSchoolyears.get(t).manageSemesters(pOpenCourse, pAllCourse);
+        manageSchoolyears(pOpenCourse, pAllCourse);
     }
     else if (t == N - 2) {
         createSchoolyear();
-        manageSchoolyears();
+        manageSchoolyears(pOpenCourse, pAllCourse);
     }
     else if (t == N - 1) {
         // let's go back

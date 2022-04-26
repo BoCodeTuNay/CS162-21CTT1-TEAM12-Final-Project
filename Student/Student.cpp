@@ -6,6 +6,10 @@
 void Student::studentMenu()
 {
     clrscr();
+    // fstream fin;
+    // fin.open(COURSES_FILE, ios::in);
+    // load_data(fin, pAllCourses);
+    // fin.close();
     std::cout << "WELCOME TO THE SYSTEM, " << acc.name << endl << endl;
 
     std::cout << "0. View my courses\n";
@@ -34,6 +38,10 @@ void Student::studentMenu()
     }
     else {
         // lets go back
+        // fstream fout;
+        // fout.open(COURSES_FILE, ios::out);
+        // save_data(fout);
+        // fout.close();
     }
 }
 
@@ -148,7 +156,7 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
 
         cout << "Please enter the number of course you want to regis: " << '\n';
         // ues choose() here to check bad input
-        int reg_Num{choose(0, Num - 1)};
+        int reg_Num{choose(1, Num)};
 
         Course* pickCourse = vCourse[reg_Num - 1];
         Score* pickScore = new Score;
@@ -157,15 +165,18 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
             if ((pickCourse->info).day[i] > 0)
                 fClass[i][(pickCourse->info).day[i]] = true;
 
-        StudentScore* SS = new StudentScore;
+        StudentScore SS;
         SS->score = pickScore;
-        SS->acc = acc;
+        SS->acc = acc;  
 
-        pickCourse->student.insert(*SS);
+        pickCourse->student.insert(SS);
             
-        CourseScore* pickCS = new CourseScore(pickCourse, pickScore);
+        CourseScore pickCS = {pickCourse, pickScore};
 
-        CoursesList.insert(*pickCS);
+        CoursesList.insert(pickCS);
+
+        // delete pickCourse;
+        // delete pickScore;
     }
 }
 
@@ -282,4 +293,35 @@ void Student::updateResult() {
     cin >> midTermScore >> finalScore;
     CoursesList.get(t-1).pScore->midTerm = midTermScore;
     CoursesList.get(t-1).pScore->Final = finalScore;
+}
+
+void Student::load_data(fstream &fin, List<Course*> pAllCourses) {
+    if (!fin.is_open()) return;
+    fin >> acc.ID;
+    fin >> class_name;
+    int n;
+    fin >> n;
+    for (int i = 0; i < n; ++i) {
+        char inpID[MAXID+1];
+        fin >> inpID;
+        for (Node<Course*>* p = pAllCourses.begin(); p; p = p -> pNext) 
+            if (strcmp(inpID, (p->data->info).ID)) {
+                Score* pScore = new Score;
+                CourseScore CS = {p->data, pScore};
+                CoursesList.insert(CS);
+                break;
+            }
+    }
+}
+
+void Student::save_data(fstream &fout) {
+    if (!fout.is_open()) return;
+    fout << acc.ID << ' ' << class_name << ' ';
+    fout << CoursesList.size() << ' ';
+    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
+        fout << (p->data).pCourse->info.name << ' ';
+        (*(p->data).pCourse).save_data();
+        
+    }
+    fout << '\n';
 }

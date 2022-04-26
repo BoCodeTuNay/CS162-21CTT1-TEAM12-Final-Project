@@ -14,7 +14,8 @@
 
 List <Student> listStudents;
 List <Staff> listStaffs;
-List <Course*> listOpenCourse;
+List <Course*> pOpenCourse;
+List <Course*> pAllCourse;
 //List <Class> listClass;
 // struct Student {
 //     char username[MAXSTR+1];
@@ -42,6 +43,8 @@ int current_year_index = -1;
 
 void loadAccounts();
 void saveAccounts();
+void load_data();
+void save_data();
 
 /*
 return 0 if no such account is found
