@@ -19,8 +19,8 @@ void Account::read_data(fstream& fin)
     fin.get(name, MAXNAME+1, '\n').get();
     fin.get(email, MAXSTR+1, '\n').get();
     fin.get(socialID, MAXSTR+1, '\n').get();
-    std::cerr << "What been read are:" << std::endl;
-    std::cerr << ID << std::endl << password << std::endl << name << std::endl << email << std::endl << socialID << std::endl;
+    // std::cerr << "What been read are:" << std::endl;
+    // std::cerr << ID << std::endl << password << std::endl << name << std::endl << email << std::endl << socialID << std::endl;
     system("pause");
 }
 
