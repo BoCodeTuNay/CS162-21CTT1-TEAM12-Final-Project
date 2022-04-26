@@ -96,7 +96,7 @@ void loadAccounts()
     */
     using namespace std;
     std::cerr << "BEGIN TO LOAD ACCOUNTS" << std::endl;
-    fstream fin(ACCOUNTS_FILE, ios::in);
+    fstream fin("Accounts.txt", ios::in);
     if (!fin.is_open()) return;
 
     unsigned int N;
