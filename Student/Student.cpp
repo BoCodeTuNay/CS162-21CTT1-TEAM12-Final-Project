@@ -166,8 +166,8 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
                 fClass[i][(pickCourse->info).day[i]] = true;
 
         StudentScore SS;
-        SS->score = pickScore;
-        SS->acc = acc;  
+        SS.score = pickScore;
+        SS.acc = acc;  
 
         pickCourse->student.insert(SS);
             
@@ -297,7 +297,7 @@ void Student::updateResult() {
 
 void Student::load_data(fstream &fin, List<Course*> pAllCourses) {
     if (!fin.is_open()) return;
-    fin >> acc.ID;
+    //fin >> acc.ID;
     fin >> class_name;
     int n;
     fin >> n;
@@ -309,6 +309,10 @@ void Student::load_data(fstream &fin, List<Course*> pAllCourses) {
                 Score* pScore = new Score;
                 CourseScore CS = {p->data, pScore};
                 CoursesList.insert(CS);
+                StudentScore tmp;
+                tmp.acc = acc;
+                tmp.score = pScore;
+                (p->data->student).insert(tmp);
                 break;
             }
     }
@@ -316,12 +320,16 @@ void Student::load_data(fstream &fin, List<Course*> pAllCourses) {
 
 void Student::save_data(fstream &fout) {
     if (!fout.is_open()) return;
-    fout << acc.ID << ' ' << class_name << ' ';
+    // fout << acc.ID << ' ' ;
+    cout << class_name << ' ';
     fout << CoursesList.size() << ' ';
     for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
         fout << (p->data).pCourse->info.name << ' ';
-        (*(p->data).pCourse).save_data();
-        
+        (*(p->data).pCourse).save_data(fout);
+
+        // delete p->data.pCourse;
+        // delete p->data.pScore;
     }
     fout << '\n';
+
 }
