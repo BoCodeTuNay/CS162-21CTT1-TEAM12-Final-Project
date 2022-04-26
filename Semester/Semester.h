@@ -28,8 +28,8 @@ struct Semester {
     void updateCourseInfomation();
     void deleteCourse();
 
-    void load_data();
-    void save_data();
+    void load_data(fstream&);
+    void save_data(fstream&);
 };
 
 #include "Semester.cpp"

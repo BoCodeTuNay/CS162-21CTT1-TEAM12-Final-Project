@@ -89,3 +89,32 @@ void Semester::deleteCourse(){
     }
 }
 
+void Semester::load_data(fstream& fin)
+{
+    if (!fin.is_open()) return;
+    fin >> index;
+    start_date.load_date(fin);
+    end_date.load_date(fin);
+    start_registration_date.load_date(fin);
+    end_registration_date.load_date(fin);
+    int N;
+    fin >> N;
+    for (int i = 0; i < N; ++i) {
+        Course cur;
+        cur.load_data(fin);
+        listCourses.insert(cur);
+    }
+}
+
+void Semester::save_data(fstream& fout)
+{
+    if (!fout.is_open()) return;
+    fout << index << endl;
+    start_date.save_date(fout);
+    end_date.save_date(fout);
+    start_registration_date.save_date(fout);
+    end_registration_date.save_date(fout);
+    fout << listCourses.size() << endl;
+    for (Node<Course>* cur = listCourses.begin(); cur; cur = cur->pNext)
+        cur->data.save_data(fout);
+}

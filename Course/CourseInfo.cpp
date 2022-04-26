@@ -119,26 +119,29 @@ void CourseInfo::updateCourseInfo()
 
 void CourseInfo::load_data(fstream& fin)
 {
-    while (fin.get() != '\n');
+    if (!fin.is_open()) return;
     fin.get(ID, MAXSTR+1, '\n').get();
     start_date.load_date(fin);
     end_date.load_date(fin);
     start_regis.load_date(fin);
     end_regis.load_date(fin);
+    fin.get();
     fin.get(name, MAXSTR+1, '\n').get();
     fin.get(lecturer, MAXSTR+1, '\n').get();
     fin >> numCredits;
     fin >> maxStudent;
     for (int i=0; i<7; i++)
         fin >> day[i];
-
+    fin.get();
 }
 void CourseInfo::save_data(fstream& fout)
 {
+    if (!fout.is_open()) return;
     fout << ID << "\n";
     start_date.save_date(fout);
     end_date.save_date(fout);
     start_regis.save_date(fout);
+    end_regis.save_date(fout);
     fout << name << "\n";
     fout << lecturer << "\n";
     fout << numCredits << "\n";
