@@ -137,7 +137,7 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
     }
 
     if (pOpenCourse.size() == 0) {
-        cout << "There is no course to regis!";
+        cout << "There is no course to regis!\n";
         system("pause");
         return;
     }
@@ -203,7 +203,10 @@ void Student::viewCourses() {
         cout << Num << ". View course " << (((p->data).pCourse->info).name) << '\n';
     }
 
-    cout << ++Num << ". Remove a course\n";
+    if (Num > 0) 
+        cout << ++Num << ". Remove a course\n";
+    else 
+        cout << "You haven't regis any course!\n";
     cout << ++Num << ". Go back\n";
 
     cout << "Your choice: ";
