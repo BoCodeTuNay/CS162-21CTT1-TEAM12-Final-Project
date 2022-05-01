@@ -20,7 +20,7 @@ void Course::manageCourseInfo()
     cout << "3. View score board\n";
     cout << "4. Go back\n\n";
     cout << "Your choice: ";
-    int t{choose(0, 2)};
+    int t{choose(0, 4)};
     if (t == 0) {
         info.updateCourseInfo();
         manageCourseInfo();

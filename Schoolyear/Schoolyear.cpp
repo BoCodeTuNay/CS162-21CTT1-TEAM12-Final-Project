@@ -12,7 +12,7 @@ void Schoolyear::createSemester() {
     cur.index = listSemesters.size();
     std::cout << "Creating semester " << cur.index + 1 << " ...\n";
     
-    std::cerr << __LINE__ << std::endl;
+    // std::cerr << __LINE__ << std::endl;
     std::cout << "Enter start date (yyyy/mm/dd):\n";
     cur.start_date.enter_date();
 

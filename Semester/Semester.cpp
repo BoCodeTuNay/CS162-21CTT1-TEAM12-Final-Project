@@ -85,7 +85,7 @@ void Semester::deleteCourse(){
         return;
     }
     char inputID[MAXSTR+1];
-    cout << "Which course ID do you want to update?\n";
+    cout << "Which course ID do you want to delete?\n";
     cin.get(inputID, MAXSTR+1, '\n');
     if (listCourses.remove(Course(inputID), cmp_course)) {
         cout << "Course delete successfully!\n";
