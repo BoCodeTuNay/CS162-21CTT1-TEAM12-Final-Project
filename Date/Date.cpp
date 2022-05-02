@@ -154,11 +154,20 @@ void Date::load_date(fstream& fin) {
 		return;
 	} else {
 		fin >> s;
-		Date(s);
+		year = stoi(s.substr(0, 4)); 
+		month = stoi(s.substr(5, 2));
+		day = stoi(s.substr(8, 2)); 
 	}
 }
 void Date::save_date(fstream& fout) {
 	if (!fout.is_open()){
 		return;
-	} else {fout << year << "/" << month << "/" << day << endl; }
+	} else {
+		fout << year << "/";
+		if (month < 10) fout << "0" << month << "/";
+		else fout << month << "/";
+		if (day < 10) fout << "0" << day;
+		else fout << day;
+		fout << "\n";
+	}
 }

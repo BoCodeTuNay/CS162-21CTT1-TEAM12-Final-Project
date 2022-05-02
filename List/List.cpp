@@ -27,6 +27,11 @@ Node<T>* const List<T>::begin() {
 }
 
 template <typename T>
+Node<T>* const List<T>::end() {
+    return pTail;
+}
+
+template <typename T>
 unsigned int List<T>::size() {
     return sz;
 }

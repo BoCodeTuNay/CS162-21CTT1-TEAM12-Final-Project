@@ -19,7 +19,7 @@ struct CourseInfo
     char lecturer[MAXSTR+1]; // tên GV
     int numCredits;
     int maxStudent{50};
-	int day[7]; // "MON", "TUE", "WED", "THU", "FRI", "SAT"; 
+	int day[8]; // "MON", "TUE", "WED", "THU", "FRI", "SAT"; 
 	// S1 (07:30), S2 (09:30), S3(13:30) and S4 (15:30)
     // int session; // 1 -> 4
 

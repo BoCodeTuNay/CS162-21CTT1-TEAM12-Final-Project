@@ -6,12 +6,12 @@ void Semester::createCourseRegistration(List <Course*>& pOpenCourse) {
     int check{0};
     do {
         newCourse.info.inputCourseInfo();
-        cout << "Are you sure about all of the information of the course you want to create? (0 for No and 1 for Yes): ";
+        cout << "Are you sure about all of the information of the course you want to create? (0: No, 1: Yes): ";
         cin >> check;
     } while (check == 0);
 
     listCourses.insert(newCourse);
-    pOpenCourse.insert(&newCourse);
+    pOpenCourse.insert(&(listCourses.end()->data));
 }
 
 void Semester::manageCourses(List <Course*>& pOpenCourse, List <Course*>& pAllCourse)
@@ -19,6 +19,7 @@ void Semester::manageCourses(List <Course*>& pOpenCourse, List <Course*>& pAllCo
     clrscr();
     std::cout << "MANAGE THE AVAILABLE COURSES\n\n";
 
+    std::cout << index << std::endl;
     int N{0};
     for (Node<Course>* cur = listCourses.begin(); cur; cur = cur->pNext) {
         std::cout << N++ << ". View course " << cur->data.info.ID << std::endl;
@@ -95,33 +96,50 @@ void Semester::deleteCourse(){
     }
 }
 
+void Semester::save_data(fstream& fout)
+{
+    // index
+    // start_date
+    // end_date
+    // start_registration_date
+    // end_registration_date
+    // size of listCourses
+    // course 0
+    // course 1
+    // ...
+    if (!fout.is_open()) return;
+    fout << index << endl;
+    // cerr << index << endl;
+    // system("pause");
+    start_date.save_date(fout);
+    end_date.save_date(fout);
+    fout << listCourses.size() << endl;
+    for (Node<Course>* cur = listCourses.begin(); cur; cur = cur->pNext)
+        cur->data.save_data(fout);
+}
+
 void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
 {
     if (!fin.is_open()) return;
+
     fin >> index;
+    std::cerr << __LINE__ << std::endl;
     start_date.load_date(fin);
     end_date.load_date(fin);
-    start_registration_date.load_date(fin);
-    end_registration_date.load_date(fin);
+    std::cerr << __LINE__ << std::endl;
     int N;
     fin >> N;
     for (int i = 0; i < N; ++i) {
         Course cur;
         cur.load_data(fin);
         listCourses.insert(cur);
-        pAllCourse.insert(&cur);
+        pAllCourse.insert(&(listCourses.end()->data));
     }
-}
-
-void Semester::save_data(fstream& fout)
-{
-    if (!fout.is_open()) return;
-    fout << index << endl;
-    start_date.save_date(fout);
-    end_date.save_date(fout);
-    start_registration_date.save_date(fout);
-    end_registration_date.save_date(fout);
-    fout << listCourses.size() << endl;
-    for (Node<Course>* cur = listCourses.begin(); cur; cur = cur->pNext)
-        cur->data.save_data(fout);
+    // test load_data semester
+    cerr << "load_data semester" << endl;
+    cerr << "index: " << index << endl;
+    cerr << "start_date: " << start_date.day << "/" << start_date.month << "/" << start_date.year << endl;
+    cerr << "end_date: " << end_date.day << "/" << end_date.month << "/" << end_date.year << endl;
+    cerr << "listCourses.size(): " << listCourses.size() << endl;
+    system("pause");
 }

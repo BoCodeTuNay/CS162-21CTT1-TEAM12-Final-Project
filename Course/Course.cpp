@@ -6,8 +6,8 @@ void Course::manageCourseInfo()
     clrscr();
     cout << "MANAGE COURSE " << info.name << ".\n\n";
 
-    cout << "id: " << "\t" << info.ID<< "\n";
-    // cout << "name: " << "\t" << name << "\n";
+    cout << "id: " << "\t\t" << info.ID<< "\n";
+    // cout << "name: " << "\t\t" << info.name << "\n";
     cout << "lecturer: " << "\t" << info.lecturer << "\n";
     cout << "numCredits: " << "\t" << info.numCredits << "\n";
     cout << "maxStudents: " << "\t" << info.maxStudent << "\n";
@@ -74,7 +74,7 @@ void Course::viewStudents()
 
 bool cmp_course(const Course& s1, const Course& s2)
 {
-    return strcmp(s1.info.ID, s2.info.ID); // so sánh bằng Course ID
+    return (!strcmp(s1.info.ID, s2.info.ID)); // so sánh bằng Course ID
 }
 
 void Course::exportStudentsToCSV(){
@@ -143,7 +143,7 @@ void Course::importStudentsFromCSV(){
 }
 
 void Course::load_data(fstream &fin) {
-    info.save_data(fin);
+    info.load_data(fin);
 }
 
 void Course::save_data(fstream &fout) {
