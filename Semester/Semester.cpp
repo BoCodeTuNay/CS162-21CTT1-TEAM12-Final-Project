@@ -112,8 +112,6 @@ void Semester::save_data(fstream& fout)
     // system("pause");
     start_date.save_date(fout);
     end_date.save_date(fout);
-    start_registration_date.save_date(fout);
-    end_registration_date.save_date(fout);
     fout << listCourses.size() << endl;
     for (Node<Course>* cur = listCourses.begin(); cur; cur = cur->pNext)
         cur->data.save_data(fout);
@@ -123,19 +121,12 @@ void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
 {
     if (!fin.is_open()) return;
 
+    fin.get();
     fin >> index;
-    // // test load_data semester
-    // cerr << "load_data semester" << endl;
-    // cerr << "index: " << index << endl;
-    // system("pause");
     fin.get();
     start_date.load_date(fin);
     fin.get();
     end_date.load_date(fin);
-    fin.get();
-    start_registration_date.load_date(fin);
-    fin.get();
-    end_registration_date.load_date(fin);
     int N;
     fin >> N;
     for (int i = 0; i < N; ++i) {
@@ -144,4 +135,11 @@ void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
         listCourses.insert(cur);
         pAllCourse.insert(&(listCourses.end()->data));
     }
+    // test load_data semester
+    cerr << "load_data semester" << endl;
+    cerr << "index: " << index << endl;
+    cerr << "start_date: " << start_date.day << "/" << start_date.month << "/" << start_date.year << endl;
+    cerr << "end_date: " << end_date.day << "/" << end_date.month << "/" << end_date.year << endl;
+    cerr << "listCourses.size(): " << listCourses.size() << endl;
+    system("pause");
 }

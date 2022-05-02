@@ -9,8 +9,6 @@ struct Semester {
 
     Date start_date;
     Date end_date;
-    Date start_registration_date;
-    Date end_registration_date;
     
     List <Course> listCourses;
 
