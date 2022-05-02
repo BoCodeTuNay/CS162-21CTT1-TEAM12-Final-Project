@@ -6,12 +6,12 @@ void Semester::createCourseRegistration(List <Course*>& pOpenCourse) {
     int check{0};
     do {
         newCourse.info.inputCourseInfo();
-        cout << "Are you sure about all of the information of the course you want to create? (0 for No and 1 for Yes): ";
+        cout << "Are you sure about all of the information of the course you want to create? (0: No, 1: Yes): ";
         cin >> check;
     } while (check == 0);
 
     listCourses.insert(newCourse);
-    pOpenCourse.insert(&newCourse);
+    pOpenCourse.insert(&(listCourses.end()->data));
 }
 
 void Semester::manageCourses(List <Course*>& pOpenCourse, List <Course*>& pAllCourse)

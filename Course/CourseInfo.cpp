@@ -36,18 +36,21 @@ void CourseInfo::inputCourseInfo()
     cout << "Enter maximum students: ";
     cin >> maxStudent;
 
-    std::cout << "Enter start date:\n";
+    std::cout << "Enter start date(yyyy/mm/dd):\n";
     start_date.enter_date();
     std::cout << "Enter end date:\n";
     end_date.enter_date();
-    std::cout << "Enter start date of registration session:\n";
+    std::cout << "Enter start date of registration session(yyyy/mm/dd):\n";
     start_regis.enter_date();
-    std::cout << "Enter end date of registration session:\n";
+    std::cout << "Enter end date of registration session(yyyy/mm/dd):\n";
     end_regis.enter_date();
 
+    for (int i=0; i<=7; i++)
+        day[i] = 0;
+    
     for (int i=1; i<=2; i++)
     {
-        cout << "Enter day of session " << i << " (1 -> 7 as MON to SAT): ";
+        cout << "Enter day of session " << i << " (2 -> 7 as MON to SAT): ";
         int x;
         cin >> x;
         cout << "Enter session (S1 (07:30), S2 (09:30), S3(13:30), S4 (15:30)): ";
@@ -55,17 +58,18 @@ void CourseInfo::inputCourseInfo()
         cin >> y;
         day[x] = y;
     }
+    cin.get();
 }
 
 void CourseInfo::updateCourseInfo()
 {
     clrscr();
     cout << "Which elements you want to edit ?\n";
-    cout << "id: 1\tname: 2\tlecturer: 3\tnumCredits: 4\tmaxStudents: 5\tcourseSession: 6\n";
-    int choose;
-    cin >> choose;
+    cout << "1: id\n2: name\n3: lecturer\n4: numCredits\n5: maxStudents\n6: courseSession\n";
+    
+    int t{choose(1, 6)};
 
-    switch (choose)
+    switch (t)
     {
         case 1:
         {

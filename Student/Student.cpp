@@ -131,6 +131,8 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
     List<CourseInfo> res;
 
     // nếu còn thời gian fix: mình check số tín chỉ max <= 22
+
+    clrscr();
     if (CurCourses() > 4) {
         cout << "You have registered 5 courses!";
         return;
@@ -159,6 +161,11 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
 
             vCourse.push_back(data);
             cout << ++Num << ". " << (data->info).name << '\n';
+        }
+        if (Num == 0) {
+            cout << "There is no course to regis!\n";
+            system("pause");
+            return;
         }
 
         cout << "Please enter the number of course you want to regis (or 0 to exit):" << '\n';
@@ -298,6 +305,7 @@ int Student::listOfCourseStudied() {
 }
 
 void Student::viewScoreBoard() {
+    clrscr();
     cout << "STUDENT SCOREBOARD\n\n";
     int Num = 0;
     for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {

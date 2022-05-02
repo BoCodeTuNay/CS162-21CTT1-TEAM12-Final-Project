@@ -37,6 +37,8 @@ public:
     // the first node of the list
     Node<T>* const begin();
     // the current number of nodes in the list
+    Node<T>* const end();
+    // the current number of nodes in the list
     unsigned int size();
     // insert a new element as the last node in the list, return true/false whether the insertion succeeds
     bool insert(const T&);
