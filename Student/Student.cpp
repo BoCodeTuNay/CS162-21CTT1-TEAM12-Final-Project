@@ -204,20 +204,20 @@ void Student::viewCourses() {
     - Thực hiện chức năng view thông tin của course (option 0 đến Num - 2) already
     */
 
-    int Num = 0;
+    int Num = -1;
     for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
         ++Num;
         cout << Num << ". View course " << (((p->data).pCourse->info).name) << '\n';
     }
 
-    if (Num > 0) 
+    if (Num > -1) 
         cout << ++Num << ". Remove a course\n";
     else 
         cout << "You haven't regis any course!\n";
     cout << ++Num << ". Go back\n";
 
     cout << "Your choice: ";
-    int t{choose(1, Num)};
+    int t{choose(0, Num)};
     if (t <= Num - 2) {
         Num = 0;
         for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
