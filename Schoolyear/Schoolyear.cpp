@@ -33,13 +33,18 @@ void Schoolyear::save_data(fstream& fout)
 void Schoolyear::load_data(fstream& fin, List <Course*>& pAllCourse)
 {
     if (!fin.is_open()) return;
+    std::cerr << "Loading a Schoolyear of Semesters..." << std::endl;
     int N;
     fin >> ID >> index >> N;
+    std::cerr << "ID = " << ID << std::endl;
+    std::cerr << "index = " << index << std::endl;
+    std::cerr << "N = " << N << std::endl;
     for (int i = 0; i < N; ++i) {
         Semester cur;
         cur.load_data(fin, pAllCourse);
         listSemesters.insert(cur);
     }
+    std::cerr << "Done loading data, size of listSemesters = " << listSemesters.size() << std::endl;
 }
 
 void Schoolyear::manageSemesters(List <Course*>& pOpenCourse, List <Course*>& pAllCourse)
@@ -48,11 +53,15 @@ void Schoolyear::manageSemesters(List <Course*>& pOpenCourse, List <Course*>& pA
     std::cout << "MANAGE THE AVAILABLE SEMESTERS.\n\n";
     int N{0};
     for (Node<Semester>* cur = listSemesters.begin(); cur; cur = cur->pNext) {
+        std::cerr << __LINE__ << std::endl;
         std::cout << N++ << ". View semester " << N << endl;
     }
+    std::cerr << __LINE__ << std::endl;
     std::cout << N++ << ". Create a new semester\n";
+    std::cerr << __LINE__ << std::endl;
     std::cout << N++ << ". Go back\n";
     int t{choose(0, N - 1)};
+    std::cerr << __LINE__ << std::endl;
     if (t < N - 2) {
         listSemesters.get(t).manageCourses(pOpenCourse, pAllCourse);
         manageSemesters(pOpenCourse, pAllCourse);

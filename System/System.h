@@ -16,29 +16,7 @@ List <Student> listStudents;
 List <Staff> listStaffs;
 List <Course*> pOpenCourse;
 List <Course*> pAllCourse;
-//List <Class> listClass;
-// struct Student {
-//     char username[MAXSTR+1];
-//     char password[MAXSTR+1];
 
-//     char name[MAXSTR+1];
-//     char id[MAXID+1];
-//     char email[MAXSTR+1];
-
-//     Student(): username("\0"), password("\0"), name("\0"), id("\0"), email("\0") {}
-//     Student(const char*, const char*, const char*, const char*, const char*);
-// };
-// struct Staff {
-
-//     char name[MAXSTR+1];
-//     char id[MAXID+1];
-//     char email[MAXSTR+1];
-
-//     Staff(): username("\0"), password("\0"), name("\0"), id("\0"), email("\0") {}
-//     Staff(const char*, const char*, const char*, const char*, const char*);
-// };
-
-//List<Schoolyear> listSchoolyears;
 int current_year_index = -1;
 
 void loadAccounts();

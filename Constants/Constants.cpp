@@ -9,6 +9,7 @@ int choose(int a, int b)
 {
     using namespace std;
     char str[3];
+    fflush(stdin);
     cin.get(str, 3, '\n');
     while (cin.fail() || cin.get() != '\n' || atoi(str) < a || atoi(str) > b) {
         cin.clear();
