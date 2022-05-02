@@ -32,6 +32,8 @@ void Schoolyear::save_data(fstream& fout)
     if (!fout.is_open()) return;
     fout << ID << endl << index << endl;
     fout << listSemesters.size() << endl;
+    // cerr << listSemesters.begin()->data.index << endl;
+    // system("pause");
     for (Node<Semester>* cur = listSemesters.begin(); cur; cur = cur->pNext)
         cur->data.save_data(fout);
 }

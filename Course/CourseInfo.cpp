@@ -10,8 +10,8 @@ void CourseInfo::viewCourseInfo(){
     cout << "End regis day: "; end_regis.output_date(); cout << "\n";
     cout << "Name: " << name << "\n";
     cout << "Lecturer: " << lecturer << "\n";
-    cout << "numCredits " << numCredits << "\n";
-    cout << "maxStudent" << maxStudent << "\n";
+    cout << "numCredits: " << numCredits << "\n";
+    cout << "maxStudent: " << maxStudent << "\n";
     //session
 }
 
@@ -51,14 +51,13 @@ void CourseInfo::inputCourseInfo()
     for (int i=1; i<=2; i++)
     {
         cout << "Enter day of session " << i << " (2 -> 7 as MON to SAT): ";
-        int x;
-        cin >> x;
+        int x{choose(2, 7)};
         cout << "Enter session (S1 (07:30), S2 (09:30), S3(13:30), S4 (15:30)): ";
-        int y;
-        cin >> y;
+        int y{choose(1, 4)};
         day[x] = y;
     }
     cin.get();
+    fflush(stdin);
 }
 
 void CourseInfo::updateCourseInfo()
@@ -111,11 +110,9 @@ void CourseInfo::updateCourseInfo()
             for (int i=1; i<=2; i++)
             {
                 cout << "Enter day of session " << i << ": ";
-                int x;
-                cin >> x;
+                int x{choose(2, 7)};
                 cout << "Enter session (S1 (07:30), S2 (09:30), S3(13:30), S4 (15:30)): ";
-                int y;
-                cin >> y;
+                int y{choose(1, 4)};
                 day[x] = y;
             }
         }
@@ -125,22 +122,41 @@ void CourseInfo::updateCourseInfo()
 void CourseInfo::load_data(fstream& fin)
 {
     if (!fin.is_open()) return;
+
+    fin.get();
     fin.get(ID, MAXSTR+1, '\n').get();
     start_date.load_date(fin);
+    fin.get();
     end_date.load_date(fin);
+    fin.get();
     start_regis.load_date(fin);
+    fin.get();
     end_regis.load_date(fin);
     fin.get();
     fin.get(name, MAXSTR+1, '\n').get();
     fin.get(lecturer, MAXSTR+1, '\n').get();
     fin >> numCredits;
     fin >> maxStudent;
-    for (int i=0; i<7; i++)
+    for (int i=2; i<=7; i++)
         fin >> day[i];
     fin.get();
+    
+    //test load_data courseInfo
+    // viewCourseInfo();
+    // system("pause");
 }
 void CourseInfo::save_data(fstream& fout)
 {
+    // ID
+    // start_date
+    // end_date
+    // start_regis
+    // end_regis
+    // name
+    // lecturer
+    // numCredits
+    // maxStudent
+    // day (1 .. 7)
     if (!fout.is_open()) return;
     fout << ID << "\n";
     start_date.save_date(fout);
@@ -151,7 +167,7 @@ void CourseInfo::save_data(fstream& fout)
     fout << lecturer << "\n";
     fout << numCredits << "\n";
     fout << maxStudent << "\n";
-    for (int i=0; i<7; i++)
+    for (int i=2; i<=7; i++)
         fout << day[i] << " ";
     fout << "\n";
 }

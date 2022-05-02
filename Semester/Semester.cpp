@@ -108,6 +108,8 @@ void Semester::save_data(fstream& fout)
     // ...
     if (!fout.is_open()) return;
     fout << index << endl;
+    // cerr << index << endl;
+    // system("pause");
     start_date.save_date(fout);
     end_date.save_date(fout);
     start_registration_date.save_date(fout);
@@ -120,7 +122,12 @@ void Semester::save_data(fstream& fout)
 void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
 {
     if (!fin.is_open()) return;
+
     fin >> index;
+    // // test load_data semester
+    // cerr << "load_data semester" << endl;
+    // cerr << "index: " << index << endl;
+    // system("pause");
     fin.get();
     start_date.load_date(fin);
     fin.get();
@@ -135,13 +142,6 @@ void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
         Course cur;
         cur.load_data(fin);
         listCourses.insert(cur);
-        pAllCourse.insert(&cur);
+        pAllCourse.insert(&(listCourses.end()->data));
     }
-
-    cerr << "test load semester data\n";
-    start_date.output_date(); cout << endl;
-    end_date.output_date(); cout << endl;
-    start_registration_date.output_date(); cout << endl;
-    end_registration_date.output_date(); cout << endl;
-    system("pause");
 }
