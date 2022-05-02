@@ -52,7 +52,7 @@ void CourseInfo::inputCourseInfo()
     {
         cout << "Enter day of session " << i << " (2 -> 7 as MON to SAT): ";
         int x{choose(2, 7)};
-        cout << "Enter session (S1 (07:30), S2 (09:30), S3(13:30), S4 (15:30)): ";
+        cout << "Enter session (1 (07:30), 2 (09:30), 3(13:30), 4 (15:30)): ";
         int y{choose(1, 4)};
         day[x] = y;
     }
