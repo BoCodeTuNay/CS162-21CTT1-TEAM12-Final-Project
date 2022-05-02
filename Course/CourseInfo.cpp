@@ -50,10 +50,24 @@ void CourseInfo::inputCourseInfo()
     
     for (int i=1; i<=2; i++)
     {
-        cout << "Enter day of session " << i << " (2 -> 7 as MON to SAT): ";
-        int x{choose(2, 7)};
-        cout << "Enter session (1 (07:30), 2 (09:30), 3(13:30), 4 (15:30)): ";
-        int y{choose(1, 4)};
+        SessionLoop: 
+            cout << "Enter day of session " << i << " (2 -> 7 as MON to SAT): ";
+            int x{choose(2, 7)};
+
+            while (x < 2 || x > 7) {
+                cout << "Invalid day in week!\n";
+                cout << "Please input it again.\n";
+                goto SessionLoop;
+            }
+
+            cout << "Enter session (1 (07:30), 2 (09:30), 3(13:30), 4 (15:30)): ";
+            int y{choose(1, 4)};
+        
+        while (day[x] != 0) {
+            cout << "This course already has one session in this day.\n";
+            cout << "Please choose another day.\n";
+            goto SessionLoop;
+        }
         day[x] = y;
     }
     cin.get();
