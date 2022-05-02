@@ -23,6 +23,12 @@ void Schoolyear::createSemester() {
 
 void Schoolyear::save_data(fstream& fout)
 {
+    // ID (2021-2022)
+    // index (0, 1, 2, ...)
+    // size of listSemesters
+    // semester 0
+    // semester 1
+    // ...
     if (!fout.is_open()) return;
     fout << ID << endl << index << endl;
     fout << listSemesters.size() << endl;
