@@ -13,7 +13,7 @@ void Class::manageStudent(List <Student>& listStudents)
             "5. View scoreboard.\n"
             "6. Go back.\n\n";
     std::cout << "Your choice: ";
-    int t{choose(1, 4)};
+    int t{choose(1, 6)};
     if (t == 1) {
         viewStudentList();
         manageStudent(listStudents);
@@ -60,7 +60,7 @@ void Class::load_data(fstream& fin, List<Student>& listStudents)
         char inpID[MAXID+1];
         fin >> inpID;
         for (Node<Student>* p = listStudents.begin(); p; p = p -> pNext) 
-            if (strcmp(inpID, (p->data).acc.ID)) {
+            if (!strcmp(inpID, (p->data).acc.ID)) {
                 studentsList.insert(&(p->data));
                 break;
             }
@@ -93,15 +93,19 @@ bool Class::addStudent(List<Student>& listStudents) {
     
     char inpID[MAXID+1];
     cout << "Please enter Student ID: ";
-    cin >> inpID;
+    cin.get(inpID, MAXID+1, '\n');
+    cin.get();
 
     for (Node<Student>* p = listStudents.begin(); p; p = p -> pNext) 
-        if (strcmp(inpID, (p->data).acc.ID)) {
+        if (!strcmp(inpID, (p->data).acc.ID)) {
             studentsList.insert(&(p->data));
+            cout << "Student added successfully!\n";
+            system("pause");
             return true;
         }
     
-    cout << "Invalid Student ID! Please check it again";
+    cout << "Invalid Student ID! Please check it again\n";
+    system("pause");
     return false;
 }
 
@@ -122,10 +126,10 @@ void Class::importStudentFile(List <Student>& listStudents) {
             getline(fin, inpID);
 
             for (Node<Student>* p = listStudents.begin(); p; p = p -> pNext) {
-                bool sameID = true;
-                for (int j = 0; j < inpID.length(); ++j)
-                    if (inpID[j] != (p->data).acc.ID[j]) sameID = false;
-                if (sameID) {
+                // bool sameID = true;
+                // for (int j = 0; j < inpID.length(); ++j)
+                //     if (inpID[j] != (p->data).acc.ID[j]) sameID = false;
+                if (!strcmp(inpID.c_str(), (p->data).acc.ID)) {
                     studentsList.insert(&(p->data));
                     break;
                 }
@@ -133,6 +137,8 @@ void Class::importStudentFile(List <Student>& listStudents) {
             
         } while (!fin.eof());
     }
+    cout << "Student added successfully!\n";
+    system("pause");
     // return res;
 }
 
@@ -168,6 +174,11 @@ void Class::updateStudentResult()
     for (Node <Student*> *i; i; i = i -> pNext)
     {
         std::cout << ++N << ". " << i->data->acc.name << "\n";
+    }
+    if (N == 0) {
+        cout << "No student in this class!";
+        system("pause");
+        return;
     }
 
     cout << "Enter student you want to update result (1 -> " << N << "): ";

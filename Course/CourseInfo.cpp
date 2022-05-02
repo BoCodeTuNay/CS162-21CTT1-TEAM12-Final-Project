@@ -67,6 +67,7 @@ void CourseInfo::updateCourseInfo()
     cout << "Which elements you want to edit ?\n";
     cout << "1: id\n2: name\n3: lecturer\n4: numCredits\n5: maxStudents\n6: courseSession\n";
     
+    cout << "Your choice: ";
     int t{choose(1, 6)};
 
     switch (t)
