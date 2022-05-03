@@ -12,6 +12,7 @@ void CourseInfo::viewCourseInfo(){
     cout << "Lecturer: " << lecturer << "\n";
     cout << "numCredits: " << numCredits << "\n";
     cout << "maxStudent: " << maxStudent << "\n";
+    system("pause");
     //session
 }
 
