@@ -151,7 +151,7 @@ void CourseInfo::load_data(fstream& fin)
     fin.get(lecturer, MAXSTR+1, '\n').get();
     fin >> numCredits;
     fin >> maxStudent;
-    for (int i=2; i<=7; i++)
+    for (int i=0; i<=7; i++)
         fin >> day[i];
     fin.get();
     
@@ -181,7 +181,7 @@ void CourseInfo::save_data(fstream& fout)
     fout << lecturer << "\n";
     fout << numCredits << "\n";
     fout << maxStudent << "\n";
-    for (int i=2; i<=7; i++)
+    for (int i=0; i<=7; i++)
         fout << day[i] << " ";
     fout << "\n";
 }
