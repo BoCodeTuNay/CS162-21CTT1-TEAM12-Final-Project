@@ -26,7 +26,7 @@ struct Course {
         strcpy(info.ID, _ID);
     }
     
-    void viewStudents(); 
+    void viewStudentsList(); 
 	void viewScoreboard(); //
     void addStudent();
     void isRegistrable();
