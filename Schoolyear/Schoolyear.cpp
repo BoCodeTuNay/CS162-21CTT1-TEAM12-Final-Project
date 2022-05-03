@@ -38,7 +38,7 @@ void Schoolyear::save_data(fstream& fout)
         cur->data.save_data(fout);
 }
 
-void Schoolyear::load_data(fstream& fin, List <Course*>& pAllCourse)
+void Schoolyear::load_data(fstream& fin, List <Course*>& pAllCourse, List <Course*>& pOpenCourse)
 {
     if (!fin.is_open()) return;
     int N;
@@ -46,7 +46,7 @@ void Schoolyear::load_data(fstream& fin, List <Course*>& pAllCourse)
     for (int i = 0; i < N; ++i) {
         Semester cur;
         listSemesters.insert(cur);
-        listSemesters.end()->data.load_data(fin, pAllCourse);
+        listSemesters.end()->data.load_data(fin, pAllCourse, pOpenCourse);
     }
     std::cerr << "Done loading data, size of listSemesters = " << listSemesters.size() << std::endl;
 }

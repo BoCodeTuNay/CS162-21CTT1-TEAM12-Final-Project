@@ -37,7 +37,7 @@ void Staff::save_courses(fstream& fout)
     fout << endl;
 }
 
-void Staff::load_courses(fstream& fin, List <Course*>& pAllCourse)
+void Staff::load_courses(fstream& fin, List <Course*>& pAllCourse, List <Course*>& pOpenCourse)
 {
     if (!fin.is_open()) return;
     int N;
@@ -45,7 +45,7 @@ void Staff::load_courses(fstream& fin, List <Course*>& pAllCourse)
     for (int i = 0; i < N; ++i) {
         Schoolyear cur;
         listSchoolyears.insert(cur);
-        listSchoolyears.end()->data.load_data(fin, pAllCourse);
+        listSchoolyears.end()->data.load_data(fin, pAllCourse, pOpenCourse);
     }
 }
 

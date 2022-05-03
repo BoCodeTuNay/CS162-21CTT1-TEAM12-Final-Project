@@ -119,7 +119,7 @@ void Semester::save_data(fstream& fout)
         cur->data.save_data(fout);
 }
 
-void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
+void Semester::load_data(fstream& fin, List <Course*>& pAllCourse, List <Course*>& pOpenCourse)
 {
     if (!fin.is_open()) return;
 
@@ -133,6 +133,7 @@ void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
         listCourses.insert(cur);
         listCourses.end()->data.load_data(fin);
         pAllCourse.insert(&(listCourses.end()->data));
+        pOpenCourse.insert(&(listCourses.end()->data));
     }
     // test load_data semester
     cerr << "load_data semester" << endl;

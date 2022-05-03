@@ -26,7 +26,7 @@ struct Semester {
     void updateCourseInfomation();
     void deleteCourse();
 
-    void load_data(fstream&, List <Course*>& pAllCourse);
+    void load_data(fstream&, List <Course*>& pAllCourse, List <Course*> &pOpenCourse);
     void save_data(fstream&);
 };
 

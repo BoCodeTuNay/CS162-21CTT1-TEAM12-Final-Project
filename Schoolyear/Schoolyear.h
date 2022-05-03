@@ -17,7 +17,7 @@ struct Schoolyear {
     void createSemester(); // CHECKED
     void manageSemesters(List <Course*>&, List <Course*>&);
     void save_data(fstream&);
-    void load_data(fstream&, List <Course*>&);
+    void load_data(fstream&, List <Course*>&, List <Course*> &);
 };
 
 #include "Schoolyear.cpp"

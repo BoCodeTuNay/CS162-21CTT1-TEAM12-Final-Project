@@ -25,7 +25,7 @@ struct Staff {
     void createClasses(); // CHECKED
     void viewProfile(); // CHECKED
     void changePassword(); // CHECKED
-    void load_courses(fstream&, List <Course*> &);
+    void load_courses(fstream&, List <Course*> &, List <Course*> &);
     void save_courses(fstream&);
     void load_classes(fstream&, List<Student>&);
     void save_classes(fstream&);

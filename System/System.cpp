@@ -170,7 +170,7 @@ void load_data()
     fstream fin(COURSES_FILE, ios::in);
     Staff dummy;
     if (fin.is_open()) {
-        dummy.load_courses(fin, pAllCourse);
+        dummy.load_courses(fin, pAllCourse, pOpenCourse);
         fin.close();
     }
 
