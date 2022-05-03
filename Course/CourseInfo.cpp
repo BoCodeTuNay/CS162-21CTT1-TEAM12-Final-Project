@@ -70,7 +70,6 @@ void CourseInfo::inputCourseInfo()
         }
         day[x] = y;
     }
-    cin.get();
     fflush(stdin);
 }
 
