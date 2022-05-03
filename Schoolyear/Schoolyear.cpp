@@ -48,7 +48,7 @@ void Schoolyear::load_data(fstream& fin, List <Course*>& pAllCourse, List <Cours
         listSemesters.insert(cur);
         listSemesters.end()->data.load_data(fin, pAllCourse, pOpenCourse);
     }
-    std::cerr << "Done loading data, size of listSemesters = " << listSemesters.size() << std::endl;
+    // std::cerr << "Done loading data, size of listSemesters = " << listSemesters.size() << std::endl;
 }
 
 void Schoolyear::manageSemesters(List <Course*>& pOpenCourse, List <Course*>& pAllCourse)

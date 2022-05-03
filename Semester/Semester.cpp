@@ -136,10 +136,10 @@ void Semester::load_data(fstream& fin, List <Course*>& pAllCourse, List <Course*
         pOpenCourse.insert(&(listCourses.end()->data));
     }
     // test load_data semester
-    cerr << "load_data semester" << endl;
-    cerr << "index: " << index << endl;
-    cerr << "start_date: " << start_date.day << "/" << start_date.month << "/" << start_date.year << endl;
-    cerr << "end_date: " << end_date.day << "/" << end_date.month << "/" << end_date.year << endl;
-    cerr << "listCourses.size(): " << listCourses.size() << endl;
-    system("pause");
+    // cerr << "load_data semester" << endl;
+    // cerr << "index: " << index << endl;
+    // cerr << "start_date: " << start_date.day << "/" << start_date.month << "/" << start_date.year << endl;
+    // cerr << "end_date: " << end_date.day << "/" << end_date.month << "/" << end_date.year << endl;
+    // cerr << "listCourses.size(): " << listCourses.size() << endl;
+    // system("pause");
 }

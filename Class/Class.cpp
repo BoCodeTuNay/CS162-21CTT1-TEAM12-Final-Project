@@ -44,9 +44,11 @@ void Class::manageStudent(List <Student>& listStudents)
 void Class::save_data(fstream& fout)
 {
     // format
+    // classname
     // nStudent
     // student1.name student2.name ... studentN.name
     if (!fout.is_open()) return;
+    fout << ID << "\n";
     fout << studentsList.size() << '\n';
     for (Node<Student*>* p = studentsList.begin(); p; p = p -> pNext) {
         fout << p->data->acc.ID << ' ';
