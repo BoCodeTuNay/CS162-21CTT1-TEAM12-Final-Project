@@ -94,6 +94,7 @@ void Semester::deleteCourse(){
     else {
         cout << "Do not have this course ID.\n";
     }
+    system("pause");
 }
 
 void Semester::save_data(fstream& fout)
