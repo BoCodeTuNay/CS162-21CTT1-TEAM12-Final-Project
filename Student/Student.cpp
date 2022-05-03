@@ -133,6 +133,8 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
 
     // nếu còn thời gian fix: mình check số tín chỉ max <= 22
 
+    if (CurCourses() == 0) init_StudentInfo();
+
     clrscr();
     if (CurCourses() > 4) {
         cout << "You have registered 5 courses!";
@@ -153,6 +155,7 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
         for (Node <Course*>* p = pOpenCourse.begin(); p; p = p -> pNext) {
             bool check = true;
             Course* data = p->data;
+            system("pause");
             for (int i = 1; i < 7; ++i)
                 if ((data->info).day[i] > 0 && fClass[i][(data->info).day[i]])
                     check = false;
@@ -262,7 +265,7 @@ void Student::removeCourse(char id[MAXID+1]) {
     CourseScore pick;
 
     for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
-        if (strcmp(((p->data).pCourse->info).ID, id)) {
+        if (strcmp(((p->data).pCourse->info).ID, id) == 0) {
             pick = p->data;
             break;
         }
@@ -334,21 +337,26 @@ void Student::updateResult() {
 
 void Student::load_data(fstream &fin, List<Course*> pAllCourses) {
     if (!fin.is_open()) return;
-    //fin >> acc.ID;
     fin >> class_name;
+    for (int i = 0; i < 8; ++i) 
+        for (int j = 0; j < 5; ++j) {
+            int x;
+            fin >> x;
+            fClass[i][j] = false;
+            if (x) fClass[i][j] = true;
+        }
     int n;
     fin >> n;
     for (int i = 0; i < n; ++i) {
         char inpID[MAXID+1];
         fin >> inpID;
         for (Node<Course*>* p = pAllCourses.begin(); p; p = p -> pNext) 
-            if (strcmp(inpID, (p->data->info).ID)) {
+            if (strcmp(inpID, (p->data->info).ID) == 0) {
                 Score* pScore = new Score;
                 CourseScore CS = {p->data, pScore};
                 CoursesList.insert(CS);
 
-                for (int i = 1; i < 7; ++i) 
-                    fClass[i][(p->data)->info.day[i]] = true;
+                fin >> (pScore->midTerm) >> (pScore->Final) >> (pScore->HW) >> (pScore->GPA);
 
                 StudentScore tmp;
                 tmp.acc = acc;
@@ -360,14 +368,27 @@ void Student::load_data(fstream &fin, List<Course*> pAllCourses) {
 }
 
 void Student::save_data(fstream &fout) {
+    // format
+    // ID
+    // class_name
+    // fClass[8][5]
+    // nCourse
+    // courseID1 CourseScore1
+    // courseID2 CourseScore2
+    // ...
     if (!fout.is_open()) return;
-    // fout << acc.ID << ' ' ;
-    cout << class_name << ' ';
-    fout << CoursesList.size() << ' ';
+    fout << acc.ID << '\n';
+    fout << class_name << '\n';
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 5; ++j) 
+            fout << (fClass[i][j] ? 1 : 0) << ' ';
+        fout << '\n';
+    }
+    fout << CoursesList.size() << '\n';
     for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
-        fout << (p->data).pCourse->info.name << ' ';
-        (*(p->data).pCourse).save_data(fout);
-
+        fout << (p->data).pCourse->info.ID << ' ' << (p->data).pScore->midTerm << ' ';
+        fout << (p->data).pScore->Final << ' ' << (p->data).pScore->HW << ' ';
+        fout << (p->data).pScore->GPA << '\n';
         // delete p->data.pCourse;
         // delete p->data.pScore;
     }

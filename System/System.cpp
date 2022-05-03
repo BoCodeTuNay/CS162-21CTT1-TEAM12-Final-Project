@@ -109,6 +109,7 @@ void loadAccounts()
         s.acc = cur;
         // std::cerr << "Student s is:" << std::endl;
         // std::cerr << s.acc.ID << std::endl << s.acc.password << std::endl << s.acc.name << std::endl << s.acc.email << std::endl << s.acc.socialID << std::endl;
+        s.init_StudentInfo();
         listStudents.insert(s);
     }
 

@@ -19,7 +19,7 @@ struct Student {
     Account acc;
 
     char class_name[MAXSTR+1];
-    bool fClass[7][5];
+    bool fClass[8][5];
     long long class_id;
 
     List<CourseScore> CoursesList;
