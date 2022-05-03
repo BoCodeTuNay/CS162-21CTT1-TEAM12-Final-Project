@@ -37,8 +37,8 @@ struct Student {
     void viewScoreBoard();
     void updateResult();
     void viewListOpenCourse(List <Course*> &pOpenCourse);
-    void load_data(fstream &fin, List<Course*> &pAllCourses);
-    void save_data(fstream &fout);
+    void load_data(ifstream &fin, List<Course*> &pAllCourses);
+    void save_data(ofstream &fout);
 };
 
 #include "Student.cpp"

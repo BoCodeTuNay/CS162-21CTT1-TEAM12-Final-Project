@@ -14,6 +14,7 @@
 
 List <Student> listStudents;
 List <Staff> listStaffs;
+List <Class> listClasses;
 List <Course*> pOpenCourse;
 List <Course*> pAllCourse;
 
@@ -23,6 +24,8 @@ void loadAccounts();
 void saveAccounts();
 void load_data();
 void save_data();
+void load_students();
+void save_students();
 
 /*
 return 0 if no such account is found

@@ -203,3 +203,35 @@ void save_data()
         std::cerr << "Cannot save the updated classes' data into " << CLASSES_FILE << std::endl;
     }
 }
+
+void load_students() {
+    ifstream fin;
+    fin.open("Student.txt");
+    Node<Student>* p = listStudents.begin();
+
+    while (p != NULL) {
+        char inpID[MAXID+1];
+        fin >> inpID;
+
+        while (p->pNext != NULL && strcmp(p->data.acc.ID, inpID) != 0) p = p -> pNext;
+
+        if (p != NULL && strcmp(p->data.acc.ID, inpID) == 0) 
+            p->data.load_data(fin, pAllCourse);
+
+        p = p -> pNext;
+    }
+
+    fin.close();
+}
+
+void save_students() {
+    ofstream fout;
+    fout.open("Student.txt");
+
+    int cnt = 0;
+    for (Node<Student>* p = listStudents.begin(); p != NULL; p = p -> pNext) 
+        p->data.save_data(fout);
+
+    fout.close();
+}
+
