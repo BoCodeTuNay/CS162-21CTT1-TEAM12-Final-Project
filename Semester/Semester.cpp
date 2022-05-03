@@ -19,7 +19,7 @@ void Semester::manageCourses(List <Course*>& pOpenCourse, List <Course*>& pAllCo
     clrscr();
     std::cout << "MANAGE THE AVAILABLE COURSES\n\n";
 
-    std::cout << index << std::endl;
+    // std::cout << index << std::endl;
     int N{0};
     for (Node<Course>* cur = listCourses.begin(); cur; cur = cur->pNext) {
         std::cout << N++ << ". View course " << cur->data.info.ID << std::endl;

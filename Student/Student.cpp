@@ -37,15 +37,14 @@ void Student::studentMenu(List <Course*> pOpenCourse)
         viewProfile();
         studentMenu(pOpenCourse);
     }
-    // else {
-    //     // lets go back
-    //     // fstream fout;
-    //     // fout.open(COURSES_FILE, ios::out);
-    //     // save_data(fout);
-    //     // fout.close();
-    //     return;
-    // }
-    return;
+    else {
+        // lets go back
+        // fstream fout;
+        // fout.open(COURSES_FILE, ios::out);
+        // save_data(fout);
+        // fout.close();
+        return;
+    }
 }
 
 void Student::viewProfile()
