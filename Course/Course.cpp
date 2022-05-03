@@ -75,7 +75,7 @@ void Course::viewStudentsList()
     {
         index++;
         cout << "Student " << index << " : ";
-        i->data.acc.view();
+        cout << i->data.acc.name << endl;
     }
 
     cout << "\n";
