@@ -175,7 +175,7 @@ void Class::updateStudentResult()
     std::cout << "STUDENT LIST " << endl << endl;
 
     int N{0};
-    for (Node <Student*> *i; i; i = i -> pNext)
+    for (Node <Student*> *i=studentsList.begin(); i; i = i -> pNext)
     {
         std::cout << ++N << ". " << i->data->acc.name << "\n";
     }

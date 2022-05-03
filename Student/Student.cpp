@@ -301,8 +301,7 @@ void Student::listOfCourses() {
 int Student::listOfCourseStudied() {
     cout << "List of course you have studied: \n";
     int Num = 0;
-    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) 
-        if (cmpDate(getCurrentDate(), p->data.pCourse->info.end_date)) {
+    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
             ++Num;
             cout << Num << ". " << (((p->data).pCourse->info).name) << '\n';
         }
@@ -327,6 +326,11 @@ void Student::viewScoreBoard() {
 
 void Student::updateResult() {
     int N = listOfCourseStudied();
+    if (N==0){
+        cout << "This student haven't enrolled in any course yet!";
+        system("pause");
+        return;
+    }
     cout << "Enter course you want to update result (1 -> " << N << "): ";
     int t = choose(1, N);
     cout << "Enter midterm score, final score: ";
