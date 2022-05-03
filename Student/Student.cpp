@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstring>
 
-void Student::studentMenu(List <Course*> pOpenCourse)
+void Student::studentMenu(List <Course*> &pOpenCourse)
 {
     clrscr();
     // fstream fin;
@@ -251,7 +251,7 @@ void Student::viewCourses() {
     return;
 }
 
-void Student::viewListOpenCourse(List <Course*> pOpenCourse)
+void Student::viewListOpenCourse(List <Course*> &pOpenCourse)
 {
     cout << "LIST OPEN COURSE\n\n";
     for (Node <Course*> *i = pOpenCourse.begin(); i; i = i -> pNext)
