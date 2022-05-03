@@ -14,26 +14,31 @@ void Course::manageCourseInfo()
     // cout << "day: " << "\t" << day << "\n";
     cout << endl;
 
-    cout << "0. Change courseInfo\n";
-    cout << "1. Export list students\n";
-    cout << "2. Import score board\n";
-    cout << "3. View score board\n";
-    cout << "4. Go back\n\n";
+    cout << "0. View student list\n";
+    cout << "1. Change courseInfo\n";
+    cout << "2. Export list students\n";
+    cout << "3. Import score board\n";
+    cout << "4. View score board\n";
+    cout << "5. Go back\n\n";
     cout << "Your choice: ";
-    int t{choose(0, 4)};
+    int t{choose(0, 5)};
     if (t == 0) {
-        info.updateCourseInfo();
+        viewStudentsList();
         manageCourseInfo();
     }
     else if (t == 1) {
-        exportStudentsToCSV();
+        info.updateCourseInfo();
         manageCourseInfo();
     }
     else if (t == 2) {
+        exportStudentsToCSV();
+        manageCourseInfo();
+    }
+    else if (t == 3) {
         importStudentsFromCSV();
         manageCourseInfo();
     }
-    else if (t == 3){
+    else if (t == 4){
         viewScoreboard();
         manageCourseInfo();
     }
@@ -61,8 +66,10 @@ void Course::viewScoreboard()
     system("pause");
 }
 
-void Course::viewStudents()
+void Course::viewStudentsList()
 {
+    cout << "Student list of course " << info.name << ": \n\n";
+
     int index = 0;
     for (Node <StudentScore> *i = student.begin(); i; i = i ->pNext)
     {
@@ -70,6 +77,9 @@ void Course::viewStudents()
         cout << "Student " << index << " : ";
         i->data.acc.view();
     }
+
+    cout << "\n";
+    system("pause");
 }
 
 bool cmp_course(const Course& s1, const Course& s2)
