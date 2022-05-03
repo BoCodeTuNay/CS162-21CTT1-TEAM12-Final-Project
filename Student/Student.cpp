@@ -68,6 +68,7 @@ void Student::viewProfile()
     }
     else {
         // lets go back
+        return;
     }
 }
 
@@ -155,6 +156,7 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
         for (Node <Course*>* p = pOpenCourse.begin(); p; p = p -> pNext) {
             bool check = true;
             Course* data = p->data;
+            // system("pause");
             for (int i = 1; i < 7; ++i)
                 if ((data->info).day[i] > 0 && fClass[i][(data->info).day[i]])
                     check = false;
@@ -235,7 +237,7 @@ void Student::viewCourses() {
         }
     } else if (t == Num - 1) {
         cout << "Please enter the number of course you want to remove: ";
-        int nCourse{choose(0, Num - 2)};
+        int nCourse{choose(0, Num - 3)};
         Num = 0;
         for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
             if (Num == nCourse) {
