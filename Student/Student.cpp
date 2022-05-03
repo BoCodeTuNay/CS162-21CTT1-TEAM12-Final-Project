@@ -43,6 +43,7 @@ void Student::studentMenu(List <Course*> pOpenCourse)
         // fout.open(COURSES_FILE, ios::out);
         // save_data(fout);
         // fout.close();
+        return;
     }
 }
 
@@ -189,6 +190,9 @@ void Student::enrolledCourse(List<Course*> pOpenCourse) {
         CourseScore pickCS = {pickCourse, pickScore};
 
         CoursesList.insert(pickCS);
+
+        cout << "Enroll success!\n";
+        system("pause");
 
         // delete pickCourse;
         // delete pickScore;
