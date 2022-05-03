@@ -36,6 +36,7 @@ void Class::manageStudent(List <Student>& listStudents)
     }
     else if (t == 6) {
         // lets go back
+        return;
     }
     else assert(false); // just to make sure this case cannot happen
 }
@@ -46,7 +47,7 @@ void Class::save_data(fstream& fout)
     // nStudent
     // student1.name student2.name ... studentN.name
     if (!fout.is_open()) return;
-    fout << ID << ' ' << studentsList.size() << '\n';
+    fout << studentsList.size() << '\n';
     for (Node<Student*>* p = studentsList.begin(); p; p = p -> pNext) {
         fout << p->data->acc.ID << ' ';
     }

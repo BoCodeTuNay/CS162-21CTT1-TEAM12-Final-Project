@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstring>
 
-void Student::studentMenu(List <Course*> pOpenCourse)
+void Student::studentMenu(List <Course*> &pOpenCourse)
 {
     clrscr();
     // fstream fin;
@@ -129,7 +129,7 @@ int Student::CurCourses() {
 }
 
 ///them courseInfo
-void Student::enrolledCourse(List<Course*> pOpenCourse) {
+void Student::enrolledCourse(List<Course*> &pOpenCourse) {
     List<CourseInfo> res;
 
     // nếu còn thời gian fix: mình check số tín chỉ max <= 22
@@ -251,7 +251,7 @@ void Student::viewCourses() {
     return;
 }
 
-void Student::viewListOpenCourse(List <Course*> pOpenCourse)
+void Student::viewListOpenCourse(List <Course*> &pOpenCourse)
 {
     cout << "LIST OPEN COURSE\n\n";
     for (Node <Course*> *i = pOpenCourse.begin(); i; i = i -> pNext)
@@ -336,7 +336,7 @@ void Student::updateResult() {
     CoursesList.get(t-1).pScore->Final = finalScore;
 }
 
-void Student::load_data(fstream &fin, List<Course*> pAllCourses) {
+void Student::load_data(fstream &fin, List<Course*> &pAllCourses) {
     if (!fin.is_open()) return;
     fin >> class_name;
     for (int i = 0; i < 8; ++i) 
