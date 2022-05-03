@@ -41,16 +41,12 @@ void Schoolyear::save_data(fstream& fout)
 void Schoolyear::load_data(fstream& fin, List <Course*>& pAllCourse)
 {
     if (!fin.is_open()) return;
-    std::cerr << "Loading a Schoolyear of Semesters..." << std::endl;
     int N;
     fin >> ID >> index >> N;
-    std::cerr << "ID = " << ID << std::endl;
-    std::cerr << "index = " << index << std::endl;
-    std::cerr << "N = " << N << std::endl;
     for (int i = 0; i < N; ++i) {
         Semester cur;
-        cur.load_data(fin, pAllCourse);
         listSemesters.insert(cur);
+        listSemesters.end()->data.load_data(fin, pAllCourse);
     }
     std::cerr << "Done loading data, size of listSemesters = " << listSemesters.size() << std::endl;
 }

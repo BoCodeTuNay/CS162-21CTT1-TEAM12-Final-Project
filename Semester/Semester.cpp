@@ -124,16 +124,14 @@ void Semester::load_data(fstream& fin,  List <Course*>& pAllCourse)
     if (!fin.is_open()) return;
 
     fin >> index;
-    std::cerr << __LINE__ << std::endl;
     start_date.load_date(fin);
     end_date.load_date(fin);
-    std::cerr << __LINE__ << std::endl;
     int N;
     fin >> N;
     for (int i = 0; i < N; ++i) {
         Course cur;
-        cur.load_data(fin);
         listCourses.insert(cur);
+        listCourses.end()->data.load_data(fin);
         pAllCourse.insert(&(listCourses.end()->data));
     }
     // test load_data semester

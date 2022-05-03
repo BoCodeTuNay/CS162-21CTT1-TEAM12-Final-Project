@@ -44,8 +44,8 @@ void Staff::load_courses(fstream& fin, List <Course*>& pAllCourse)
     fin >> N;
     for (int i = 0; i < N; ++i) {
         Schoolyear cur;
-        cur.load_data(fin, pAllCourse);
         listSchoolyears.insert(cur);
+        listSchoolyears.end()->data.load_data(fin, pAllCourse);
     }
 }
 
@@ -64,8 +64,8 @@ void Staff::load_classes(fstream& fin, List<Student>& listStudents)
     fin >> N;
     for (int i = 0; i < N; ++i) {
         Class cur;
-        cur.load_data(fin, listStudents);
         listClasses.insert(cur);
+        listClasses.end()->data.load_data(fin, listStudents);
     }
 }
 
@@ -238,7 +238,7 @@ void Staff::createSchoolyear()
             newSchoolYear.index = listSchoolyears.size();
             listSchoolyears.insert(newSchoolYear);
             std::cout << "The schoolyear is added successfully.\n";
-            // wait a couple of secs
+            system("pause");
         }
     } while (cont);
     
