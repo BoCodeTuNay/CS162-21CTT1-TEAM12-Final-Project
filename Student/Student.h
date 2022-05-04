@@ -39,6 +39,7 @@ struct Student {
     void viewListOpenCourse(List <Course*> &pOpenCourse);
     void load_data(ifstream &fin, List<Course*> &pAllCourses);
     void save_data(ofstream &fout);
+    void viewCoursesWillStudy();
 };
 
 #include "Student.cpp"

@@ -14,9 +14,10 @@ void Student::studentMenu(List <Course*> &pOpenCourse)
 
     std::cout << "0. View my courses\n";
     std::cout << "1. View courses in registration session\n";
-    std::cout << "2. View scoreboard\n";
-    std::cout << "3. View profile\n";
-    std::cout << "4. Log out\n\n";
+    std::cout << "2. View courses you will study in this semester\n";
+    std::cout << "3. View scoreboard\n";
+    std::cout << "4. View profile\n";
+    std::cout << "5. Log out\n\n";
     std::cout << "Your choice: ";
     int t{choose(0, 4)};
     if (t == 0) {
@@ -30,10 +31,14 @@ void Student::studentMenu(List <Course*> &pOpenCourse)
         studentMenu(pOpenCourse);
     }
     else if (t == 2) {
-        viewScoreBoard();
+        viewCoursesWillStudy();
         studentMenu(pOpenCourse);
     }
     else if (t == 3) {
+        viewScoreBoard();
+        studentMenu(pOpenCourse);
+    }
+    else if (t == 4) {
         viewProfile();
         studentMenu(pOpenCourse);
     }
@@ -303,6 +308,18 @@ int Student::listOfCourseStudied() {
     cout << "\n";
     system("pause");
     return Num;
+}
+
+void Student::viewCoursesWillStudy() {
+    cout << "List of course you will study in this semester: \n";
+    int Num{0};
+    for (Node<CourseScore>* p = CoursesList.begin(); p; p = p -> pNext) {
+            if (ifDate(((p->data).pCourse->info).start_date,getCurrentDate(),((p->data).pCourse->info).end_date))
+                cout << ++Num << ". " << (((p->data).pCourse->info).name) << '\n';
+        }
+
+    cout << "\n";
+    system("pause");
 }
 
 void Student::viewScoreBoard() {
